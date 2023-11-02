@@ -1,0 +1,14 @@
+/* 
+  Localizable.strings
+  GuideBook
+
+  Created by Yegor Myropoltsev on 26.10.2023.
+  
+*/
+
+"SignIn.UsernameField.Title" = "Username";
+"SignIn.EmailField.Title" = "Email";
+"SignIn.PasswordField.Title" = "Password";
+"SignIn.SignInButton.Title" = "Sign in";
+"SignIn.SignUpButton.Title" = "Sign up";
+"SignIn.ConfirmPasswordField.Title" = "Confirm password";
