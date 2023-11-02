@@ -13,17 +13,18 @@ final class GuideViewModel: ObservableObject {
     @Published var isStepsPresented: Bool = false
     
     @Published var isFetchingFavorites: Bool = false
+    @Published var isFavorite: Bool = false
     
     var authVM = AuthViewModel()
     
     let emptyDetails: GuideDetails = GuideDetails(
         id: "",
-        emoji: "",
-        title: "",
-        description: "",
+        emoji: "❌",
+        title: "Empty",
+        description: "Empty",
         image: "",
         authorId: "",
-        author: Author(username: ""),
+        author: Author(username: "NoName"),
         isFavorite: false
     )
     
@@ -34,6 +35,11 @@ final class GuideViewModel: ObservableObject {
         }
     }
     
+    func setFavorite(to state: Bool, details: GuideDetails) {
+        self.isFavorite = details.isFavorite
+    }
+
+    
     func resetGuideDetails() {
         self.guideDetails = nil
     }
@@ -42,13 +48,8 @@ final class GuideViewModel: ObservableObject {
         self.guideSteps = []
     }
     
-    
-    func isFavorite(_ item: GuideDetails) -> Bool {
-        return item.isFavorite
-    }
-    
     func toggleFavorite(item: GuideDetails, token: String) {
-        if isFavorite(item) {
+        if item.isFavorite {
             deleteFromFavorites(id: item.id, token: token)
         } else {
             addToFavorites(id: item.id, token: token)

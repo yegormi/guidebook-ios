@@ -78,11 +78,9 @@ extension HomeView {
     
     private var guidesList: some View {
         List(guideVM.filteredGuides) { guide in
-            NavigationLink(destination: GuideDetailsStyle(item: guideVM.guideDetails ?? emptyDetails).onAppear {
-                getDetails(for: guide)
-            }) {
-                GuideStyle(item: guide)
-            }
+            NavigationLink(destination: GuideDetailsStyle(item: guideVM.guideDetails ?? emptyDetails)
+                .onAppear { getDetails(for: guide)}
+            ) { GuideStyle(item: guide) }
         }
         .listStyle(.insetGrouped)
         .navigationBarTitle("Home")
