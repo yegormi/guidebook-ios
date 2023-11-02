@@ -28,7 +28,8 @@ struct AuthView: View {
         !authVM.email.isEmpty &&
         authVM.didLoginButtonClicked &&
         (!authVM.isEmailValid(authVM.email) || authVM.errorResponse?.code == RequestError.userNotFound.rawValue) &&
-        authVM.isSignIn
+        authVM.isSignIn &&
+        authVM.isWarningsShown
     }
     
     private var isEmailNotUnique: Bool {
@@ -36,20 +37,23 @@ struct AuthView: View {
         !authVM.isEmailValid(authVM.email) &&
         authVM.didLoginButtonClicked &&
         authVM.errorResponse?.code == RequestError.emailNotUnique.rawValue &&
-        !authVM.isSignIn
+        !authVM.isSignIn &&
+        authVM.isWarningsShown
     }
     
     private var isEmailInvalid: Bool {
         !authVM.email.isEmpty &&
         !authVM.isEmailValid(authVM.email) &&
-        authVM.didLoginButtonClicked
+        authVM.didLoginButtonClicked &&
+        authVM.isWarningsShown
     }
     
     private var isInvalidPassword: Bool {
         !authVM.password.isEmpty &&
         authVM.didLoginButtonClicked &&
         authVM.errorResponse?.code == RequestError.invalidPassword.rawValue &&
-        authVM.isSignIn
+        authVM.isSignIn &&
+        authVM.isWarningsShown
     }
     
     private var isUsernameNotUnique: Bool {
@@ -57,13 +61,15 @@ struct AuthView: View {
         !authVM.isUsernameValid(authVM.username) &&
         authVM.didLoginButtonClicked &&
         authVM.errorResponse?.code == RequestError.usernameNotUnique.rawValue &&
-        !authVM.isSignIn
+        !authVM.isSignIn &&
+        authVM.isWarningsShown
     }
     
     private var isUsernameInvalid: Bool {
         !authVM.username.isEmpty &&
         authVM.didLoginButtonClicked &&
-        !authVM.isUsernameValid(authVM.username)
+        !authVM.isUsernameValid(authVM.username) &&
+        authVM.isWarningsShown
     }
     
     var body: some View {
@@ -310,25 +316,26 @@ extension AuthView {
     private var loginButton: some View {
         LoadingButtonStyle(isSignIn: authVM.isSignIn, isLoading: authVM.isRequestInProgress) {
             authVM.didLoginButtonClicked = true
+            authVM.isWarningsShown = true
+            authVM.errorResponse = nil
             
             let authType: AuthType = authVM.isSignIn ? .signIn : .signUp
+            authVM.isRequestInProgress = true
             switch authType {
             case .signIn:
-                authVM.isRequestInProgress = true
                 authVM.signIn(authRequest: SignInRequest(
                     email: authVM.email,
                     password: authVM.password)
                 )
-                authVM.isRequestInProgress = false
-                
             case .signUp:
-                authVM.isRequestInProgress = true
                 authVM.signUp(authRequest: SignUpRequest(
                     username: authVM.username,
                     email: authVM.email,
                     password: authVM.password)
                 )
                 authVM.isRequestInProgress = false
+                authVM.isWarningsShown = false
+
             }
         }
         .disabled(authVM.isSignIn ? !isAbleToSignIn : !isAbleToSignUp)

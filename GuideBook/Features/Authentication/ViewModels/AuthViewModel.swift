@@ -9,16 +9,28 @@ import Foundation
 
 final class AuthViewModel: ObservableObject {
     @Published var username: String = "" {
-        didSet { resetErrorResponse() }
+        didSet {
+            resetErrorResponse()
+            isWarningsShown = false
+        }
     }
     @Published var email: String = "" {
-        didSet { resetErrorResponse() }
+        didSet {
+            resetErrorResponse()
+            isWarningsShown = false
+        }
     }
     @Published var password: String = "" {
-        didSet { resetErrorResponse() }
+        didSet {
+            resetErrorResponse()
+            isWarningsShown = false
+        }
     }
     @Published var confirmPassword: String = "" {
-        didSet { resetErrorResponse() }
+        didSet {
+            resetErrorResponse()
+            isWarningsShown = false
+        }
     }
    
     
@@ -32,6 +44,7 @@ final class AuthViewModel: ObservableObject {
     @Published var shouldLogOut: Bool = false
     @Published var isRequestInProgress: Bool = false
     @Published var isSessionExpiredAlertPresented: Bool = false
+    @Published var isWarningsShown: Bool = false
     
     
     let sessionExpiredAlert: AlertInfo = AlertInfo(
@@ -179,7 +192,7 @@ final class AuthViewModel: ObservableObject {
     }
     
     func triggerSessionExpired() {
-        isSessionExpiredAlertPresented = true
+        self.isSessionExpiredAlertPresented = true
     }
     
     // MARK: - User Defaults
