@@ -20,8 +20,8 @@ struct GuideStepsPager: View {
             .overlay(alignment: .bottom) {
                 HStack {
                     Button(action: {
+                        currentPage -= 1
                         withAnimation {
-                            currentPage -= 1
                         }
                     }) {
                         Image(systemName: "chevron.left")
