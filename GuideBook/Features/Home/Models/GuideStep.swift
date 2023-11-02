@@ -14,13 +14,4 @@ struct GuideStep: Codable {
     let image: String
     let order: Int
     let guideId: String
-    
-    enum CodingKeys: String, CodingKey {
-        case id
-        case title
-        case description
-        case image
-        case order
-        case guideId
-    }
 }

@@ -16,18 +16,6 @@ struct GuideDetails: Codable {
     let authorId: String
     let author: Author
     let isFavorite: Bool
-
-    
-    enum CodingKeys: String, CodingKey {
-        case id
-        case emoji
-        case title
-        case description
-        case image
-        case authorId
-        case author
-        case isFavorite
-    }
 }
 
 struct Author: Codable {
