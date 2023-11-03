@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CachedAsyncImage
 
 struct ImageCard: View {
     let imageURL: String
@@ -16,7 +17,7 @@ struct ImageCard: View {
             .frame(maxWidth: .infinity)
             .aspectRatio(1.0, contentMode: .fit)
             .background(
-                AsyncImage(url: URL(string: imageURL)) { phase in
+                CachedAsyncImage(url: URL(string: imageURL)) { phase in
                     if let image = phase.image {
                         image
                             .resizable()
@@ -28,7 +29,7 @@ struct ImageCard: View {
                 }
             )
             .overlay(
-                AsyncImage(url: URL(string: imageURL)) { phase in
+                CachedAsyncImage(url: URL(string: imageURL)) { phase in
                     if let image = phase.image {
                         image
                             .resizable()
