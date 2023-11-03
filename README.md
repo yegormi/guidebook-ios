@@ -6,9 +6,11 @@
 
 ## Screenshots
 
-<img src="Screenshots/home.png" width="200"/>
-<img src="Screenshots/details.png" width="200"/>
-<img src="Screenshots/step.png" width="200"/>
+<div style="display: flex; justify-content: space-between;">
+    <img src="Screenshots/home.png" width="300"/>
+    <img src="Screenshots/details.png" width="300"/>
+    <img src="Screenshots/step.png" width="300"/>
+</div>
 
 
 
