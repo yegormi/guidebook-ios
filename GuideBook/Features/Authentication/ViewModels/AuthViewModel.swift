@@ -18,6 +18,7 @@ final class AuthViewModel: ObservableObject {
         didSet {
             resetErrorResponse()
             isWarningsShown = false
+            showErrorEmail = false
         }
     }
     @Published var password: String = "" {
@@ -45,6 +46,7 @@ final class AuthViewModel: ObservableObject {
     @Published var isRequestInProgress: Bool = false
     @Published var isSessionExpiredAlertPresented: Bool = false
     @Published var isWarningsShown: Bool = false
+    @Published var showErrorEmail: Bool = false
     
     
     let sessionExpiredAlert: AlertInfo = AlertInfo(

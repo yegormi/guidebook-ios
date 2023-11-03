@@ -101,7 +101,7 @@ struct AuthView: View {
                 }
                 
                 emailField
-                if isEmailInvalid {
+                if authVM.showErrorEmail {
                     HStack {
                         invalidEmail
                         Spacer()
@@ -174,13 +174,25 @@ extension AuthView {
         errorText("Invalid email address")
     }
     
+    private func isValidUsername(with username: String) -> Bool {
+        let regex = "^[a-z0-9_-]$"
+        let predicate = NSPredicate(format:"SELF MATCHES[c] %@", regex)
+        return predicate.evaluate(with: username)
+    }
+    
+    private func isValidEmail(with email: String) -> Bool {
+        let regex = "(?:[a-z0-9!#$%\\&'*+/=?\\^_`{|}~-]+(?:\\.[a-z0-9!#$%\\&'*+/=?\\^_`{|}"+"~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\"+"x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[a-z0-9](?:[a-"+"z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:25[0-5"+"]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-"+"9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21"+"-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])"
+        let predicate = NSPredicate(format: "SELF MATCHES[c] %@", regex)
+        return predicate.evaluate(with: email)
+    }
+    
     private var headerSection: some View {
         Text("📘 GuideBook")
             .font(.system(size: 21))
             .bold()
     }
     
-
+    
     
     private var signIn: some View {
         HStack {
@@ -246,7 +258,7 @@ extension AuthView {
             .overlay(
                 RoundedRectangle(cornerRadius: 10)
                     .stroke(
-                        isEmailNotUnique || isUserNotFound
+                        isEmailNotUnique || isUserNotFound || authVM.showErrorEmail
                         ? Color.red : Color.clear, lineWidth: 2
                     )
             )
@@ -315,7 +327,16 @@ extension AuthView {
         LoadingButtonStyle(isSignIn: authVM.isSignIn, isLoading: authVM.isRequestInProgress) {
             authVM.didLoginButtonClicked = true
             authVM.errorResponse = nil
-    
+            
+            guard
+                (authVM.isSignIn && isAbleToSignIn) || (!authVM.isSignIn && isAbleToSignUp),
+                isValidEmail(with: authVM.email),
+                (authVM.isSignIn || isValidUsername(with: authVM.username))
+            else {
+                authVM.showErrorEmail = !isValidEmail(with: authVM.email)
+                return
+            }
+            
             let authType: AuthType = authVM.isSignIn ? .signIn : .signUp
             authVM.isRequestInProgress = true
             switch authType {
