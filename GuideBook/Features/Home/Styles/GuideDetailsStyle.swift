@@ -23,8 +23,8 @@ struct GuideDetailsStyle: View {
                 ImageCard(imageURL: item.image)
                     .padding(.bottom, 25)
                 HStack {
-                    VStack {
-                        HStack() {
+                    VStack(spacing: 5) {
+                        HStack(spacing: 5) {
                             profilePicture
                             authorName
                             Spacer()
@@ -38,6 +38,7 @@ struct GuideDetailsStyle: View {
                 }
                 Divider()
                 cardDescriptionView
+                    .padding(.top, 10)
             }
             .navigationBarTitle("Details")
             .padding(30)
@@ -59,7 +60,7 @@ extension GuideDetailsStyle {
     
     private var profilePicture: some View {
         Image(systemName: "person.circle.fill")
-            .font(.system(size: 24))
+            .font(.system(size: 20))
             .foregroundColor(.gray)
     }
     
@@ -89,7 +90,7 @@ extension GuideDetailsStyle {
         }) {
             Image(systemName:  isToggled ? "heart.fill" : "heart")
                 .foregroundColor(isToggled ? Color.red : Color.gray)
-                .font(.system(size: 30))
+                .font(.system(size: 28))
         }
     }
     
@@ -102,7 +103,6 @@ extension GuideDetailsStyle {
         Text(item.description)
             .font(.system(size: 16))
             .frame(maxWidth: .infinity, alignment: .leading)
-            .padding(.top, 10)
     }
     
     private var showStepsButton: some View {
