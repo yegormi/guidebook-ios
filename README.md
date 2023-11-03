@@ -45,7 +45,7 @@ Follow these instructions to get a copy of the project up and running on your lo
 1. Clone the repository to your local machine using Git:
 
 ```shell
-git clone https://github.com/yourusername/GuideBook-iOS.git
+git clone https://github.com/yegormi/guidebook-ios
 ```
 
 2. Open the project in Xcode.
@@ -53,15 +53,11 @@ git clone https://github.com/yourusername/GuideBook-iOS.git
 
 ## Usage
 
-Launch the GuideBook app on your iOS device or simulator.
-
-Explore the list of available guides.
-
-Click on a guide to view its details.
-
-To mark a guide as a favorite, tap the heart icon.
-
-Use the navigation features to browse guides and discover travel destinations.
+ - Launch the GuideBook app on your iOS device or simulator.
+ - Explore the list of available guides.
+ - Click on a guide to view its details.
+ - To mark a guide as a favorite, tap the heart icon.
+ - Use the navigation features to browse guides and discover steps for them.
 
 ## Contributing
 
