@@ -173,6 +173,7 @@
 			children = (
 				EE0C21862AE861D700668357 /* GuideBook */,
 				EE0C21852AE861D700668357 /* Products */,
+				EE7B13B62AF500D500A45F1B /* Screenshots */,
 			);
 			sourceTree = "<group>";
 		};
@@ -189,7 +190,6 @@
 			children = (
 				EE7AE9952AEADD96002F3AA0 /* Features */,
 				EE0C218D2AE861D900668357 /* Preview Content */,
-				EE7B13B62AF500D500A45F1B /* Screenshots */,
 				EE0C218B2AE861D900668357 /* Assets.xcassets */,
 				EE0C21872AE861D700668357 /* GuideBookApp.swift */,
 			);
