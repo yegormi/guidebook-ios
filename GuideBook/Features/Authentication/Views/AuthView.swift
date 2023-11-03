@@ -34,7 +34,6 @@ struct AuthView: View {
     
     private var isEmailNotUnique: Bool {
         !authVM.email.isEmpty &&
-        !authVM.isEmailValid(authVM.email) &&
         authVM.didLoginButtonClicked &&
         authVM.errorResponse?.code == RequestError.emailNotUnique.rawValue &&
         !authVM.isSignIn &&
@@ -58,7 +57,6 @@ struct AuthView: View {
     
     private var isUsernameNotUnique: Bool {
         !authVM.username.isEmpty &&
-        !authVM.isUsernameValid(authVM.username) &&
         authVM.didLoginButtonClicked &&
         authVM.errorResponse?.code == RequestError.usernameNotUnique.rawValue &&
         !authVM.isSignIn &&
@@ -316,9 +314,8 @@ extension AuthView {
     private var loginButton: some View {
         LoadingButtonStyle(isSignIn: authVM.isSignIn, isLoading: authVM.isRequestInProgress) {
             authVM.didLoginButtonClicked = true
-            authVM.isWarningsShown = true
             authVM.errorResponse = nil
-            
+    
             let authType: AuthType = authVM.isSignIn ? .signIn : .signUp
             authVM.isRequestInProgress = true
             switch authType {
@@ -333,10 +330,10 @@ extension AuthView {
                     email: authVM.email,
                     password: authVM.password)
                 )
-                authVM.isRequestInProgress = false
-                authVM.isWarningsShown = false
-
             }
+            
+            authVM.isWarningsShown = true
+            authVM.isRequestInProgress = false
         }
         .disabled(authVM.isSignIn ? !isAbleToSignIn : !isAbleToSignUp)
         .opacity((authVM.isSignIn ? isAbleToSignIn : isAbleToSignUp) ? 1 : 0.5)

@@ -27,6 +27,7 @@ struct LoadingButtonStyle: View {
                     ProgressView()
                         .progressViewStyle(CircularProgressViewStyle(tint: .primary))
                         .scaleEffect(1, anchor: .center)
+                        .foregroundStyle(Color.white)
                 }
                 
             }
