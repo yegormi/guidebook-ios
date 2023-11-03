@@ -24,7 +24,7 @@ struct GuideStepsStyle: View {
                 stepDescription
                     .padding(.top, 10)
             }
-            .navigationBarTitle("Details")
+            .navigationBarTitle("Steps")
             .padding(30)
         }
     }
