@@ -5,7 +5,7 @@ struct GuideStepsPager: View {
     let guide: GuideDetails
     
     @State private var currentPage = 0
-
+    
     var body: some View {
         GeometryReader { geometry in
             TabView(selection: $currentPage) {
@@ -20,8 +20,8 @@ struct GuideStepsPager: View {
             .overlay(alignment: .bottom) {
                 HStack {
                     Button(action: {
-                        currentPage -= 1
                         withAnimation {
+                            currentPage -= 1
                         }
                     }) {
                         Image(systemName: "chevron.left")
@@ -40,7 +40,8 @@ struct GuideStepsPager: View {
                     Button(action: {
                         withAnimation {
                             currentPage += 1
-                        }                    }) {
+                        }
+                    }) {
                         Image(systemName: "chevron.right")
                             .padding()
                     }
@@ -77,7 +78,7 @@ struct GuideStepsPager_Previews: PreviewProvider {
         GuideStep(id: "2", title: "Step 2", description: "Description 2", image: "https://www.thespruceeats.com/thmb/LIfWsru7OyxtrscIuH97o8NQCS8=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/instant-pot-beef-stew-5218740-step-01-b5c06001cf9a45dca56f87bb7e299b81.jpg", order: 2, guideId: "guide1"),
         GuideStep(id: "3", title: "Step 3", description: "Description 3", image: "https://m.media-amazon.com/images/I/51ZEuKxGj0L._AC_UF1000,1000_QL80_.jpg", order: 3, guideId: "guide1")
     ]
-
+    
     static var previews: some View {
         GuideStepsPager(steps: sampleGuideSteps, guide: sampleGuide)
             .previewLayout(.sizeThatFits)
