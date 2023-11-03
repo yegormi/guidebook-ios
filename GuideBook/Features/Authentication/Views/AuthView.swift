@@ -307,7 +307,7 @@ extension AuthView {
             .padding(.top, 10)
             .padding(.bottom, 20)
             .transition(.asymmetric(
-                insertion: .move(edge: .top), removal: .identity)
+                insertion: .move(edge: .top), removal: .opacity)
             )
     }
     
