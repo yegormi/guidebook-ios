@@ -61,10 +61,11 @@ git clone https://github.com/yegormi/guidebook-ios
 
 ## Contributing
 
-### We welcome contributions from the community. If you'd like to contribute to the project, please follow our Contributing Guidelines.
-License
+We welcome contributions from the community. If you'd like to contribute to the project, please follow our Contributing Guidelines.
 
-### This project is licensed under the MIT License - see the LICENSE file for details.
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
 
 ## Acknowledgments
 
