@@ -11,7 +11,7 @@ struct ParentView: View {
     @EnvironmentObject var guideVM: GuideViewModel
     @EnvironmentObject var authVM: AuthViewModel
     
-    @State var willShowNextScreen: Bool = false
+    @State private var willShowNextScreen: Bool = false
     
     var body: some View {
         ZStack {
