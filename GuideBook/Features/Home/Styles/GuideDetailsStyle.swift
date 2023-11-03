@@ -89,7 +89,7 @@ extension GuideDetailsStyle {
         }) {
             Image(systemName:  isToggled ? "heart.fill" : "heart")
                 .foregroundColor(isToggled ? Color.red : Color.gray)
-                .font(.system(size: 24))
+                .font(.system(size: 30))
         }
     }
     
