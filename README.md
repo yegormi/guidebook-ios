@@ -6,9 +6,9 @@
 
 ## Screenshots
 
-<img src="Screenshots/home.png"/>
-<img src="Screenshots/details"/>
-<img src="Screenshots/step.png"/>
+<img src="Screenshots/home.png" width="200"/>
+<img src="Screenshots/details.png" width="200"/>
+<img src="Screenshots/step.png" width="200"/>
 
 
 
