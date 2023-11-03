@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct SimpleCount: View {
+struct PagerCount: View {
   
   // MARK: - Public Properties
   
@@ -23,9 +23,9 @@ struct SimpleCount: View {
   }
 }
 
-struct SimpleCount_Previews: PreviewProvider {
+struct PagerCount_Previews: PreviewProvider {
     static var previews: some View {
-        SimpleCount(numberOfPages: 5, currentIndex: 2)
+        PagerCount(numberOfPages: 5, currentIndex: 2)
             .previewLayout(.sizeThatFits)
             .padding()
     }

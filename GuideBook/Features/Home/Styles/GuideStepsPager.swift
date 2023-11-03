@@ -32,7 +32,7 @@ struct GuideStepsPager: View {
                     
                     Spacer()
                     
-                    SimpleCount(numberOfPages: steps.count, currentIndex: currentPage)
+                    PagerCount(numberOfPages: steps.count, currentIndex: currentPage)
                         .padding()
                     
                     Spacer()
