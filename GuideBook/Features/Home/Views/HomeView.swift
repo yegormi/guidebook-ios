@@ -11,7 +11,7 @@ struct HomeView: View {
     @EnvironmentObject var guideVM: GuideViewModel
     @EnvironmentObject var authVM: AuthViewModel
     
-    @State var isPerformed: Bool = false
+    @State private var isPerformed: Bool = false
     
     private var emptyDetails: GuideDetails = GuideDetails(
         id: "",
