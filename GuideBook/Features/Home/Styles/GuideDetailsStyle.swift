@@ -14,52 +14,43 @@ struct GuideDetailsStyle: View {
     @EnvironmentObject var favoritesVM: FavoritesViewModel
     @EnvironmentObject var authVM: AuthViewModel
     
-    @State private var isToggled:       Bool = false
-    @State private var isPresented:       Bool = false
-    
+    @State private var isPresented: Bool = false
+    @State private var isToggled: Bool = false
     
     var body: some View {
-        if isPresented {
-            GuideStepsPager(steps: guideVM.guideSteps, guide: item)
-                .transition(.asymmetric(insertion: .move(edge: .bottom), removal: .move(edge: .top)).animation(.linear))
-        } else {
-            ScrollView {
-                VStack {
-                    ImageCard(imageURL: item.image)
-                        .padding(.bottom, 25)
-                    HStack {
-                        VStack {
-                            HStack() {
-                                profilePicture
-                                authorName
-                                Spacer()
-                            }
-                            HStack {
-                                cardTitleView
-                                Spacer()
-                            }
+        ScrollView {
+            VStack {
+                ImageCard(imageURL: item.image)
+                    .padding(.bottom, 25)
+                HStack {
+                    VStack {
+                        HStack() {
+                            profilePicture
+                            authorName
+                            Spacer()
                         }
-                        favoriteButton
+                        HStack {
+                            cardTitleView
+                            Spacer()
+                        }
                     }
-                    Divider()
-                    cardDescriptionView
+                    favoriteButton
                 }
-                .navigationBarTitle("Details")
-                .padding(30)
+                Divider()
+                cardDescriptionView
             }
-            .onAppear {
-                isToggled = guideVM.isFavorite
+            .navigationBarTitle("Details")
+            .padding(30)
+        }
+        .safeAreaInset(edge: .bottom, alignment: .trailing) {
+            if !guideVM.guideSteps.isEmpty {
+                showStepsButton
+                    .padding(.bottom, 15)
+                    .padding(.trailing, 15)
             }
-            .onChange(of: isToggled) { newState in
-                guideVM.setFavorite(to: newState, details: item)
-            }
-            .safeAreaInset(edge: .bottom, alignment: .trailing) {
-                if !guideVM.guideSteps.isEmpty {
-                    showStepsButton
-                        .padding(.bottom, 15)
-                        .padding(.trailing, 15)
-                }
-            }
+        }
+        .onChange(of: item.isFavorite) { newState in
+            isToggled = newState
         }
     }
 }
@@ -77,27 +68,30 @@ extension GuideDetailsStyle {
             .font(.system(size: 16))
     }
     
-    func handleFavoriteToggle() {
-        isToggled.toggle()
-        if let token = authVM.response?.accessToken {
-            if isToggled {
-                guideVM.addToFavorites(id: item.id, token: token)
+    private var favoriteButton: some View {
+        
+        func toggleRequest(item: GuideDetails, token: String) {
+            if item.isFavorite {
+                guideVM.deleteFromFavorites(id: item.id, token: authVM.response?.accessToken ?? "")
             } else {
-                guideVM.deleteFromFavorites(id: item.id, token: token)
+                guideVM.addToFavorites(id: item.id, token: authVM.response?.accessToken ?? "")
             }
             guideVM.shouldUpdateFavorites = true
         }
-    }
-    
-    private var favoriteButton: some View {
-        Button(action: handleFavoriteToggle) {
-            Image(systemName: isToggled ? "heart.fill" : "heart")
-                .foregroundColor(isToggled ? .red : .gray)
+        
+        func handleFavorite() {
+            isToggled.toggle()
+            toggleRequest(item: item, token: authVM.response?.accessToken ?? "")
+        }
+                
+        return Button(action: {
+            handleFavorite()
+        }) {
+            Image(systemName:  isToggled ? "heart.fill" : "heart")
+                .foregroundColor(isToggled ? Color.red : Color.gray)
                 .font(.system(size: 24))
         }
     }
-    
-    
     
     private var cardTitleView: some View {
         Text(item.title)
@@ -112,19 +106,20 @@ extension GuideDetailsStyle {
     }
     
     private var showStepsButton: some View {
-        Button(action: {
-            withAnimation {
-                isPresented.toggle()
+        NavigationLink(destination: GuideStepsPager(steps: guideVM.guideSteps, guide: item),
+                       isActive: $isPresented) {
+            Button(action: {
+                self.isPresented = true
+            }) {
+                RoundedRectangle(cornerRadius: 16)
+                    .fill(Color.blue)
+                    .frame(width: 55, height: 55)
+                    .overlay(
+                        Image(systemName: "arrow.right")
+                            .font(.system(size: 20))
+                            .foregroundColor(.white)
+                    )
             }
-        }) {
-            RoundedRectangle(cornerRadius: 16)
-                .fill(Color.blue)
-                .frame(width: 55, height: 55)
-                .overlay(
-                    Image(systemName: "arrow.up")
-                        .font(.system(size: 20))
-                        .foregroundColor(.white)
-                )
         }
     }
 }

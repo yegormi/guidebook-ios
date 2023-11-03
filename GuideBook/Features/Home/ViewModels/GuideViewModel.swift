@@ -10,10 +10,8 @@ final class GuideViewModel: ObservableObject {
     
     @Published var hasFetchedFavorites: Bool = false
     @Published var shouldUpdateFavorites: Bool = false
-    @Published var isStepsPresented: Bool = false
-    
     @Published var isFetchingFavorites: Bool = false
-    @Published var isFavorite: Bool = false
+
     
     var authVM = AuthViewModel()
     
@@ -35,26 +33,12 @@ final class GuideViewModel: ObservableObject {
         }
     }
     
-    func setFavorite(to state: Bool, details: GuideDetails) {
-        self.isFavorite = details.isFavorite
-    }
-
-    
     func resetGuideDetails() {
         self.guideDetails = nil
     }
     
     func resetGuideSteps() {
         self.guideSteps = []
-    }
-    
-    func toggleFavorite(item: GuideDetails, token: String) {
-        if item.isFavorite {
-            deleteFromFavorites(id: item.id, token: token)
-        } else {
-            addToFavorites(id: item.id, token: token)
-        }
-        self.shouldUpdateFavorites = true
     }
     
     func fetcnGuideSteps(id: String, token: String) {
@@ -133,7 +117,7 @@ final class GuideViewModel: ObservableObject {
                 switch result {
                 case .success(let details):
                     self.guideDetails = details
-                    
+                    print("     FAVORITE STATE: \(String(describing: self.guideDetails?.isFavorite))")
                     if let data = try? JSONEncoder().encode(details), let jsonString = String(data: data, encoding: .utf8) {
                         print("Received response struct: \(jsonString)")
                     } else {

@@ -11,7 +11,7 @@ struct FavoritesView: View {
     @EnvironmentObject var guideVM: GuideViewModel
     @EnvironmentObject var authVM: AuthViewModel
     @EnvironmentObject var favoritesVM: FavoritesViewModel
-
+    
     var body: some View {
         NavigationView {
             Form {
@@ -46,14 +46,15 @@ struct FavoritesView: View {
         guideVM.fetchGuideDetails(id: guide.id, token: authVM.response?.accessToken ?? "")
         guideVM.fetcnGuideSteps(id: guide.id, token: authVM.response?.accessToken ?? "")
     }
-
+    
     private var favoriteGuides: some View {
         List(guideVM.favorites) { guide in
-            NavigationLink(destination: GuideDetailsStyle(item: guideVM.guideDetails ?? guideVM.emptyDetails).onAppear {
-                getDetails(for: guide)
-            }) {
-                GuideStyle(item: guide)
-            }
+            NavigationLink(destination: GuideDetailsStyle(item: guideVM.guideDetails ?? guideVM.emptyDetails)
+                .onAppear {
+                    getDetails(for: guide)
+                }) {
+                    GuideStyle(item: guide)
+                }
         }
     }
 }
