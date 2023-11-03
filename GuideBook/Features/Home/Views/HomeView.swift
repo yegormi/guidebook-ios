@@ -87,15 +87,15 @@ extension HomeView {
         .navigationBarTitleDisplayMode(.inline)
     }
     
-    private var guidesListNEW: some View {
-        GuidesListStyles(
-            guides: guideVM.guides,
-            guideDetails: guideVM.guideDetails ?? emptyDetails,
-            title: "Home",
-            onAppear: { guide in
-                getDetails(for: guide)
-            })
-    }
+//    private var guidesListNEW: some View {
+//        GuidesListStyles(
+//            guides: guideVM.guides,
+//            guideDetails: guideVM.guideDetails ?? emptyDetails,
+//            title: "Home",
+//            onAppear: { guide in
+//                getDetails(for: guide)
+//            })
+//    }
 }
 
 

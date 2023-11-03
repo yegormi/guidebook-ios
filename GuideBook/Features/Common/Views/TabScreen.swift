@@ -4,7 +4,6 @@ import SwiftUI
 // MARK: - BODY
 
 struct TabScreen: View {
-    @EnvironmentObject var guideVM: GuideViewModel
     @State private var willShowHeader: Bool = false
 
     var body: some View {

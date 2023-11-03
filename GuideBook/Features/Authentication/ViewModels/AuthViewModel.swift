@@ -170,10 +170,14 @@ final class AuthViewModel: ObservableObject {
     }
     
     // MARK: - Session Management
-    
-    func signOut() {
+
+    func clearUserData() {
         deleteAuthResponse()
         resetAuth()
+    }
+
+    func signOut() {
+        clearUserData()
         shouldLogOut = true
     }
     

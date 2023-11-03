@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct ParentView: View {
-    @EnvironmentObject var guideVM: GuideViewModel
     @EnvironmentObject var authVM: AuthViewModel
     
     @State private var willShowNextScreen: Bool = false
@@ -46,7 +45,6 @@ struct ParentView: View {
 struct ParentView_Previews: PreviewProvider {
     static var previews: some View {
         ParentView()
-            .environmentObject(GuideViewModel())
             .environmentObject(AuthViewModel())
     }
 }
