@@ -1,7 +1,5 @@
 # GuideBook - iOS App
 
-GuideBook is a feature-rich iOS app that allows users to explore, view, and favorite guides.
-
 ![Swift](https://img.shields.io/badge/Swift-5.5-orange.svg)
 ![Platform](https://img.shields.io/badge/Platform-iOS-brightgreen.svg)
 ![License](https://img.shields.io/badge/License-MIT-blue.svg)
@@ -29,7 +27,7 @@ GuideBook is a feature-rich iOS app that allows users to explore, view, and favo
 - [Acknowledgments](#acknowledgments)
 
 ## Introduction
-
+GuideBook is a feature-rich iOS app that allows users to explore, view, and favorite guides.
 It offers a user-friendly interface, smooth navigation, and essential travel information in one place. This README provides an overview of the app, installation instructions, and how to get started.
 
 ## Key Features
