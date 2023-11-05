@@ -19,11 +19,13 @@ struct PasswordField: View {
         HStack {
             ZStack {
                 SecureField(label, text: $input)
+                    .frame(maxWidth: .infinity, maxHeight: 50)
                     .focused($focus, equals: .secure)
                     .opacity(showText ? 0 : 1)
                     .autocapitalization(.none)
                     .disableAutocorrection(true)
                 TextField(label, text: $input)
+                    .frame(maxWidth: .infinity, maxHeight: 50)
                     .focused($focus, equals: .text)
                     .opacity(showText ? 1 : 0)
                     .autocapitalization(.none)
@@ -34,6 +36,7 @@ struct PasswordField: View {
                 showText.toggle()
             }) {
                 Image(systemName: showText ? "eye.slash.fill" : "eye.fill")
+                    .frame(maxWidth: 40, maxHeight: 50)
             }
             .accentColor(.secondary)
         }

@@ -22,9 +22,11 @@ struct InputField: View {
                 if type == .password {
                     PasswordField(label: label, input: $text)
                         .inputFieldStyle(type: type)
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
                 } else {
                     TextField(label, text: $text)
                         .inputFieldStyle(type: type)
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
                 }
             }
             .invalidBorder(isActive: isInvalid)
