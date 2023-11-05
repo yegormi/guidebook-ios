@@ -35,7 +35,8 @@ struct AuthFeature: Reducer {
             state.password = current
             return .none
         case .confirmPasswordChanged(let current):
-            state.password = current
+            state.confirmPassword = current
+            return .none
         }
     }
 }

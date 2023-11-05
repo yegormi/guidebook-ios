@@ -8,10 +8,17 @@
 import SwiftUI
 
 struct InputField: View {
-    let placeholder: String
-    @Binding var text: String
-    let type: KeyboardType
-    let isInvalid: Bool
+    private let label: String
+    @Binding private var text: String
+    private let type: KeyboardType
+    private let isInvalid: Bool
+    
+    init(label: String, text: Binding<String>, type: KeyboardType, isInvalid: Bool) {
+        self.label = label
+        self._text = text
+        self.type = type
+        self.isInvalid = isInvalid
+    }
     
     var body: some View {
         RoundedRectangle(cornerRadius: 10)
@@ -19,16 +26,14 @@ struct InputField: View {
             .frame(maxWidth: .infinity, maxHeight: 50)
             .shadow(radius: 1)
             .overlay {
-                if type == .password || type == .confirmPassword {
-                    PasswordField(placeholder: placeholder, text: $text)
+                if type == .password {
+                    PasswordField(label: label, input: $text)
                         .inputFieldStyle(type: type)
-                        .invalidBorder(isActive: isInvalid)
                 } else {
-                    TextField(placeholder, text: $text)
+                    TextField(label, text: $text)
                         .inputFieldStyle(type: type)
-                        .invalidBorder(isActive: isInvalid)
                 }
             }
-            .padding(.top, 10)
+            .invalidBorder(isActive: isInvalid)
     }
 }

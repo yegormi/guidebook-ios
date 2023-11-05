@@ -12,12 +12,20 @@ import ComposableArchitecture
 struct GuideBookApp: App {
     var body: some Scene {
         WindowGroup {
-            RootView(
-                store: Store(initialState: RootFeature.State()) {
-                    RootFeature()
+            AuthView(
+                store: Store(initialState: AuthFeature.State()) {
+                    AuthFeature()
                         ._printChanges()
                 }
             )
+            
+            
+//            RootView(
+//                store: Store(initialState: RootFeature.State()) {
+//                    RootFeature()
+//                        ._printChanges()
+//                }
+//            )
         }
     }
 }

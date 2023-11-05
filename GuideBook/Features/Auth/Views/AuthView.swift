@@ -9,46 +9,46 @@ import SwiftUI
 import ComposableArchitecture
 
 struct AuthView: View {
-    let store: Store<AuthFeature.State, AuthFeature.Action>
-
+    let store: StoreOf<AuthFeature>
+    
     var body: some View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in
             VStack {
                 InputField(
-                    placeholder: "Username",
+                    label: "Username",
                     text: viewStore.binding(
                         get: { $0.username },
-                        send: { .usernameTextChanged($0) }
+                        send: { .usernameChanged($0) }
                     ),
                     type: .username,
                     isInvalid: false
                 )
                 InputField(
-                    placeholder: "Email",
+                    label: "Email",
                     text: viewStore.binding(
                         get: { $0.email },
-                        send: { .emailTextChanged($0) }
+                        send: { .emailChanged($0) }
                     ),
                     type: .email,
                     isInvalid: false
                 )
                 InputField(
-                    placeholder: "Password",
+                    label: "Password",
                     text: viewStore.binding(
                         get: { $0.password },
-                        send: { .passwordTextChanged($0) }
+                        send: { .passwordChanged($0) }
                     ),
                     type: .password,
                     isInvalid: false
                 )
                 InputField(
-                    placeholder: "Confirm Password",
+                    label: "Confirm Password",
                     text: viewStore.binding(
                         get: { $0.confirmPassword },
-                        send: { .confirmPasswordTextChanged($0) }
+                        send: { .confirmPasswordChanged($0) }
                     ),
-                    type: .confirmPassword,
-                    isInvalid: viewStore.isInvalidPassword
+                    type: .password,
+                    isInvalid: true
                 )
             }
             .padding(30)
