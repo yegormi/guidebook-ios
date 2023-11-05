@@ -14,13 +14,12 @@ struct AuthToggleButton: View {
     var body: some View {
         HStack {
             Text(authType == .signIn ? "Don't have an account?" : "Already have an account?")
-                .padding([.bottom, .top, .leading], 20)
             Text(authType == .signIn ? "Sign up" : "Sign in")
                 .foregroundStyle(.blue)
-                .padding([.bottom, .top, .trailing], 20)
                 .onTapGesture {
                     onTap()
                 }
         }
+        .padding(.vertical, 20)
     }
 }
