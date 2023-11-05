@@ -14,6 +14,7 @@ struct AuthFeature: Reducer {
         var email: String = ""
         var password: String = ""
         var confirmPassword: String = ""
+        var authType: AuthType = .signIn
     }
     
     enum Action: Equatable {
@@ -21,6 +22,7 @@ struct AuthFeature: Reducer {
         case emailChanged(String)
         case passwordChanged(String)
         case confirmPasswordChanged(String)
+        case toggleButtonTapped
     }
     
     func reduce(into state: inout State, action: Action) -> Effect<Action> {
@@ -36,6 +38,9 @@ struct AuthFeature: Reducer {
             return .none
         case .confirmPasswordChanged(let current):
             state.confirmPassword = current
+            return .none
+        case .toggleButtonTapped:
+            state.authType = state.authType == .signIn ? .signUp : .signIn
             return .none
         }
     }

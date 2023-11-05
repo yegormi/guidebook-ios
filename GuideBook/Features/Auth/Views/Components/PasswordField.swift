@@ -8,13 +8,8 @@
 import SwiftUI
 
 struct PasswordField: View {
-    private let label: String
+    let label: String
     @Binding var input: String
-    
-    init(label: String, input: Binding<String>) {
-        self.label = label
-        self._input = input
-    }
     
     @State private var showText: Bool = false
     @FocusState private var focus: Focus?
@@ -65,5 +60,16 @@ struct PasswordField: View {
 extension PasswordField {
     private enum Focus {
         case secure, text
+    }
+}
+
+struct PasswordField_Previews: PreviewProvider {
+    static var previews: some View {
+        PasswordField(
+            label: "Password",
+            input: .constant("Lorem Ipsum")
+        )
+        .previewLayout(.sizeThatFits)
+        .padding()
     }
 }

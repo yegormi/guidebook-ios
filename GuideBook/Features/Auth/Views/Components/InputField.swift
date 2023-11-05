@@ -8,17 +8,10 @@
 import SwiftUI
 
 struct InputField: View {
-    private let label: String
-    @Binding private var text: String
-    private let type: KeyboardType
-    private let isInvalid: Bool
-    
-    init(label: String, text: Binding<String>, type: KeyboardType, isInvalid: Bool) {
-        self.label = label
-        self._text = text
-        self.type = type
-        self.isInvalid = isInvalid
-    }
+    let label: String
+    @Binding var text: String
+    let type: KeyboardType
+    let isInvalid: Bool
     
     var body: some View {
         RoundedRectangle(cornerRadius: 10)
@@ -35,5 +28,20 @@ struct InputField: View {
                 }
             }
             .invalidBorder(isActive: isInvalid)
+    }
+}
+
+struct InputField_Previews: PreviewProvider {
+    @State static var text = ""
+    
+    static var previews: some View {
+        InputField(
+            label: "Username",
+            text: $text,
+            type: .username,
+            isInvalid: false
+        )
+        .previewLayout(.sizeThatFits)
+        .padding(30)
     }
 }

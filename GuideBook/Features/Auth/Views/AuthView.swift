@@ -14,15 +14,21 @@ struct AuthView: View {
     var body: some View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in
             VStack {
-                InputField(
-                    label: "Username",
-                    text: viewStore.binding(
-                        get: { $0.username },
-                        send: { .usernameChanged($0) }
-                    ),
-                    type: .username,
-                    isInvalid: false
-                )
+                Header()
+                
+                if viewStore.authType == .signUp {
+                    InputField(
+                        label: "Username",
+                        text: viewStore.binding(
+                            get: { $0.username },
+                            send: { .usernameChanged($0) }
+                        ),
+                        type: .username,
+                        isInvalid: false
+                    )
+                    .padding(.bottom, 10)
+                }
+                
                 InputField(
                     label: "Email",
                     text: viewStore.binding(
@@ -32,6 +38,8 @@ struct AuthView: View {
                     type: .email,
                     isInvalid: false
                 )
+                .padding(.bottom, 10)
+                
                 InputField(
                     label: "Password",
                     text: viewStore.binding(
@@ -41,15 +49,24 @@ struct AuthView: View {
                     type: .password,
                     isInvalid: false
                 )
-                InputField(
-                    label: "Confirm Password",
-                    text: viewStore.binding(
-                        get: { $0.confirmPassword },
-                        send: { .confirmPasswordChanged($0) }
-                    ),
-                    type: .password,
-                    isInvalid: true
-                )
+                .padding(.bottom, 10)
+                
+                if viewStore.authType == .signUp {
+                    InputField(
+                        label: "Confirm Password",
+                        text: viewStore.binding(
+                            get: { $0.confirmPassword },
+                            send: { .confirmPasswordChanged($0) }
+                        ),
+                        type: .password,
+                        isInvalid: false
+                    )
+                    .padding(.bottom, 10)
+                }
+                
+                AuthToggleButton(authType: viewStore.authType, onTap: {
+                    viewStore.send(.toggleButtonTapped)
+                })
             }
             .padding(30)
         }
