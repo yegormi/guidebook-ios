@@ -67,7 +67,7 @@ struct AuthView: View {
                 AuthToggleButton(authType: viewStore.authType, onTap: {
                     viewStore.send(
                         .toggleButtonTapped,
-                        animation: .snappy())
+                        animation: .default)
                 })
             }
             .padding(30)
