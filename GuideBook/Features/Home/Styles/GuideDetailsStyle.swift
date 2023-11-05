@@ -9,14 +9,14 @@ import SwiftUI
 
 struct GuideDetailsStyle: View {
     let item: GuideDetails
-    
+
     @EnvironmentObject var guideVM: GuideViewModel
     @EnvironmentObject var favoritesVM: FavoritesViewModel
     @EnvironmentObject var authVM: AuthViewModel
-    
+
     @State private var isPresented: Bool = false
     @State private var isToggled: Bool = false
-    
+
     var body: some View {
         ScrollView {
             VStack {
@@ -57,21 +57,19 @@ struct GuideDetailsStyle: View {
 }
 
 extension GuideDetailsStyle {
-    
     private var profilePicture: some View {
         Image(systemName: "person.circle.fill")
             .font(.system(size: 20))
             .foregroundColor(.gray)
     }
-    
+
     private var authorName: some View {
         Text(item.author.username)
             .font(.system(size: 16))
     }
-    
+
     private var favoriteButton: some View {
-        
-        func toggleRequest(item: GuideDetails, token: String) {
+        func toggleRequest(item: GuideDetails, token _: String) {
             if item.isFavorite {
                 guideVM.deleteFromFavorites(id: item.id, token: authVM.response?.accessToken ?? "")
             } else {
@@ -79,35 +77,36 @@ extension GuideDetailsStyle {
             }
             guideVM.shouldUpdateFavorites = true
         }
-        
+
         func handleFavorite() {
             isToggled.toggle()
             toggleRequest(item: item, token: authVM.response?.accessToken ?? "")
         }
-                
+
         return Button(action: {
             handleFavorite()
         }) {
-            Image(systemName:  isToggled ? "heart.fill" : "heart")
+            Image(systemName: isToggled ? "heart.fill" : "heart")
                 .foregroundColor(isToggled ? Color.red : Color.gray)
                 .font(.system(size: 28))
         }
     }
-    
+
     private var cardTitleView: some View {
         Text(item.title)
             .font(.system(size: 20))
     }
-    
+
     private var cardDescriptionView: some View {
         Text(item.description)
             .font(.system(size: 16))
             .frame(maxWidth: .infinity, alignment: .leading)
     }
-    
+
     private var showStepsButton: some View {
         NavigationLink(destination: GuideStepsPager(steps: guideVM.guideSteps, guide: item),
-                       isActive: $isPresented) {
+                       isActive: $isPresented)
+        {
             Button(action: {
                 self.isPresented = true
             }) {
@@ -124,9 +123,8 @@ extension GuideDetailsStyle {
     }
 }
 
-
 struct GuideDetailsStyle_Previews: PreviewProvider {
-    static var testItem: GuideDetails = GuideDetails(
+    static var testItem: GuideDetails = .init(
         id: "1",
         emoji: "🎧",
         title: "Music relaxing",
@@ -136,7 +134,7 @@ struct GuideDetailsStyle_Previews: PreviewProvider {
         author: Author(username: "yegormi"),
         isFavorite: true
     )
-    
+
     static var previews: some View {
         GuideDetailsStyle(item: testItem)
             .environmentObject(GuideViewModel())

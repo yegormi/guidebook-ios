@@ -1,5 +1,5 @@
 //
-//  ProfileGuide.swift
+//  ProfileCard.swift
 //  GuideBook
 //
 //  Created by Yegor Myropoltsev on 28.10.2023.

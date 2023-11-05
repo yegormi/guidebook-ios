@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ProfileCardStyle: View {
     let card: UserInfoResponse
-    
+
     var body: some View {
         HStack {
             Image(systemName: "person.circle.fill")
@@ -29,12 +29,11 @@ struct ProfileCardStyle: View {
     }
 }
 
-
 struct ProfileCardStyle_Previews: PreviewProvider {
-    static var testItem: UserInfoResponse = UserInfoResponse(id: "1",
-                                                             username: "yegormi",
-                                                             email: "egormiropoltsev79@gmail.com")
-    
+    static var testItem: UserInfoResponse = .init(id: "1",
+                                                  username: "yegormi",
+                                                  email: "egormiropoltsev79@gmail.com")
+
     static var previews: some View {
         ProfileCardStyle(card: testItem)
             .previewLayout(.sizeThatFits)

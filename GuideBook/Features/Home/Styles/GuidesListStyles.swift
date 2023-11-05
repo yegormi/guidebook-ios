@@ -1,5 +1,5 @@
 //
-//  GuidesListStylesView.swift
+//  GuidesListStyles.swift
 //  GuideBook
 //
 //  Created by Yegor Myropoltsev on 31.10.2023.
@@ -12,7 +12,7 @@ struct GuidesListStyles: View {
     let guideDetails: GuideDetails
     let title: String
     let onAppear: (Guide) -> Void
-    
+
     var body: some View {
         List(guides) { guide in
             NavigationLink(destination: GuideDetailsStyle(item: guideDetails)) {
@@ -32,10 +32,10 @@ struct GuidesListStyles_Previews: PreviewProvider {
     static var guides: [Guide] = [
         Guide(id: "1", title: "Guide 1", description: "Description 1", emoji: "😊"),
         Guide(id: "2", title: "Guide 2", description: "Description 2", emoji: "📖"),
-        Guide(id: "3", title: "Guide 3", description: "Description 3", emoji: "🔍")
+        Guide(id: "3", title: "Guide 3", description: "Description 3", emoji: "🔍"),
     ]
-    
-    static var details: GuideDetails = GuideDetails(
+
+    static var details: GuideDetails = .init(
         id: "352345",
         emoji: "😊",
         title: "Guide",
@@ -45,7 +45,7 @@ struct GuidesListStyles_Previews: PreviewProvider {
         author: Author(username: "User"),
         isFavorite: true
     )
-    
+
     static var previews: some View {
         GuidesListStyles(
             guides: guides,

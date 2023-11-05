@@ -12,13 +12,12 @@ final class SettingsViewModel: ObservableObject {
     @Published var isSignOutAlertPresented: Bool = false
     @Published var isDeleteAccountAlertPresented: Bool = false
 
-    
-    let signOutAlert: AlertInfo = AlertInfo(
+    let signOutAlert: AlertInfo = .init(
         title: "Sign Out",
         description: "Are you sure you want to sign out?"
     )
-    
-    let deleteAccountAlert: AlertInfo = AlertInfo(
+
+    let deleteAccountAlert: AlertInfo = .init(
         title: "Delete Account",
         description: "Are you sure you want to sign out?"
     )

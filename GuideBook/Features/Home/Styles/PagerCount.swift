@@ -1,5 +1,5 @@
 //
-//  SquircleIndexView.swift
+//  PagerCount.swift
 //  GuideBook
 //
 //  Created by Yegor Myropoltsev on 02.11.2023.
@@ -8,19 +8,18 @@
 import SwiftUI
 
 struct PagerCount: View {
-  
-  // MARK: - Public Properties
-  
-  let numberOfPages: Int
-  let currentIndex: Int
-  
-  // MARK: - Body
-  
-  var body: some View {
-      Text("\(currentIndex + 1) / \(numberOfPages)")
-          .font(.system(size: 20))
-          .foregroundStyle(Color.primary)
-  }
+    // MARK: - Public Properties
+
+    let numberOfPages: Int
+    let currentIndex: Int
+
+    // MARK: - Body
+
+    var body: some View {
+        Text("\(currentIndex + 1) / \(numberOfPages)")
+            .font(.system(size: 20))
+            .foregroundStyle(Color.primary)
+    }
 }
 
 struct PagerCount_Previews: PreviewProvider {

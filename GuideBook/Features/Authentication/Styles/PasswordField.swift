@@ -8,24 +8,19 @@
 import SwiftUI
 
 struct PasswordField: View {
+    let placeholder: String
     
-    let placeholder: LocalizedStringKey
+    @Binding var text: String
     
-    @Binding
-    var text: String
-    
-    @State
-    private var showText: Bool = false
+    @State private var showText: Bool = false
     
     private enum Focus {
         case secure, text
     }
     
-    @FocusState
-    private var focus: Focus?
+    @FocusState private var focus: Focus?
     
-    @Environment(\.scenePhase)
-    private var scenePhase
+    @Environment(\.scenePhase) private var scenePhase
     
     var body: some View {
         HStack {

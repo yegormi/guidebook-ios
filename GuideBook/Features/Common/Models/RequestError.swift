@@ -8,12 +8,11 @@
 import Foundation
 
 enum RequestError: String, Equatable {
-    case userNotFound = "user-not-found"           // signin email
-    case emailNotUnique = "email-not-unique"       // signup email
-    case invalidPassword = "invalid-password"      // signin password
+    case userNotFound = "user-not-found" // signin email
+    case emailNotUnique = "email-not-unique" // signup email
+    case invalidPassword = "invalid-password" // signin password
     case usernameNotUnique = "username-not-unique" // signup username
     case tokenExpired = "jwt-expired"
     case tokenInvalid = "jwt-indalid"
     case guideNotFound = "guide-not-found"
 }
-

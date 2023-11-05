@@ -9,13 +9,13 @@ import SwiftUI
 
 struct ParentView: View {
     @EnvironmentObject var authVM: AuthViewModel
-    
+
     @State private var willShowNextScreen: Bool = false
-    
+
     var body: some View {
         ZStack {
             if willShowNextScreen || authVM.shouldLogOut {
-                if (authVM.response == nil) {
+                if authVM.response == nil {
                     AuthView()
                 } else {
                     TabScreen()
@@ -32,7 +32,8 @@ struct ParentView: View {
             }
         }
         .alert(authVM.sessionExpiredAlert.title,
-               isPresented: $authVM.isSessionExpiredAlertPresented) {
+               isPresented: $authVM.isSessionExpiredAlertPresented)
+        {
             Button("OK", role: .cancel) {
                 authVM.signOut()
             }

@@ -1,5 +1,5 @@
 //
-//  DynamicAuthReal.swift
+//  AuthView.swift
 //  GuideBook
 //
 //  Created by Yegor Myropoltsev on 27.10.2023.
@@ -134,16 +134,13 @@ struct AuthView: View {
                 
                 loginButton
                 switchAuthMode
-                
             }
             .padding(30)
-            
         }
     }
 }
 
 extension AuthView {
-    
     private func errorText(_ message: String) -> some View {
         Text(message)
             .foregroundColor(.red)
@@ -176,12 +173,12 @@ extension AuthView {
     
     private func isValidUsername(with username: String) -> Bool {
         let regex = "^[a-z0-9_-]$"
-        let predicate = NSPredicate(format:"SELF MATCHES[c] %@", regex)
+        let predicate = NSPredicate(format: "SELF MATCHES[c] %@", regex)
         return predicate.evaluate(with: username)
     }
     
     private func isValidEmail(with email: String) -> Bool {
-        let regex = "(?:[a-z0-9!#$%\\&'*+/=?\\^_`{|}~-]+(?:\\.[a-z0-9!#$%\\&'*+/=?\\^_`{|}"+"~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\"+"x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[a-z0-9](?:[a-"+"z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:25[0-5"+"]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-"+"9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21"+"-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])"
+        let regex = "(?:[a-z0-9!#$%\\&'*+/=?\\^_`{|}~-]+(?:\\.[a-z0-9!#$%\\&'*+/=?\\^_`{|}" + "~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\" + "x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[a-z0-9](?:[a-" + "z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:25[0-5" + "]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-" + "9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21" + "-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])"
         let predicate = NSPredicate(format: "SELF MATCHES[c] %@", regex)
         return predicate.evaluate(with: email)
     }
@@ -191,8 +188,6 @@ extension AuthView {
             .font(.system(size: 21))
             .bold()
     }
-    
-    
     
     private var signIn: some View {
         HStack {
@@ -317,11 +312,10 @@ extension AuthView {
             .padding(.top, 10)
             .padding(.bottom, 20)
             .transition(.asymmetric(
-                insertion: .move(edge: .top), removal: .opacity)
+                insertion: .move(edge: .top), removal: .opacity
+            )
             )
     }
-    
-    
     
     private var loginButton: some View {
         LoadingButtonStyle(isSignIn: authVM.isSignIn, isLoading: authVM.isRequestInProgress) {
@@ -331,7 +325,7 @@ extension AuthView {
             guard
                 (authVM.isSignIn && isAbleToSignIn) || (!authVM.isSignIn && isAbleToSignUp),
                 isValidEmail(with: authVM.email),
-                (authVM.isSignIn || isValidUsername(with: authVM.username))
+                authVM.isSignIn || isValidUsername(with: authVM.username)
             else {
                 authVM.showErrorEmail = !isValidEmail(with: authVM.email)
                 return
@@ -343,13 +337,15 @@ extension AuthView {
             case .signIn:
                 authVM.signIn(authRequest: SignInRequest(
                     email: authVM.email,
-                    password: authVM.password)
+                    password: authVM.password
+                )
                 )
             case .signUp:
                 authVM.signUp(authRequest: SignUpRequest(
                     username: authVM.username,
                     email: authVM.email,
-                    password: authVM.password)
+                    password: authVM.password
+                )
                 )
             }
             
@@ -363,7 +359,7 @@ extension AuthView {
     
     private var switchAuthMode: some View {
         HStack {
-            Text(authVM.isSignIn ? "Don't have an account?" :"Already have an account?")
+            Text(authVM.isSignIn ? "Don't have an account?" : "Already have an account?")
                 .padding([.bottom, .top, .leading], 20)
             Text(authVM.isSignIn ? "Sign up" : "Sign in")
                 .foregroundStyle(.blue)

@@ -7,15 +7,14 @@ final class GuideViewModel: ObservableObject {
     @Published var guides: [Guide] = []
     @Published var guideDetails: GuideDetails?
     @Published var guideSteps: [GuideStep] = []
-    
+
     @Published var hasFetchedFavorites: Bool = false
     @Published var shouldUpdateFavorites: Bool = false
     @Published var isFetchingFavorites: Bool = false
 
-    
     var authVM = AuthViewModel()
-    
-    let emptyDetails: GuideDetails = GuideDetails(
+
+    let emptyDetails: GuideDetails = .init(
         id: "",
         emoji: "❌",
         title: "Empty",
@@ -25,97 +24,97 @@ final class GuideViewModel: ObservableObject {
         author: Author(username: "NoName"),
         isFavorite: false
     )
-    
+
     var filteredGuides: [Guide] {
-        guard !searchText.isEmpty else { return self.guides }
-        return self.guides.filter { guide in
+        guard !searchText.isEmpty else { return guides }
+        return guides.filter { guide in
             guide.title.lowercased().contains(searchText.lowercased())
         }
     }
-    
+
     func resetGuideDetails() {
-        self.guideDetails = nil
+        guideDetails = nil
     }
-    
+
     func resetGuideSteps() {
-        self.guideSteps = []
+        guideSteps = []
     }
-    
+
     func fetcnGuideSteps(id: String, token: String) {
-        GuideStepAction(id: id, token: token).call() { result in
+        GuideStepAction(id: id, token: token).call { result in
             DispatchQueue.main.async {
                 switch result {
-                case .success(let response):
+                case let .success(response):
                     self.guideSteps = response
                     print("Successfully parsed guide steps")
-                case .failure(let error):
+                case let .failure(error):
                     self.handleError(error)
                 }
             }
         }
     }
-    
+
     func addToFavorites(id: String, token: String) {
-        FavoritesAddAction(id: id, token: token).call() { result in
+        FavoritesAddAction(id: id, token: token).call { result in
             DispatchQueue.main.async {
                 switch result {
-                case .success(let response):
+                case let .success(response):
                     print("Response: \(response.message)")
-                case .failure(let error):
+                case let .failure(error):
                     self.handleError(error)
                 }
             }
         }
     }
-    
+
     func deleteFromFavorites(id: String, token: String) {
-        FavoritesDeleteAction(id: id, token: token).call() { result in
+        FavoritesDeleteAction(id: id, token: token).call { result in
             DispatchQueue.main.async {
                 switch result {
-                case .success(let response):
+                case let .success(response):
                     print("Response: \(response.message)")
-                case .failure(let error):
+                case let .failure(error):
                     self.handleError(error)
                 }
             }
         }
     }
-    
+
     func fetchFavorites(token: String) {
         isFetchingFavorites = true
-        FavoritesAction(token: token).call() { result in
+        FavoritesAction(token: token).call { result in
             DispatchQueue.main.async {
                 switch result {
-                case .success(let favorites):
+                case let .success(favorites):
                     self.favorites = favorites
                     print("Successfully parsed favorites")
-                case .failure(let error):
+                case let .failure(error):
                     self.handleError(error)
                 }
             }
         }
         isFetchingFavorites = false
     }
-    
+
     func fetchGuides(token: String) {
-        GuideAction(token: token).call() { result in
+        GuideAction(token: token).call { result in
             DispatchQueue.main.async {
                 switch result {
-                case .success(let guideCards):
+                case let .success(guideCards):
                     self.guides = guideCards
                     print("Successfully parsed guide cards")
-                case .failure(let error):
+                case let .failure(error):
                     self.handleError(error)
                 }
             }
         }
     }
-    
+
     func fetchGuideDetails(id: String, token: String) {
-        GuideDetailsAction(id: id, token: token).call() { result in
+        GuideDetailsAction(id: id, token: token).call { result in
             DispatchQueue.main.async {
                 switch result {
-                case .success(let details):
+                case let .success(details):
                     self.guideDetails = details
                     print("     FAVORITE STATE: \(String(describing: self.guideDetails?.isFavorite))")
                     if let data = try? JSONEncoder().encode(details), let jsonString = String(data: data, encoding: .utf8) {
@@ -124,13 +123,13 @@ final class GuideViewModel: ObservableObject {
                         print("Received empty or invalid data")
                     }
                     print("Successfully parsed guide details")
-                case .failure(let error):
+                case let .failure(error):
                     self.handleError(error)
                 }
             }
         }
     }
-    
+
     private func handleError(_ error: ErrorResponse) {
         print("Code: \(error.code)\nMessage: \(error.message)")
         authVM.errorResponse = error

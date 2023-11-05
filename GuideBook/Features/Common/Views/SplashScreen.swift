@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct SplashScreen: View {
-    var body: some View {        
+    var body: some View {
         Text("📘 GuideBook")
             .font(.system(size: 40))
             .bold()
-            .transition(.offset(y: -(Helpers.screen.height*0.8))
+            .transition(.offset(y: -(Helpers.screen.height * 0.8))
                 .combined(with: .scale(scale: 0.5))
                 .combined(with: .opacity)
             )

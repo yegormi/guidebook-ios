@@ -3,22 +3,22 @@ import SwiftUI
 struct SettingsView: View {
     @EnvironmentObject var authVM: AuthViewModel
     @EnvironmentObject var settingsVM: SettingsViewModel
-    
+
     @AppStorage("isOnNotifications") var isOnNotifications: Bool = false
     @AppStorage("isOnSafeSearch") var isOnSafeSearch: Bool = false
     @AppStorage("selectedMode") var selectedMode: Appearance = .auto
-    
+
     private var preferredColorSchemeForSelectedMode: ColorScheme? {
-            switch selectedMode {
-            case .light:
-                return .light
-            case .auto:
-                return nil
-            case .dark:
-                return .dark
-            }
+        switch selectedMode {
+        case .light:
+            .light
+        case .auto:
+            nil
+        case .dark:
+            .dark
         }
-    
+    }
+
     var body: some View {
         NavigationView {
             Form {
@@ -41,7 +41,8 @@ struct SettingsView: View {
         }
         .preferredColorScheme(preferredColorSchemeForSelectedMode)
         .alert(settingsVM.signOutAlert.title,
-               isPresented: $settingsVM.isSignOutAlertPresented) {
+               isPresented: $settingsVM.isSignOutAlertPresented)
+        {
             Button("Cancel", role: .cancel) {}
             Button("Confirm", role: .destructive) {
                 authVM.signOut()
@@ -50,7 +51,8 @@ struct SettingsView: View {
             Text(settingsVM.signOutAlert.description)
         }
         .alert(settingsVM.deleteAccountAlert.title,
-               isPresented: $settingsVM.isDeleteAccountAlertPresented) {
+               isPresented: $settingsVM.isDeleteAccountAlertPresented)
+        {
             Button("Cancel", role: .cancel) {}
             Button("Confirm", role: .destructive) {
                 authVM.deleteAccount()
@@ -65,9 +67,9 @@ extension SettingsView {
     private var profileSection: some View {
         ProfileCardStyle(card: authVM.userInfo ?? UserInfoResponse(id: "1", username: "No user found", email: "No email found"))
     }
-    
+
     private var colorModeToggle: some View {
-        HStack{
+        HStack {
             Text("Color mode")
             Spacer()
             Picker("Color mode", selection: $selectedMode) {
@@ -78,22 +80,22 @@ extension SettingsView {
             .fixedSize()
         }
     }
-    
+
     private var notificationsToggle: some View {
         Toggle("Notifications", isOn: $isOnNotifications)
     }
-    
+
     private var safeSearchToggle: some View {
         Toggle("Safe Search", isOn: $isOnSafeSearch)
     }
-    
+
     private var signOutButton: some View {
         Button("Sign Out") {
             settingsVM.isSignOutAlertPresented = true
         }
         .foregroundStyle(.red)
     }
-    
+
     private var deleteAccountButton: some View {
         Button("Delete Account") {
             settingsVM.isDeleteAccountAlertPresented = true
@@ -108,6 +110,5 @@ struct SettingsView_Previews: PreviewProvider {
             .environmentObject(GuideViewModel())
             .environmentObject(AuthViewModel())
             .environmentObject(SettingsViewModel())
-
     }
 }

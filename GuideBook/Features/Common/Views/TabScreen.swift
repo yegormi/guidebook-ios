@@ -1,6 +1,5 @@
 import SwiftUI
 
-
 // MARK: - BODY
 
 struct TabScreen: View {
@@ -11,7 +10,7 @@ struct TabScreen: View {
             if willShowHeader {
                 HeaderView()
             }
-            TabView() {
+            TabView {
                 HomeView()
                     .tabItem { Label("Home", systemImage: "house") }
                 FavoritesView()
@@ -27,7 +26,6 @@ struct TabScreen: View {
         }
     }
 }
-
 
 // MARK: - PREVIEWS
 

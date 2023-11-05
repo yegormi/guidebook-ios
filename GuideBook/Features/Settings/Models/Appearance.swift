@@ -1,5 +1,5 @@
 //
-//  AppereancePicker.swift
+//  Appearance.swift
 //  GuideBook
 //
 //  Created by Yegor Myropoltsev on 25.10.2023.
@@ -14,11 +14,11 @@ enum Appearance: String, CaseIterable, Identifiable, Codable {
     var modeImage: String {
         switch self {
         case .light:
-            return "sun.max"
+            "sun.max"
         case .auto:
-            return "character"
+            "character"
         case .dark:
-            return "moon.fill"
+            "moon.fill"
         }
     }
 }

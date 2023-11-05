@@ -9,7 +9,7 @@ import Foundation
 
 struct UserInfoAction {
     let token: String
-    
+
     func call(completion: @escaping (Result<UserInfoResponse, ErrorResponse>) -> Void) {
         NetworkManager.performRequest(
             baseURL: "https://guidebook-api.azurewebsites.net",

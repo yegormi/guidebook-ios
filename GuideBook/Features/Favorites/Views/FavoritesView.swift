@@ -1,5 +1,5 @@
 //
-//  HomeView.swift
+//  FavoritesView.swift
 //  GuideBook
 //
 //  Created by Yegor Myropoltsev on 25.10.2023.
@@ -11,7 +11,7 @@ struct FavoritesView: View {
     @EnvironmentObject var guideVM: GuideViewModel
     @EnvironmentObject var authVM: AuthViewModel
     @EnvironmentObject var favoritesVM: FavoritesViewModel
-    
+
     var body: some View {
         NavigationView {
             Form {
@@ -39,14 +39,14 @@ struct FavoritesView: View {
             guideVM.fetchFavorites(token: authVM.response?.accessToken ?? "")
         }
     }
-    
+
     private func getDetails(for guide: Guide) {
         guideVM.resetGuideDetails()
         guideVM.resetGuideSteps()
         guideVM.fetchGuideDetails(id: guide.id, token: authVM.response?.accessToken ?? "")
         guideVM.fetcnGuideSteps(id: guide.id, token: authVM.response?.accessToken ?? "")
     }
-    
+
     private var favoriteGuides: some View {
         List(guideVM.favorites) { guide in
             NavigationLink(destination: GuideDetailsStyle(item: guideVM.guideDetails ?? guideVM.emptyDetails)

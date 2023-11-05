@@ -9,7 +9,7 @@ import Foundation
 
 struct UserDeleteAction {
     let token: String
-    
+
     func call(completion: @escaping (Result<UserDeleteResponse, ErrorResponse>) -> Void) {
         NetworkManager.performRequest(
             baseURL: "https://guidebook-api.azurewebsites.net",
@@ -21,4 +21,3 @@ struct UserDeleteAction {
         )
     }
 }
-

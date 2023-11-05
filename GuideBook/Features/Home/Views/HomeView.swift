@@ -10,10 +10,10 @@ import SwiftUI
 struct HomeView: View {
     @EnvironmentObject var guideVM: GuideViewModel
     @EnvironmentObject var authVM: AuthViewModel
-    
+
     @State private var isPerformed: Bool = false
-    
-    private var emptyDetails: GuideDetails = GuideDetails(
+
+    private var emptyDetails: GuideDetails = .init(
         id: "",
         emoji: "",
         title: "",
@@ -23,17 +23,16 @@ struct HomeView: View {
         author: Author(username: ""),
         isFavorite: false
     )
-    
+
     var body: some View {
         let isGuidesEmpty: Bool = guideVM.filteredGuides.isEmpty
         let isSearchEmpty: Bool = guideVM.searchText.isEmpty
-        
+
         NavigationView {
-            if isGuidesEmpty && !isSearchEmpty {
+            if isGuidesEmpty, !isSearchEmpty {
                 nothindFound
             } else {
                 guidesList
-                
             }
         }
         .searchable(text: $guideVM.searchText)
@@ -42,7 +41,7 @@ struct HomeView: View {
                 guideVM.fetchGuides(token: authVM.response?.accessToken ?? "")
                 isPerformed = true
             }
-            
+
             if authVM.userInfo == nil {
                 authVM.getUser()
             }
@@ -55,14 +54,13 @@ struct HomeView: View {
 }
 
 extension HomeView {
-    
     private func getDetails(for guide: Guide) {
         guideVM.resetGuideDetails()
         guideVM.resetGuideSteps()
         guideVM.fetchGuideDetails(id: guide.id, token: authVM.response?.accessToken ?? "")
         guideVM.fetcnGuideSteps(id: guide.id, token: authVM.response?.accessToken ?? "")
     }
-    
+
     private var nothindFound: some View {
         VStack {
             Spacer()
@@ -75,18 +73,18 @@ extension HomeView {
             Spacer()
         }
     }
-    
+
     private var guidesList: some View {
         List(guideVM.filteredGuides) { guide in
             NavigationLink(destination: GuideDetailsStyle(item: guideVM.guideDetails ?? emptyDetails)
-                .onAppear { getDetails(for: guide)}
+                .onAppear { getDetails(for: guide) }
             ) { GuideStyle(item: guide) }
         }
         .listStyle(.insetGrouped)
         .navigationBarTitle("Home")
         .navigationBarTitleDisplayMode(.inline)
     }
-    
+
 //    private var guidesListNEW: some View {
 //        GuidesListStyles(
 //            guides: guideVM.guides,
@@ -97,8 +95,6 @@ extension HomeView {
 //            })
 //    }
 }
-
-
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {

@@ -11,7 +11,7 @@ struct LoadingButtonStyle: View {
     var isSignIn: Bool
     var isLoading: Bool
     var action: () -> Void
-    
+
     var body: some View {
         Button(action: {
             action()
@@ -29,18 +29,16 @@ struct LoadingButtonStyle: View {
                         .scaleEffect(1, anchor: .center)
                         .foregroundStyle(Color.white)
                 }
-                
             }
             .disabled(isLoading)
         }
     }
 }
 
-
 struct LoadingButtonStyle_Previews: PreviewProvider {
     static var isSignIn: Bool = true
     static var isLoading: Bool = false
-    
+
     static var previews: some View {
         LoadingButtonStyle(
             isSignIn: isSignIn,

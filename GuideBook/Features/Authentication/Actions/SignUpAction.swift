@@ -9,7 +9,7 @@ import Foundation
 
 struct SignUpAction {
     var parameters: SignUpRequest
-    
+
     func call(completion: @escaping (Result<AuthResponse, ErrorResponse>) -> Void) {
         NetworkManager.performRequest(
             baseURL: "https://guidebook-api.azurewebsites.net",

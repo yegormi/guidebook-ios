@@ -5,8 +5,8 @@
 //  Created by Yegor Myropoltsev on 02.11.2023.
 //
 
-import SwiftUI
 import CachedAsyncImage
+import SwiftUI
 
 struct ImageCard: View {
     let imageURL: String
@@ -44,18 +44,15 @@ struct ImageCard: View {
             )
             .clipShape(RoundedRectangle(cornerRadius: 20))
             .shadow(radius: 10)
-        
     }
 }
 
 struct ImageCard_Previews: PreviewProvider {
     static let url: String = "https://img-prod-cms-rt-microsoft-com.akamaized.net/cms/api/am/imageFileData/RE4LLFK?ver=29db&q=90&m=6&h=705&w=1253&b=%23FFFFFFFF&f=jpg&o=f&p=140&aim=true"
-    
+
     static var previews: some View {
         ImageCard(imageURL: url)
             .previewLayout(.sizeThatFits)
             .padding(30)
     }
 }
-
-

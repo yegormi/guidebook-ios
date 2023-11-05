@@ -9,7 +9,7 @@ import SwiftUI
 
 struct HeaderView: View {
     let hasNotch: Bool = UIDevice.current.hasNotch
-    
+
     var body: some View {
         HStack {
             headerSection

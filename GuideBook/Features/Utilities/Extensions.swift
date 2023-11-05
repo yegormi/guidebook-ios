@@ -12,14 +12,14 @@ extension UIDevice {
         let scenes = UIApplication.shared.connectedScenes
         let windowScene = scenes.first as? UIWindowScene
         guard let window = windowScene?.windows.first else { return false }
-        
+
         return window.safeAreaInsets.top > 20
     }
 }
-extension NSLayoutConstraint {
 
-    override public var description: String {
+public extension NSLayoutConstraint {
+    override var description: String {
         let id = identifier ?? ""
-        return "id: \(id), constant: \(constant)" //you may print whatever you want here
+        return "id: \(id), constant: \(constant)" // you may print whatever you want here
     }
 }

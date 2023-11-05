@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct GuideStepsStyle: View {
-    let step:  GuideStep
+    let step: GuideStep
     let guide: GuideDetails
-    
+
     var body: some View {
         ScrollView {
             VStack(alignment: .leading) {
@@ -28,22 +28,22 @@ struct GuideStepsStyle: View {
             .padding(30)
         }
     }
-    
+
     private var guideTitle: some View {
         Text("\(guide.emoji) \(guide.title)")
             .font(.system(size: 16))
     }
-    
+
     private var stepTitle: some View {
         Text(step.title)
             .font(.system(size: 20, weight: .semibold))
     }
+
     private var stepDescription: some View {
         Text(step.description)
             .font(.system(size: 15))
     }
 }
-
 
 struct GuideStepsStyle_Previews: PreviewProvider {
     static var previews: some View {
@@ -58,7 +58,7 @@ struct GuideStepsStyle_Previews: PreviewProvider {
             author: Author(username: "JohnDoe"),
             isFavorite: false
         )
-        
+
         return GuideStepsStyle(step: sampleStep, guide: sampleGuide)
             .previewLayout(.sizeThatFits)
     }
