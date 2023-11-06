@@ -111,17 +111,19 @@ struct AuthFeature: Reducer {
     
     func performSignIn(email: String, password: String) async throws -> AuthResponse {
         let signInRequest = SignIn(email: email, password: password)
-        let url = "https://guidebook-api.azurewebsites.net/auth/signin"
+        let baseUrl = "https://guidebook-api.azurewebsites.net"
+        let endpoint = "/auth/signin"
         
         return try await withCheckedThrowingContinuation { continuation in
-            AF.request(url, method: .post, parameters: signInRequest, encoder: JSONParameterEncoder.default)
+            AF.request(baseUrl + endpoint, method: .post, parameters: signInRequest, encoder: JSONParameterEncoder.default)
                 .validate()
                 .responseDecodable(of: AuthResponse.self) { response in
                     switch response.result {
                     case .success(let authResponse):
                         continuation.resume(returning: authResponse)
                     case .failure(let error):
-                        if let data = response.data, let failResponse = try? JSONDecoder().decode(FailResponse.self, from: data) {
+                        if let data = response.data,
+                           let failResponse = try? JSONDecoder().decode(FailResponse.self, from: data) {
                             continuation.resume(throwing: ErrorResponse.failedWithResponse(failResponse))
                         } else {
                             continuation.resume(throwing: error)
@@ -130,21 +132,23 @@ struct AuthFeature: Reducer {
                 }
         }
     }
-
-
+    
+    
     func performSignUp(username: String, email: String, password: String) async throws -> AuthResponse {
         let signUpRequest = SignUp(username: username, email: email, password: password)
-        let url = "https://guidebook-api.azurewebsites.net/auth/signup"
+        let baseUrl = "https://guidebook-api.azurewebsites.net"
+        let endpoint = "/auth/signup"
         
         return try await withCheckedThrowingContinuation { continuation in
-            AF.request(url, method: .post, parameters: signUpRequest, encoder: JSONParameterEncoder.default)
+            AF.request(baseUrl + endpoint, method: .post, parameters: signUpRequest, encoder: JSONParameterEncoder.default)
                 .validate()
                 .responseDecodable(of: AuthResponse.self) { response in
                     switch response.result {
                     case .success(let authResponse):
                         continuation.resume(returning: authResponse)
                     case .failure(let error):
-                        if let data = response.data, let failResponse = try? JSONDecoder().decode(FailResponse.self, from: data) {
+                        if let data = response.data,
+                           let failResponse = try? JSONDecoder().decode(FailResponse.self, from: data) {
                             continuation.resume(throwing: ErrorResponse.failedWithResponse(failResponse))
                         } else {
                             continuation.resume(throwing: error)
@@ -153,6 +157,6 @@ struct AuthFeature: Reducer {
                 }
         }
     }
-
+    
 }
 
