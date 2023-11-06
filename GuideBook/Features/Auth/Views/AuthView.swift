@@ -13,64 +13,79 @@ struct AuthView: View {
     
     var body: some View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in
-            VStack {
-                Header()
-                
-                if viewStore.authType == .signUp {
+            ScrollView {
+                VStack {
+                    Header()
+                    
+                    if viewStore.authType == .signUp {
+                        AuthTitle(authType: .signUp)
+                            .padding(.vertical, 30)
+                    } else {
+                        AuthTitle(authType: .signIn)
+                            .padding(.vertical, 30)
+                    }
+                    
+                    if viewStore.authType == .signUp {
+                        InputField(
+                            label: "Username",
+                            text: viewStore.binding(
+                                get: { $0.username },
+                                send: { .usernameChanged($0) }
+                            ),
+                            type: .username,
+                            isInvalid: false
+                        )
+                        .padding(.bottom, 10)
+                    }
+                    
                     InputField(
-                        label: "Username",
+                        label: "Email",
                         text: viewStore.binding(
-                            get: { $0.username },
-                            send: { .usernameChanged($0) }
+                            get: { $0.email },
+                            send: { .emailChanged($0) }
                         ),
-                        type: .username,
+                        type: .email,
                         isInvalid: false
                     )
                     .padding(.bottom, 10)
-                }
-                
-                InputField(
-                    label: "Email",
-                    text: viewStore.binding(
-                        get: { $0.email },
-                        send: { .emailChanged($0) }
-                    ),
-                    type: .email,
-                    isInvalid: false
-                )
-                .padding(.bottom, 10)
-                
-                InputField(
-                    label: "Password",
-                    text: viewStore.binding(
-                        get: { $0.password },
-                        send: { .passwordChanged($0) }
-                    ),
-                    type: .password,
-                    isInvalid: false
-                )
-                .padding(.bottom, 10)
-                
-                if viewStore.authType == .signUp {
+                    
                     InputField(
-                        label: "Confirm Password",
+                        label: "Password",
                         text: viewStore.binding(
-                            get: { $0.confirmPassword },
-                            send: { .confirmPasswordChanged($0) }
+                            get: { $0.password },
+                            send: { .passwordChanged($0) }
                         ),
                         type: .password,
                         isInvalid: false
                     )
                     .padding(.bottom, 10)
+                    
+                    if viewStore.authType == .signUp {
+                        InputField(
+                            label: "Confirm Password",
+                            text: viewStore.binding(
+                                get: { $0.confirmPassword },
+                                send: { .confirmPasswordChanged($0) }
+                            ),
+                            type: .password,
+                            isInvalid: false
+                        )
+                        .padding(.bottom, 10)
+                    }
+                    
+                    LoginButton(authType: viewStore.authType, isLoading: false, action: {
+                        
+                    })
+                    
+                    AuthToggleButton(authType: viewStore.authType, onTap: {
+                        viewStore.send(
+                            .toggleButtonTapped,
+                            animation: .default)
+                    })
+                    .padding(.vertical, 20)
                 }
-                
-                AuthToggleButton(authType: viewStore.authType, onTap: {
-                    viewStore.send(
-                        .toggleButtonTapped,
-                        animation: .default)
-                })
+                .padding(30)
             }
-            .padding(30)
         }
     }
 }

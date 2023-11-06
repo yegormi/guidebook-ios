@@ -16,7 +16,7 @@ struct InputField: View {
     var body: some View {
         RoundedRectangle(cornerRadius: 10)
             .fill(Color("FieldColor"))
-            .frame(maxWidth: .infinity, maxHeight: 50)
+            .frame(height: 50)
             .shadow(radius: 1)
             .overlay {
                 if type == .password {

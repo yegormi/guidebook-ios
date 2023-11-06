@@ -20,6 +20,5 @@ struct AuthToggleButton: View {
                     onTap()
                 }
         }
-        .padding(.vertical, 20)
     }
 }

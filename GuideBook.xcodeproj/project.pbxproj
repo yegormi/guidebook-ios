@@ -24,6 +24,7 @@
 		EE7B13B02AF500C800A45F1B /* details.png in Resources */ = {isa = PBXBuildFile; fileRef = EE7B13A52AF500C800A45F1B /* details.png */; };
 		EE7B13B22AF500C800A45F1B /* settings.png in Resources */ = {isa = PBXBuildFile; fileRef = EE7B13A72AF500C800A45F1B /* settings.png */; };
 		EE7B13B32AF500C800A45F1B /* home.png in Resources */ = {isa = PBXBuildFile; fileRef = EE7B13A82AF500C800A45F1B /* home.png */; };
+		EEEB8D1C2AF8D40F007DEBAE /* LoginButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEB8D1B2AF8D40F007DEBAE /* LoginButton.swift */; };
 		EEF2F1822AF7CE61009F4677 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = EEF2F1812AF7CE61009F4677 /* ComposableArchitecture */; };
 		EEF2F1842AF7CE9B009F4677 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF2F1832AF7CE9B009F4677 /* RootView.swift */; };
 		EEF2F1862AF7CECF009F4677 /* RootFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF2F1852AF7CECF009F4677 /* RootFeature.swift */; };
@@ -57,6 +58,7 @@
 		EE7B13A52AF500C800A45F1B /* details.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = details.png; sourceTree = "<group>"; };
 		EE7B13A72AF500C800A45F1B /* settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings.png; sourceTree = "<group>"; };
 		EE7B13A82AF500C800A45F1B /* home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home.png; sourceTree = "<group>"; };
+		EEEB8D1B2AF8D40F007DEBAE /* LoginButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginButton.swift; sourceTree = "<group>"; };
 		EEF2F1832AF7CE9B009F4677 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		EEF2F1852AF7CECF009F4677 /* RootFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootFeature.swift; sourceTree = "<group>"; };
 		EEF2F1892AF7D1BE009F4677 /* AuthFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthFeature.swift; sourceTree = "<group>"; };
@@ -183,6 +185,7 @@
 				EE2809572AF8534100093049 /* AuthTitle.swift */,
 				EEF2F1962AF8240E009F4677 /* InputField.swift */,
 				EEF2F1982AF82415009F4677 /* PasswordField.swift */,
+				EEEB8D1B2AF8D40F007DEBAE /* LoginButton.swift */,
 				EE2809592AF856A600093049 /* AuthToggleButton.swift */,
 			);
 			path = Components;
@@ -305,6 +308,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EE2809582AF8534100093049 /* AuthTitle.swift in Sources */,
+				EEEB8D1C2AF8D40F007DEBAE /* LoginButton.swift in Sources */,
 				EEF2F19D2AF8271F009F4677 /* KeyboardType.swift in Sources */,
 				EEF2F18A2AF7D1BE009F4677 /* AuthFeature.swift in Sources */,
 				EEF2F1942AF823F0009F4677 /* InvalidBorderStyle.swift in Sources */,
