@@ -26,6 +26,7 @@ struct InputField: View {
                 } else {
                     TextField(label, text: $text)
                         .inputFieldStyle(type: type)
+                        .textFieldStyle(.plain)
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                 }
             }

@@ -29,46 +29,61 @@ struct AuthView: View {
                         InputField(
                             label: "Username",
                             text: viewStore.binding(
-                                get: { $0.username },
-                                send: { .usernameChanged($0) }
+                                get: \.username,
+                                send: AuthFeature.Action.usernameChanged
                             ),
                             type: .username,
-                            isInvalid: false
+                            isInvalid: viewStore.usernameError != nil
                         )
                         .padding(.bottom, 10)
+                        
+                        if let usernameError = viewStore.usernameError {
+                            ErrorText(message: usernameError)
+                        }
                     }
                     
                     InputField(
                         label: "Email",
                         text: viewStore.binding(
-                            get: { $0.email },
-                            send: { .emailChanged($0) }
+                            get: \.email,
+                            send: AuthFeature.Action.emailChanged
                         ),
                         type: .email,
-                        isInvalid: false
+                        isInvalid: viewStore.emailError != nil
                     )
                     .padding(.bottom, 10)
+                    
+                    if let emailError = viewStore.emailError {
+                        ErrorText(message: emailError)
+                    }
                     
                     InputField(
                         label: "Password",
                         text: viewStore.binding(
-                            get: { $0.password },
-                            send: { .passwordChanged($0) }
-                        ),
+                            get: \.password,
+                            send: AuthFeature.Action.passwordChanged
+                        ).removeDuplicates(),
                         type: .password,
-                        isInvalid: false
+                        isInvalid: viewStore.passwordError != nil
                     )
                     .padding(.bottom, 10)
+                    
+                    if let passwordError = viewStore.passwordError {
+                        ErrorText(message: passwordError)
+                    }
                     
                     if viewStore.authType == .signUp {
                         InputField(
                             label: "Confirm Password",
                             text: viewStore.binding(
-                                get: { $0.confirmPassword },
-                                send: { .confirmPasswordChanged($0) }
-                            ),
+                                get: \.confirmPassword,
+                                send: AuthFeature.Action.confirmPasswordChanged
+                            ).removeDuplicates(),
                             type: .password,
-                            isInvalid: viewStore.password != viewStore.confirmPassword
+                            isInvalid: (
+                                viewStore.password != viewStore.confirmPassword &&
+                                !viewStore.confirmPassword.isEmpty
+                            )
                         )
                         .padding(.bottom, 10)
                     }
