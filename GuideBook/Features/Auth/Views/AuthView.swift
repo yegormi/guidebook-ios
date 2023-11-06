@@ -73,14 +73,12 @@ struct AuthView: View {
                         .padding(.bottom, 10)
                     }
                     
-                    LoginButton(authType: viewStore.authType, isLoading: false, action: {
-                        
+                    AuthButton(authType: viewStore.authType, isLoading: viewStore.isLoading, action: {
+                        viewStore.send(.authButtonTapped)
                     })
                     
                     AuthToggleButton(authType: viewStore.authType, onTap: {
-                        viewStore.send(
-                            .toggleButtonTapped,
-                            animation: .default)
+                        viewStore.send(.toggleButtonTapped, animation: .default)
                     })
                     .padding(.vertical, 20)
                 }

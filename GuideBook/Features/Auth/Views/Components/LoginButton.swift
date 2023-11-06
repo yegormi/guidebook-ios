@@ -1,5 +1,5 @@
 //
-//  LoginButton.swift
+//  AuthButton.swift
 //  GuideBook
 //
 //  Created by Yegor Myropoltsev on 06.11.2023.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct LoginButton: View {
+struct AuthButton: View {
     let authType: AuthType
     @State var isLoading: Bool
     var action: () -> Void
@@ -36,15 +36,15 @@ struct LoginButton: View {
 }
 
 
-struct LoginButton_Previews: PreviewProvider {
+struct AuthButton_Previews: PreviewProvider {
     static var previews: some View {
         VStack {
-            LoginButton(authType: .signIn, isLoading: true) {
+            AuthButton(authType: .signIn, isLoading: true) {
                 // Add your action here
             }
             .padding(20)
 
-            LoginButton(authType: .signUp, isLoading: false) {
+            AuthButton(authType: .signUp, isLoading: false) {
                 // Add your action here
             }
             .padding(20)

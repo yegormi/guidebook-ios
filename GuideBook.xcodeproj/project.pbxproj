@@ -25,6 +25,13 @@
 		EE7B13B22AF500C800A45F1B /* settings.png in Resources */ = {isa = PBXBuildFile; fileRef = EE7B13A72AF500C800A45F1B /* settings.png */; };
 		EE7B13B32AF500C800A45F1B /* home.png in Resources */ = {isa = PBXBuildFile; fileRef = EE7B13A82AF500C800A45F1B /* home.png */; };
 		EEEB8D1C2AF8D40F007DEBAE /* LoginButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEB8D1B2AF8D40F007DEBAE /* LoginButton.swift */; };
+		EEEB8D1E2AF8D895007DEBAE /* AuthResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEB8D1D2AF8D895007DEBAE /* AuthResponse.swift */; };
+		EEEB8D202AF8E579007DEBAE /* RequestType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEB8D1F2AF8E579007DEBAE /* RequestType.swift */; };
+		EEEB8D222AF8E5AD007DEBAE /* ErrorResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEB8D212AF8E5AD007DEBAE /* ErrorResponse.swift */; };
+		EEEB8D242AF8E5C6007DEBAE /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEB8D232AF8E5C6007DEBAE /* NetworkManager.swift */; };
+		EEEB8D272AF8EAEA007DEBAE /* SignIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEB8D262AF8EAEA007DEBAE /* SignIn.swift */; };
+		EEEB8D292AF8EAFC007DEBAE /* SignUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEB8D282AF8EAFC007DEBAE /* SignUp.swift */; };
+		EEEB8D2C2AF920B6007DEBAE /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = EEEB8D2B2AF920B6007DEBAE /* Alamofire */; };
 		EEF2F1822AF7CE61009F4677 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = EEF2F1812AF7CE61009F4677 /* ComposableArchitecture */; };
 		EEF2F1842AF7CE9B009F4677 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF2F1832AF7CE9B009F4677 /* RootView.swift */; };
 		EEF2F1862AF7CECF009F4677 /* RootFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEF2F1852AF7CECF009F4677 /* RootFeature.swift */; };
@@ -59,6 +66,12 @@
 		EE7B13A72AF500C800A45F1B /* settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings.png; sourceTree = "<group>"; };
 		EE7B13A82AF500C800A45F1B /* home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home.png; sourceTree = "<group>"; };
 		EEEB8D1B2AF8D40F007DEBAE /* LoginButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginButton.swift; sourceTree = "<group>"; };
+		EEEB8D1D2AF8D895007DEBAE /* AuthResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthResponse.swift; sourceTree = "<group>"; };
+		EEEB8D1F2AF8E579007DEBAE /* RequestType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestType.swift; sourceTree = "<group>"; };
+		EEEB8D212AF8E5AD007DEBAE /* ErrorResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorResponse.swift; sourceTree = "<group>"; };
+		EEEB8D232AF8E5C6007DEBAE /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		EEEB8D262AF8EAEA007DEBAE /* SignIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignIn.swift; sourceTree = "<group>"; };
+		EEEB8D282AF8EAFC007DEBAE /* SignUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUp.swift; sourceTree = "<group>"; };
 		EEF2F1832AF7CE9B009F4677 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		EEF2F1852AF7CECF009F4677 /* RootFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootFeature.swift; sourceTree = "<group>"; };
 		EEF2F1892AF7D1BE009F4677 /* AuthFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthFeature.swift; sourceTree = "<group>"; };
@@ -78,6 +91,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EEEB8D2C2AF920B6007DEBAE /* Alamofire in Frameworks */,
 				EEF2F1822AF7CE61009F4677 /* ComposableArchitecture in Frameworks */,
 				EE7A34432AF530A700685408 /* CachedAsyncImage in Frameworks */,
 			);
@@ -107,6 +121,7 @@
 			isa = PBXGroup;
 			children = (
 				EEF2F1882AF7D1AF009F4677 /* Features */,
+				EEEB8D252AF8E5CA007DEBAE /* Networking */,
 				EEF2F19E2AF82BBA009F4677 /* Preview Content */,
 				EEF2F1A02AF82BBA009F4677 /* Assets.xcassets */,
 			);
@@ -129,6 +144,14 @@
 				EE6127F02AF50FB200DA608F /* steps5.png */,
 			);
 			path = Screenshots;
+			sourceTree = "<group>";
+		};
+		EEEB8D252AF8E5CA007DEBAE /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				EEEB8D232AF8E5C6007DEBAE /* NetworkManager.swift */,
+			);
+			path = Networking;
 			sourceTree = "<group>";
 		};
 		EEF2F17F2AF7CE0B009F4677 /* Root */ = {
@@ -181,12 +204,12 @@
 			isa = PBXGroup;
 			children = (
 				EEF2F1A52AF82F33009F4677 /* Styles */,
-				EE2809532AF84F3400093049 /* Header.swift */,
 				EE2809572AF8534100093049 /* AuthTitle.swift */,
-				EEF2F1962AF8240E009F4677 /* InputField.swift */,
-				EEF2F1982AF82415009F4677 /* PasswordField.swift */,
-				EEEB8D1B2AF8D40F007DEBAE /* LoginButton.swift */,
 				EE2809592AF856A600093049 /* AuthToggleButton.swift */,
+				EE2809532AF84F3400093049 /* Header.swift */,
+				EEF2F1962AF8240E009F4677 /* InputField.swift */,
+				EEEB8D1B2AF8D40F007DEBAE /* LoginButton.swift */,
+				EEF2F1982AF82415009F4677 /* PasswordField.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -203,8 +226,8 @@
 			isa = PBXGroup;
 			children = (
 				EEF2F19A2AF82710009F4677 /* Extensions.swift */,
-				EEF2F1932AF823F0009F4677 /* InvalidBorderStyle.swift */,
 				EEF2F1A32AF82EC9009F4677 /* InputFieldStyle.swift */,
+				EEF2F1932AF823F0009F4677 /* InvalidBorderStyle.swift */,
 			);
 			path = Styles;
 			sourceTree = "<group>";
@@ -212,8 +235,13 @@
 		EEF2F1A72AF83A52009F4677 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				EEF2F19C2AF8271F009F4677 /* KeyboardType.swift */,
+				EEEB8D1D2AF8D895007DEBAE /* AuthResponse.swift */,
 				EE2809552AF852E600093049 /* AuthType.swift */,
+				EEEB8D212AF8E5AD007DEBAE /* ErrorResponse.swift */,
+				EEF2F19C2AF8271F009F4677 /* KeyboardType.swift */,
+				EEEB8D1F2AF8E579007DEBAE /* RequestType.swift */,
+				EEEB8D262AF8EAEA007DEBAE /* SignIn.swift */,
+				EEEB8D282AF8EAFC007DEBAE /* SignUp.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -237,6 +265,7 @@
 			packageProductDependencies = (
 				EE7A34422AF530A700685408 /* CachedAsyncImage */,
 				EEF2F1812AF7CE61009F4677 /* ComposableArchitecture */,
+				EEEB8D2B2AF920B6007DEBAE /* Alamofire */,
 			);
 			productName = GuideBook;
 			productReference = EE0C21842AE861D700668357 /* GuideBook.app */;
@@ -269,6 +298,7 @@
 			packageReferences = (
 				EE7A34412AF530A700685408 /* XCRemoteSwiftPackageReference "swiftui-cached-async-image" */,
 				EEF2F1802AF7CE61009F4677 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
+				EEEB8D2A2AF920B6007DEBAE /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			productRefGroup = EE0C21852AE861D700668357 /* Products */;
 			projectDirPath = "";
@@ -319,10 +349,16 @@
 				EEF2F19B2AF82710009F4677 /* Extensions.swift in Sources */,
 				EEF2F1902AF822DF009F4677 /* AuthView.swift in Sources */,
 				EE2809562AF852E600093049 /* AuthType.swift in Sources */,
+				EEEB8D242AF8E5C6007DEBAE /* NetworkManager.swift in Sources */,
+				EEEB8D272AF8EAEA007DEBAE /* SignIn.swift in Sources */,
 				EE0C21882AE861D700668357 /* GuideBookApp.swift in Sources */,
 				EEF2F1842AF7CE9B009F4677 /* RootView.swift in Sources */,
 				EEF2F1972AF8240E009F4677 /* InputField.swift in Sources */,
 				EEF2F1A42AF82EC9009F4677 /* InputFieldStyle.swift in Sources */,
+				EEEB8D222AF8E5AD007DEBAE /* ErrorResponse.swift in Sources */,
+				EEEB8D292AF8EAFC007DEBAE /* SignUp.swift in Sources */,
+				EEEB8D1E2AF8D895007DEBAE /* AuthResponse.swift in Sources */,
+				EEEB8D202AF8E579007DEBAE /* RequestType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -544,6 +580,14 @@
 				minimumVersion = 2.1.1;
 			};
 		};
+		EEEB8D2A2AF920B6007DEBAE /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.8.1;
+			};
+		};
 		EEF2F1802AF7CE61009F4677 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/pointfreeco/swift-composable-architecture";
@@ -559,6 +603,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = EE7A34412AF530A700685408 /* XCRemoteSwiftPackageReference "swiftui-cached-async-image" */;
 			productName = CachedAsyncImage;
+		};
+		EEEB8D2B2AF920B6007DEBAE /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EEEB8D2A2AF920B6007DEBAE /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
 		};
 		EEF2F1812AF7CE61009F4677 /* ComposableArchitecture */ = {
 			isa = XCSwiftPackageProductDependency;
