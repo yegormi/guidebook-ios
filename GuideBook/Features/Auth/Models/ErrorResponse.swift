@@ -7,7 +7,8 @@
 
 import Foundation
 
-struct ErrorResponse: Codable, Equatable, Error {
-    let code: String
-    let message: String
+enum ErrorResponse: Error {
+    case networkError(Error)
+    case decodingError(Error)
+    case failedWithResponse(FailResponse)
 }

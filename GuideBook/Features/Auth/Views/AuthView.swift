@@ -68,7 +68,7 @@ struct AuthView: View {
                                 send: { .confirmPasswordChanged($0) }
                             ),
                             type: .password,
-                            isInvalid: false
+                            isInvalid: viewStore.password != viewStore.confirmPassword
                         )
                         .padding(.bottom, 10)
                     }
@@ -76,6 +76,8 @@ struct AuthView: View {
                     AuthButton(authType: viewStore.authType, isLoading: viewStore.isLoading, action: {
                         viewStore.send(.authButtonTapped)
                     })
+                    .disabled(!viewStore.isLoginAllowed)
+                    .opacity(viewStore.isLoginAllowed ? 1 : 0.5)
                     
                     AuthToggleButton(authType: viewStore.authType, onTap: {
                         viewStore.send(.toggleButtonTapped, animation: .default)
