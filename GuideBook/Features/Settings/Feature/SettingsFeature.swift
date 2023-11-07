@@ -15,6 +15,10 @@ struct SettingsFeature: Reducer {
         var isSignOutAlertPresented: Bool = false
         var isDeleteAlertPresented: Bool = false
         var user: UserInfo?
+        var authState = AuthFeature.State()
+        var token: String {
+            authState.response?.accessToken ?? ""
+        }
     }
     
     enum Action: Equatable {
@@ -51,7 +55,7 @@ struct SettingsFeature: Reducer {
             state.isDeleteAlertPresented = false
             return .none
         case .confirmDeleteTapped:
-            let token = state.response?.accessToken ?? ""
+            let token = state.token
             return .run { send in
                 do {
                     let result = try await performDelete(token: token)

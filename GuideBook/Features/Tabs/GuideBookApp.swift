@@ -12,9 +12,9 @@ import ComposableArchitecture
 struct GuideBookApp: App {
     var body: some Scene {
         WindowGroup {
-            RootView(
-                store: Store(initialState: RootFeature.State()) {
-                    RootFeature()
+            TabsView(
+                store: Store(initialState: TabsFeature.State()) {
+                    TabsFeature()
                         ._printChanges()
                 }
             )

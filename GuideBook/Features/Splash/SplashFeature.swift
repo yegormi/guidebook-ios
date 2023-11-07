@@ -1,5 +1,5 @@
 //
-//  RootFeature.swift
+//  SplashFeature.swift
 //  GuideBook
 //
 //  Created by Yegor Myropoltsev on 07.11.2023.
@@ -9,7 +9,7 @@
 import Foundation
 import ComposableArchitecture
 
-struct RootFeature: Reducer {
+struct SplashFeature: Reducer {
     struct State: Equatable {
         
     }

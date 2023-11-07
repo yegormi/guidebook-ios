@@ -1,5 +1,5 @@
 //
-//  RootView.swift
+//  SplashView.swift
 //  GuideBook
 //
 //  Created by Yegor Myropoltsev on 07.11.2023.
@@ -9,8 +9,8 @@
 import SwiftUI
 import ComposableArchitecture
 
-struct RootView: View {
-    let store: StoreOf<RootFeature>
+struct SplashView: View {
+    let store: StoreOf<SplashFeature>
 
     var body: some View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in
