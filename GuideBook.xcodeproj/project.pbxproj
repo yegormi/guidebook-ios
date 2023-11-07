@@ -47,6 +47,7 @@
 		EEFFBA052AF98F8100238FA0 /* BindingHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEFFBA042AF98F8100238FA0 /* BindingHelper.swift */; };
 		EEFFBA082AF99F3F00238FA0 /* RequestError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEFFBA072AF99F3F00238FA0 /* RequestError.swift */; };
 		EEFFBA0A2AF9A34600238FA0 /* ErrorText.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEFFBA092AF9A34600238FA0 /* ErrorText.swift */; };
+		EEFFBA0C2AF9A7F100238FA0 /* ErrorField.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEFFBA0B2AF9A7F100238FA0 /* ErrorField.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -88,6 +89,7 @@
 		EEFFBA042AF98F8100238FA0 /* BindingHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindingHelper.swift; sourceTree = "<group>"; };
 		EEFFBA072AF99F3F00238FA0 /* RequestError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestError.swift; sourceTree = "<group>"; };
 		EEFFBA092AF9A34600238FA0 /* ErrorText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorText.swift; sourceTree = "<group>"; };
+		EEFFBA0B2AF9A7F100238FA0 /* ErrorField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -237,6 +239,7 @@
 				EE5AE1A62AF9407E00381B33 /* ErrorResponse.swift */,
 				EEEB8D212AF8E5AD007DEBAE /* FailResponse.swift */,
 				EEFFBA072AF99F3F00238FA0 /* RequestError.swift */,
+				EEFFBA0B2AF9A7F100238FA0 /* ErrorField.swift */,
 				EEF2F19C2AF8271F009F4677 /* KeyboardType.swift */,
 				EEEB8D262AF8EAEA007DEBAE /* SignIn.swift */,
 				EEEB8D282AF8EAFC007DEBAE /* SignUp.swift */,
@@ -344,6 +347,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EE2809582AF8534100093049 /* AuthTitle.swift in Sources */,
+				EEFFBA0C2AF9A7F100238FA0 /* ErrorField.swift in Sources */,
 				EEEB8D1C2AF8D40F007DEBAE /* AuthButton.swift in Sources */,
 				EEF2F19D2AF8271F009F4677 /* KeyboardType.swift in Sources */,
 				EEF2F18A2AF7D1BE009F4677 /* AuthFeature.swift in Sources */,

@@ -35,7 +35,6 @@ struct AuthView: View {
                             type: .username,
                             isInvalid: viewStore.usernameError != nil
                         )
-                        .padding(.bottom, 10)
                         
                         if let usernameError = viewStore.usernameError {
                             ErrorText(message: usernameError)
@@ -51,8 +50,7 @@ struct AuthView: View {
                         type: .email,
                         isInvalid: viewStore.emailError != nil
                     )
-                    .padding(.bottom, 10)
-                    
+                                        
                     if let emailError = viewStore.emailError {
                         ErrorText(message: emailError)
                     }
@@ -66,7 +64,7 @@ struct AuthView: View {
                         type: .password,
                         isInvalid: viewStore.passwordError != nil
                     )
-                    .padding(.bottom, 10)
+                    .padding(.top, 10)
                     
                     if let passwordError = viewStore.passwordError {
                         ErrorText(message: passwordError)
@@ -85,14 +83,15 @@ struct AuthView: View {
                                 !viewStore.confirmPassword.isEmpty
                             )
                         )
-                        .padding(.bottom, 10)
+                        .padding(.top, 10)
                     }
                     
                     AuthButton(authType: viewStore.authType, isLoading: viewStore.isLoading, action: {
                         viewStore.send(.authButtonTapped)
                     })
-                    .disabled(!viewStore.isLoginAllowed)
-                    .opacity(viewStore.isLoginAllowed ? 1 : 0.5)
+                    .disabled(viewStore.authType == .signIn ? !viewStore.isAbleToSignIn : !viewStore.isAbleToSignUp)
+                    .opacity((viewStore.authType == .signIn ? viewStore.isAbleToSignIn : viewStore.isAbleToSignUp) ? 1 : 0.5)
+                    .padding(.top, 20)
                     
                     AuthToggleButton(authType: viewStore.authType, onTap: {
                         viewStore.send(.toggleButtonTapped, animation: .default)

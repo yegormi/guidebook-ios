@@ -29,11 +29,7 @@ struct AuthFeature: Reducer {
             !email.isEmpty && !password.isEmpty
         }
         var isAbleToSignUp: Bool {
-            !username.isEmpty && !email.isEmpty && !password.isEmpty && !confirmPassword.isEmpty
-        }
-        
-        var isLoginAllowed: Bool {
-            isAbleToSignIn || isAbleToSignUp
+            !username.isEmpty && !email.isEmpty && !password.isEmpty && !confirmPassword.isEmpty && password == confirmPassword
         }
         
     }
@@ -55,12 +51,15 @@ struct AuthFeature: Reducer {
         switch action {
         case .usernameChanged(let current):
             state.username = current
+            state.usernameError = nil
             return .none
         case .emailChanged(let current):
             state.email = current
+            state.emailError = nil
             return .none
         case .passwordChanged(let current):
             state.password = current
+            state.passwordError = nil
             return .none
         case .confirmPasswordChanged(let current):
             state.confirmPassword = current
@@ -73,6 +72,17 @@ struct AuthFeature: Reducer {
             let password = state.password
             state.isLoading = true
             
+            if !isValidUsername(with: state.username) && state.authType == .signUp {
+                state.usernameError = "Invalid username"
+                state.isLoading = false
+                return .none
+            }
+            if !isValidEmail(with: state.email) {
+                state.emailError = "Invalid email"
+                state.isLoading = false
+                return .none
+            }
+
             switch state.authType {
             case .signIn:
                 return .run { send in
@@ -117,14 +127,14 @@ struct AuthFeature: Reducer {
             resetErrors(&state)
             
             switch response.code {
+            case RequestError.usernameNotUnique.code:
+                state.usernameError = RequestError.usernameNotUnique.string
             case RequestError.userNotFound.code:
                 state.emailError = RequestError.userNotFound.string
             case RequestError.emailNotUnique.code:
                 state.emailError = RequestError.emailNotUnique.string
             case RequestError.invalidPassword.code:
                 state.passwordError = RequestError.invalidPassword.string
-            case RequestError.usernameNotUnique.code:
-                state.usernameError = RequestError.usernameNotUnique.string
             default:
                 break
             }
@@ -137,6 +147,18 @@ struct AuthFeature: Reducer {
         state.usernameError = nil
         state.emailError = nil
         state.passwordError = nil
+    }
+    
+    func isValidUsername(with username: String) -> Bool {
+        let regex = "^[a-zA-Z0-9_-]+$"
+        let predicate = NSPredicate(format:"SELF MATCHES %@", regex)
+        return predicate.evaluate(with: username)
+    }
+    
+    func isValidEmail(with email: String) -> Bool {
+        let regex = "(?:[a-z0-9!#$%\\&'*+/=?\\^_`{|}~-]+(?:\\.[a-z0-9!#$%\\&'*+/=?\\^_`{|}"+"~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\"+"x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[a-z0-9](?:[a-"+"z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:25[0-5"+"]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-"+"9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21"+"-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])"
+        let predicate = NSPredicate(format: "SELF MATCHES %@", regex)
+        return predicate.evaluate(with: email)
     }
     
     func performSignIn(email: String, password: String) async throws -> AuthResponse {
