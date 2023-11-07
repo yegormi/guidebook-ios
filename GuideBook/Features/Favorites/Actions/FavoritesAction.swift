@@ -13,7 +13,7 @@ struct FavoritesAction {
     func call(completion: @escaping (Result<[Guide], ErrorResponse>) -> Void) {
         NetworkManager.performRequest(
             baseURL: "https://guidebook-api.azurewebsites.net",
-            endpoint: "/search/favorite/guides",
+            endpoint: "/favorite/guides",
             requestType: .get,
             token: token,
             decodedBody: nil,

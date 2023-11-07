@@ -12,6 +12,7 @@ struct GuideStepsPager: View {
                 ForEach(0..<steps.count, id: \.self) { index in
                     GuideStepsStyle(step: steps[index], guide: guide)
                         .frame(width: geometry.size.width, height: geometry.size.height)
+                        .padding(.bottom, 70)
                 }
             }
             .tabViewStyle(.page(indexDisplayMode: .never))

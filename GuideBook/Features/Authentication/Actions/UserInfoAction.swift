@@ -13,7 +13,7 @@ struct UserInfoAction {
     func call(completion: @escaping (Result<UserInfoResponse, ErrorResponse>) -> Void) {
         NetworkManager.performRequest(
             baseURL: "https://guidebook-api.azurewebsites.net",
-            endpoint: "/auth/me",
+            endpoint: "/self",
             requestType: .get,
             token: token,
             decodedBody: nil,

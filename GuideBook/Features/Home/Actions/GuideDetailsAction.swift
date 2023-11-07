@@ -14,7 +14,7 @@ struct GuideDetailsAction {
     func call(completion: @escaping (Result<GuideDetails, ErrorResponse>) -> Void) {
         NetworkManager.performRequest(
             baseURL: "https://guidebook-api.azurewebsites.net",
-            endpoint: "/guide/\(id)",
+            endpoint: "/guides/\(id)",
             requestType: .get,
             token: token,
             decodedBody: nil,
