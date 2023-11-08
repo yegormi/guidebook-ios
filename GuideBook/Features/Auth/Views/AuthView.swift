@@ -15,7 +15,7 @@ struct AuthView: View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in
             ScrollView {
                 VStack {
-                    Header()
+                    AuthHeader()
                     
                     if viewStore.authType == .signUp {
                         AuthTitle(authType: .signUp)
@@ -30,7 +30,7 @@ struct AuthView: View {
                             label: "Username",
                             text: viewStore.binding(
                                 get: \.username,
-                                send: AuthFeature.Action.usernameChanged
+                                send: { .usernameChanged($0) }
                             ),
                             type: .username,
                             isInvalid: viewStore.usernameError != nil
@@ -45,7 +45,7 @@ struct AuthView: View {
                         label: "Email",
                         text: viewStore.binding(
                             get: \.email,
-                            send: AuthFeature.Action.emailChanged
+                            send: { .emailChanged($0) }
                         ),
                         type: .email,
                         isInvalid: viewStore.emailError != nil
@@ -59,7 +59,7 @@ struct AuthView: View {
                         label: "Password",
                         text: viewStore.binding(
                             get: \.password,
-                            send: AuthFeature.Action.passwordChanged
+                            send: { .passwordChanged($0) }
                         ).removeDuplicates(),
                         type: .password,
                         isInvalid: viewStore.passwordError != nil
@@ -75,7 +75,7 @@ struct AuthView: View {
                             label: "Confirm Password",
                             text: viewStore.binding(
                                 get: \.confirmPassword,
-                                send: AuthFeature.Action.confirmPasswordChanged
+                                send: { .confirmPasswordChanged($0) }
                             ).removeDuplicates(),
                             type: .password,
                             isInvalid: (
@@ -89,8 +89,8 @@ struct AuthView: View {
                     AuthButton(authType: viewStore.authType, isLoading: viewStore.isLoading, action: {
                         viewStore.send(.authButtonTapped)
                     })
-                    .disabled(viewStore.authType == .signIn ? !viewStore.isAbleToSignIn : !viewStore.isAbleToSignUp)
-                    .opacity((viewStore.authType == .signIn ? viewStore.isAbleToSignIn : viewStore.isAbleToSignUp) ? 1 : 0.5)
+                    .disabled(!viewStore.isLoginAllowed)
+                    .opacity(viewStore.isLoginAllowed ? 1 : 0.5)
                     .padding(.top, 20)
                     
                     AuthToggleButton(authType: viewStore.authType, onTap: {

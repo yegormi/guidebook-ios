@@ -11,10 +11,26 @@ import ComposableArchitecture
 
 struct RootView: View {
     let store: StoreOf<RootFeature>
-
+    
     var body: some View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in
-            Text("Hello World!!!")
+            Group {
+                if viewStore.isLaunched {
+                    TabsView(
+                        store: Store(initialState: TabsFeature.State()) {
+                            TabsFeature()
+                                ._printChanges()
+                        }
+                    )
+                } else {
+                    SplashView()
+                }
+            }
+            .onAppear {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                    viewStore.send(.appLaunched, animation: .default)
+                }
+            }
         }
     }
 }

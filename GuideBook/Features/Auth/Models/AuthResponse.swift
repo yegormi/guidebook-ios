@@ -7,6 +7,6 @@
 
 import Foundation
 
-struct AuthResponse: Decodable, Equatable {
+struct AuthResponse: Codable, Equatable {
     let accessToken: String
 }

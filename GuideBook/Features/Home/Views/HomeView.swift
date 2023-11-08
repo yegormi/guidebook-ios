@@ -14,7 +14,7 @@ struct HomeView: View {
 
     var body: some View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in
-            Text("Hello World!!!")
+            Text("Home page")
         }
     }
 }

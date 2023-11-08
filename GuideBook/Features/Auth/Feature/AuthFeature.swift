@@ -32,6 +32,9 @@ struct AuthFeature: Reducer {
             !username.isEmpty && !email.isEmpty && !password.isEmpty && !confirmPassword.isEmpty && password == confirmPassword
         }
         
+        var isLoginAllowed: Bool {
+            authType == .signIn ? isAbleToSignIn : isAbleToSignUp
+        }
     }
     
     enum Action: Equatable {

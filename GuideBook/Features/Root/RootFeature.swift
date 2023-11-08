@@ -11,14 +11,18 @@ import ComposableArchitecture
 
 struct RootFeature: Reducer {
     struct State: Equatable {
-        
+        var isLaunched = false
     }
     
     enum Action: Equatable {
-        
+        case appLaunched
     }
     
     func reduce(into state: inout State, action: Action) -> Effect<Action> {
-        
+        switch action {
+        case .appLaunched:
+            state.isLaunched = true
+            return .none
+        }
     }
 }
