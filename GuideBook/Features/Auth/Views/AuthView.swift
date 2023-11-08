@@ -30,7 +30,7 @@ struct AuthView: View {
                             label: "Username",
                             text: viewStore.binding(
                                 get: \.username,
-                                send: { .usernameChanged($0) }
+                                send: AuthFeature.Action.usernameChanged
                             ),
                             type: .username,
                             isInvalid: viewStore.usernameError != nil
@@ -45,7 +45,7 @@ struct AuthView: View {
                         label: "Email",
                         text: viewStore.binding(
                             get: \.email,
-                            send: { .emailChanged($0) }
+                            send: AuthFeature.Action.emailChanged
                         ),
                         type: .email,
                         isInvalid: viewStore.emailError != nil
@@ -59,7 +59,7 @@ struct AuthView: View {
                         label: "Password",
                         text: viewStore.binding(
                             get: \.password,
-                            send: { .passwordChanged($0) }
+                            send: AuthFeature.Action.passwordChanged
                         ).removeDuplicates(),
                         type: .password,
                         isInvalid: viewStore.passwordError != nil
@@ -75,7 +75,7 @@ struct AuthView: View {
                             label: "Confirm Password",
                             text: viewStore.binding(
                                 get: \.confirmPassword,
-                                send: { .confirmPasswordChanged($0) }
+                                send: AuthFeature.Action.confirmPasswordChanged
                             ).removeDuplicates(),
                             type: .password,
                             isInvalid: (

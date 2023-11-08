@@ -12,6 +12,8 @@ import ComposableArchitecture
 struct RootFeature: Reducer {
     struct State: Equatable {
         var isLaunched = false
+        var authState = AuthFeature.State()
+        
     }
     
     enum Action: Equatable {

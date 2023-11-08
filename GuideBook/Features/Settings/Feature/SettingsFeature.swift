@@ -46,13 +46,9 @@ struct SettingsFeature: Reducer {
         case .deleteButtonTapped:
             state.isDeleteAlertPresented = true
             return .none
+            
         case .confirmSignOutTapped:
-            return .none
-        case .signOutDismissed:
-            state.isSignOutAlertPresented = false
-            return .none
-        case .deleteDismissed:
-            state.isDeleteAlertPresented = false
+            state.authState.response = nil
             return .none
         case .confirmDeleteTapped:
             let token = state.token
@@ -64,10 +60,19 @@ struct SettingsFeature: Reducer {
                     await send(.deleteError)
                 }
             }
+            
+        case .signOutDismissed:
+            state.isSignOutAlertPresented = false
+            return .none
+        case .deleteDismissed:
+            state.isDeleteAlertPresented = false
+            return .none
+        
         case .signOutSuccess:
             return .none
         case .signOutError:
             return .none
+            
         case .deleteSuccess:
             return .none
         case .deleteError:

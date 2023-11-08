@@ -69,10 +69,13 @@ struct AuthFeature: Reducer {
             return .none
         case .toggleButtonTapped:
             state.authType = state.authType == .signIn ? .signUp : .signIn
+            state.failResponse = nil
             return .none
         case .authButtonTapped:
+            let username = state.username
             let email = state.email
             let password = state.password
+            
             state.isLoading = true
             
             if !isValidUsername(with: state.username) && state.authType == .signUp {
@@ -95,15 +98,13 @@ struct AuthFeature: Reducer {
                             password: password
                         )
                         await send(.authSuccessful(result))
-                    } catch ErrorResponse.failedWithResponse(let result){
+                    } catch let ErrorResponse.failedWithResponse(result){
                         await send(.authFail(result))
                     } catch {
                         print(error)
                     }
                 }
             case .signUp:
-                let username = state.username
-                
                 return .run { send in
                     do {
                         let result = try await performSignUp(
@@ -112,7 +113,7 @@ struct AuthFeature: Reducer {
                             password: password
                         )
                         await send(.authSuccessful(result))
-                    } catch ErrorResponse.failedWithResponse(let result){
+                    } catch let ErrorResponse.failedWithResponse(result){
                         await send(.authFail(result))
                     } catch {
                         print(error)
@@ -127,7 +128,10 @@ struct AuthFeature: Reducer {
         case .authFail(let response):
             state.failResponse = response
             state.isLoading = false
-            resetErrors(&state)
+            
+            state.usernameError = nil
+            state.emailError = nil
+            state.passwordError = nil
             
             switch response.code {
             case RequestError.usernameNotUnique.code:
@@ -144,12 +148,6 @@ struct AuthFeature: Reducer {
             
             return .none
         }
-    }
-    
-    func resetErrors(_ state: inout State) {
-        state.usernameError = nil
-        state.emailError = nil
-        state.passwordError = nil
     }
     
     func isValidUsername(with username: String) -> Bool {
@@ -172,7 +170,8 @@ struct AuthFeature: Reducer {
         return try await withCheckedThrowingContinuation { continuation in
             AF.request(baseUrl + endpoint,
                        method: .post,
-                       parameters: signInRequest
+                       parameters: signInRequest,
+                       encoder: JSONParameterEncoder.default
             )
             .validate()
             .responseDecodable(of: AuthResponse.self) { response in
@@ -200,7 +199,8 @@ struct AuthFeature: Reducer {
         return try await withCheckedThrowingContinuation { continuation in
             AF.request(baseUrl + endpoint,
                        method: .post,
-                       parameters: signUpRequest
+                       parameters: signUpRequest,
+                       encoder: JSONParameterEncoder.default
             )
             .validate()
             .responseDecodable(of: AuthResponse.self) { response in
