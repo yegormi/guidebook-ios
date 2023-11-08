@@ -13,44 +13,42 @@ struct TabsView: View {
     
     var body: some View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in
-            TabView(
-                selection: viewStore.binding(
-                    get: \.selectedTab,
-                    send: TabsFeature.Action.tabSelected
-                )
-            ) {
-                HomeView(
-                    store: self.store.scope(
-                        state: \.homeState,
-                        action: TabsFeature.Action.home
+            NavigationView {
+                TabView(
+                    selection: viewStore.binding(
+                        get: \.selectedTab,
+                        send: TabsFeature.Action.tabSelected
                     )
-                )
-                .tabItem { Label("Home", systemImage: "house") }
-                .tag(TabsFeature.Tab.home)
-                
-                
-                FavoritesView(
-                    store: self.store.scope(
-                        state: \.favoritesState,
-                        action: TabsFeature.Action.favorites
+                ) {
+                    HomeView(
+                        store: Store(initialState: HomeFeature.State()) {
+                            HomeFeature()
+                                ._printChanges()
+                        }
                     )
-                )
-                .tabItem { Label("Favorites", systemImage: "heart") }
-                .tag(TabsFeature.Tab.favorites)
-                
-                SettingsView(
-                    store: self.store.scope(
-                        state: \.settingsState,
-                        action: TabsFeature.Action.settings
+                    .tabItem { Label("Home", systemImage: "house") }
+                    .tag(TabsFeature.Tab.home)
+                    
+                    
+                    FavoritesView(
+                        store: Store(initialState: FavoritesFeature.State()) {
+                            FavoritesFeature()
+                                ._printChanges()
+                        }
                     )
-                )
-                .tabItem { Label("Settings", systemImage: "gearshape") }
-                .tag(TabsFeature.Tab.settings)
+                    .tabItem { Label("Favorites", systemImage: "heart") }
+                    .tag(TabsFeature.Tab.favorites)
+                    
+                    SettingsView(
+                        store: Store(initialState: SettingsFeature.State()) {
+                            SettingsFeature()
+                                ._printChanges()
+                        }
+                    )
+                    .tabItem { Label("Settings", systemImage: "gearshape") }
+                    .tag(TabsFeature.Tab.settings)
+                }
             }
-            .navigationBarTitle(
-                viewStore.selectedTab == .home ? "Home" : 
-                    viewStore.selectedTab == .favorites ? "Favorites" : "Settings"
-            )
         }
     }
 }

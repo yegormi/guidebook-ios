@@ -9,8 +9,8 @@ import SwiftUI
 
 struct AuthButton: View {
     let authType: AuthType
-    @State var isLoading: Bool
-    var action: () -> Void
+    let isLoading: Bool
+    let action: () -> Void
     
     var body: some View {
         Button(action: {

@@ -20,7 +20,7 @@
 		EE140B1A2AFA5221001A4461 /* HomeFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE140B182AFA5221001A4461 /* HomeFeature.swift */; };
 		EE140B202AFA523B001A4461 /* FavoritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE140B1E2AFA523B001A4461 /* FavoritesView.swift */; };
 		EE140B212AFA523B001A4461 /* FavoritesFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE140B1F2AFA523B001A4461 /* FavoritesFeature.swift */; };
-		EE2809542AF84F3400093049 /* AuthHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2809532AF84F3400093049 /* AuthHeader.swift */; };
+		EE2809542AF84F3400093049 /* Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2809532AF84F3400093049 /* Header.swift */; };
 		EE2809562AF852E600093049 /* AuthType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2809552AF852E600093049 /* AuthType.swift */; };
 		EE2809582AF8534100093049 /* AuthTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2809572AF8534100093049 /* AuthTitle.swift */; };
 		EE28095A2AF856A600093049 /* AuthToggleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2809592AF856A600093049 /* AuthToggleButton.swift */; };
@@ -91,7 +91,7 @@
 		EE140B182AFA5221001A4461 /* HomeFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeFeature.swift; sourceTree = "<group>"; };
 		EE140B1E2AFA523B001A4461 /* FavoritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesView.swift; sourceTree = "<group>"; };
 		EE140B1F2AFA523B001A4461 /* FavoritesFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesFeature.swift; sourceTree = "<group>"; };
-		EE2809532AF84F3400093049 /* AuthHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthHeader.swift; sourceTree = "<group>"; };
+		EE2809532AF84F3400093049 /* Header.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Header.swift; sourceTree = "<group>"; };
 		EE2809552AF852E600093049 /* AuthType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthType.swift; sourceTree = "<group>"; };
 		EE2809572AF8534100093049 /* AuthTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthTitle.swift; sourceTree = "<group>"; };
 		EE2809592AF856A600093049 /* AuthToggleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthToggleButton.swift; sourceTree = "<group>"; };
@@ -179,6 +179,7 @@
 			isa = PBXGroup;
 			children = (
 				EEF2F1A02AF82BBA009F4677 /* Assets.xcassets */,
+				EEA012DB2AFBA90E004311F3 /* Common */,
 				EEF2F1882AF7D1AF009F4677 /* Features */,
 				EEFFBA062AF98F9600238FA0 /* Helpers */,
 				EEF2F19E2AF82BBA009F4677 /* Preview Content */,
@@ -322,6 +323,22 @@
 			path = Components;
 			sourceTree = "<group>";
 		};
+		EEA012DB2AFBA90E004311F3 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				EEA012DC2AFBAA11004311F3 /* Views */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		EEA012DC2AFBAA11004311F3 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				EE2809532AF84F3400093049 /* Header.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		EEF2F17F2AF7CE0B009F4677 /* Tabs */ = {
 			isa = PBXGroup;
 			children = (
@@ -379,7 +396,6 @@
 				EE2809572AF8534100093049 /* AuthTitle.swift */,
 				EE2809592AF856A600093049 /* AuthToggleButton.swift */,
 				EEFFBA092AF9A34600238FA0 /* ErrorText.swift */,
-				EE2809532AF84F3400093049 /* AuthHeader.swift */,
 				EEF2F1962AF8240E009F4677 /* InputField.swift */,
 				EEF2F1982AF82415009F4677 /* PasswordField.swift */,
 			);
@@ -534,7 +550,7 @@
 				EEF2F1862AF7CECF009F4677 /* TabsFeature.swift in Sources */,
 				EEA012CD2AFACCB7004311F3 /* GuideVIew.swift in Sources */,
 				EEA012D22AFACCB7004311F3 /* PagerCount.swift in Sources */,
-				EE2809542AF84F3400093049 /* AuthHeader.swift in Sources */,
+				EE2809542AF84F3400093049 /* Header.swift in Sources */,
 				EEF2F1992AF82415009F4677 /* PasswordField.swift in Sources */,
 				EE28095A2AF856A600093049 /* AuthToggleButton.swift in Sources */,
 				EE140B0D2AFA38D8001A4461 /* ProfileCard.swift in Sources */,

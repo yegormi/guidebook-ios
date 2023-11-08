@@ -26,7 +26,6 @@ struct GuideListView: View {
         }
         .listStyle(.insetGrouped)
         .navigationBarTitle(title)
-        .navigationBarTitleDisplayMode(.inline)
     }
 }
 

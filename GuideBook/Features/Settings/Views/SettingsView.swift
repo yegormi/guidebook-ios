@@ -12,8 +12,6 @@ import ComposableArchitecture
 struct SettingsView: View {
     let store: StoreOf<SettingsFeature>
     
-    @AppStorage("isOnNotifications") var isOnNotifications: Bool = false
-    @AppStorage("isOnSafeSearch") var isOnSafeSearch: Bool = false
     @AppStorage("selectedMode") var selectedMode: Appearance = .auto
     
     let signOutAlert = AlertInfo(
@@ -56,8 +54,6 @@ struct SettingsView: View {
                         }
                         .fixedSize()
                     }
-                    Toggle("Notifications", isOn: $isOnNotifications)
-                    Toggle("Safe Search", isOn: $isOnSafeSearch)
                 }
                 Section(header: Text("Account")) {
                     Button("Sign Out") {
@@ -70,18 +66,17 @@ struct SettingsView: View {
                     }
                     .foregroundStyle(.red)
                 }
-                .navigationBarTitle("Settings")
-                .navigationBarTitleDisplayMode(.inline)
-                .pickerStyle(.segmented)
             }
             .preferredColorScheme(preferredColorSchemeForSelectedMode)
+            
+            .navigationBarTitle("Settings")
+            .pickerStyle(.segmented)
             
             .alert(signOutAlert.title, isPresented: viewStore.binding(
                 get: \.isSignOutAlertPresented,
                 send: SettingsFeature.Action.signOutButtonTapped
             )) {
                 Button("Cancel", role: .cancel) {
-                    
                 }
                 Button("Confirm", role: .destructive) {
                     viewStore.send(.confirmSignOutTapped)
@@ -102,5 +97,16 @@ struct SettingsView: View {
                 Text(deleteAccountAlert.description)
             }
         }
+    }
+}
+
+struct SettingsView_Previews: PreviewProvider {
+    static var previews: some View {
+        SettingsView(
+            store: Store(initialState: SettingsFeature.State()) {
+                SettingsFeature()
+                    ._printChanges()
+            }
+        )
     }
 }

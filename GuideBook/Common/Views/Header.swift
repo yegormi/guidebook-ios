@@ -1,5 +1,5 @@
 //
-//  AuthHeader.swift
+//  Header.swift
 //  GuideBook
 //
 //  Created by Yegor Myropoltsev on 06.11.2023.
@@ -7,17 +7,23 @@
 
 import SwiftUI
 
-struct AuthHeader: View {
+struct Header: View {
+    let text: String
+    
+    init(_ text: String) {
+        self.text = text
+    }
+    
     var body: some View {
-        Text("📘 GuideBook")
+        Text(text)
             .font(.system(size: 20))
             .bold()
     }
 }
 
-struct AuthHeader_Previews: PreviewProvider {
+struct Header_Previews: PreviewProvider {
     static var previews: some View {
-        AuthHeader()
+        Header("📘 GuideBook")
             .previewLayout(.sizeThatFits)
             .padding()
     }

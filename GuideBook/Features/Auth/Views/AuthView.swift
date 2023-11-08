@@ -15,7 +15,7 @@ struct AuthView: View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in
             ScrollView {
                 VStack {
-                    AuthHeader()
+                    Header("📘 GuideBook")
                     
                     if viewStore.authType == .signUp {
                         AuthTitle(authType: .signUp)

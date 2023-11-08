@@ -16,7 +16,7 @@ enum Appearance: String, CaseIterable, Identifiable, Codable {
         case .light:
             return "sun.max"
         case .auto:
-            return "character"
+            return "iphone"
         case .dark:
             return "moon.fill"
         }
