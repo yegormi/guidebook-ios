@@ -34,8 +34,7 @@ struct SettingsFeature: Reducer {
         case signOutSuccess
         case signOutError
         
-        case deleteSuccess
-        case deleteError
+        case deleteSuccess(UserDelete)
     }
     
     func reduce(into state: inout State, action: Action) -> Effect<Action> {
@@ -49,18 +48,21 @@ struct SettingsFeature: Reducer {
             
         case .confirmSignOutTapped:
             state.authState.response = nil
+            eraseAuthResponse()
             return .none
         case .confirmDeleteTapped:
             let token = state.token
             return .run { send in
                 do {
                     let result = try await performDelete(token: token)
-                    await send(.deleteSuccess)
+                    await send(.deleteSuccess(result))
                 } catch {
-                    await send(.deleteError)
+                    print(error.localizedDescription)
                 }
             }
-            
+        case let .deleteSuccess(result):
+            print("\(result.message)")
+            return .none
         case .signOutDismissed:
             state.isSignOutAlertPresented = false
             return .none
@@ -72,12 +74,11 @@ struct SettingsFeature: Reducer {
             return .none
         case .signOutError:
             return .none
-            
-        case .deleteSuccess:
-            return .none
-        case .deleteError:
-            return .none
         }
+    }
+    
+    func eraseAuthResponse() {
+        UserDefaults.standard.removeObject(forKey: "AuthResponse")
     }
     
     func performDelete(token: String) async throws -> UserDelete {

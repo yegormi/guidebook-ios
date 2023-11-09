@@ -14,29 +14,32 @@ struct RootView: View {
     
     var body: some View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in
-            Group {
-                if !viewStore.isLaunched {
-                    SplashView()
-                } else if viewStore.authState.response == nil {
-                    AuthView(
-                        store: Store(initialState: AuthFeature.State()) {
-                            AuthFeature()
-                                ._printChanges()
-                        }
-                    )
+            ZStack {
+                if viewStore.isLaunched {
+                    if viewStore.authState.response != nil {
+                        TabsView(
+                            store: Store(initialState: TabsFeature.State()) {
+                                TabsFeature()
+                                    ._printChanges()
+                            }
+                        )
+                    } else {
+                        AuthView(
+                            store: Store(initialState: AuthFeature.State()) {
+                                AuthFeature()
+                                    ._printChanges()
+                            }
+                        )
+                    }
                 } else {
-                    TabsView(
-                        store: Store(initialState: TabsFeature.State()) {
-                            TabsFeature()
-                                ._printChanges()
-                        }
-                    )
+                    SplashView()
                 }
             }
             .onAppear {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
                     viewStore.send(.appLaunched, animation: .default)
                 }
+                viewStore.send(.retrieveToken)
             }
         }
     }

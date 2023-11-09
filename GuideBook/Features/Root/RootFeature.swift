@@ -18,6 +18,7 @@ struct RootFeature: Reducer {
     
     enum Action: Equatable {
         case appLaunched
+        case retrieveToken
     }
     
     func reduce(into state: inout State, action: Action) -> Effect<Action> {
@@ -25,6 +26,17 @@ struct RootFeature: Reducer {
         case .appLaunched:
             state.isLaunched = true
             return .none
+        case .retrieveToken:
+            state.authState.response = retrieveAuthResponse()
+            return .none
         }
+    }
+    
+    func retrieveAuthResponse() -> AuthResponse? {
+        if let authResponseData = UserDefaults.standard.data(forKey: "AuthResponse"),
+           let authResponse = try? JSONDecoder().decode(AuthResponse.self, from: authResponseData) {
+            return authResponse
+        }
+        return nil
     }
 }

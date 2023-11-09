@@ -48,6 +48,8 @@ struct AuthFeature: Reducer {
         
         case authSuccessful(AuthResponse)
         case authFail(FailResponse)
+        
+        case saveToken(AuthResponse)
     }
     
     func reduce(into state: inout State, action: Action) -> Effect<Action> {
@@ -120,12 +122,16 @@ struct AuthFeature: Reducer {
                     }
                 }
             }
-        case .authSuccessful(let response):
+        case let .authSuccessful(response):
             state.response = response
             state.failResponse = nil
             state.isLoading = false
+            return .send(.saveToken(response))
+        case let .saveToken(response):
+            saveAuthResponse(response: response)
             return .none
-        case .authFail(let response):
+            
+        case let .authFail(response):
             state.failResponse = response
             state.isLoading = false
             
@@ -216,6 +222,14 @@ struct AuthFeature: Reducer {
                     }
                 }
             }
+        }
+    }
+    
+    // MARK: - User Defaults Functions
+    
+    func saveAuthResponse(response: AuthResponse) {
+        if let authResponseData = try? JSONEncoder().encode(response) {
+            UserDefaults.standard.set(authResponseData, forKey: "AuthResponse")
         }
     }
 }

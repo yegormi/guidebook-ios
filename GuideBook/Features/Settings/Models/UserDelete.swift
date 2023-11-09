@@ -7,6 +7,6 @@
 
 import Foundation
 
-struct UserDelete: Codable {
+struct UserDelete: Codable, Equatable {
     let message: String
 }
