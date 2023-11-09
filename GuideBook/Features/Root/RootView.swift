@@ -18,17 +18,17 @@ struct RootView: View {
                 if viewStore.isLaunched {
                     if viewStore.authState.response != nil {
                         TabsView(
-                            store: Store(initialState: TabsFeature.State()) {
-                                TabsFeature()
-                                    ._printChanges()
-                            }
+                            store: self.store.scope(
+                                state: \.tabsState,
+                                action: RootFeature.Action.tabs
+                            )
                         )
                     } else {
                         AuthView(
-                            store: Store(initialState: AuthFeature.State()) {
-                                AuthFeature()
-                                    ._printChanges()
-                            }
+                            store: self.store.scope(
+                                state: \.authState,
+                                action: RootFeature.Action.auth
+                            )
                         )
                     }
                 } else {
