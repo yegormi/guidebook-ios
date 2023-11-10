@@ -352,11 +352,11 @@
 			isa = PBXGroup;
 			children = (
 				EEA012BC2AFA8183004311F3 /* Root */,
+				EEF2F17F2AF7CE0B009F4677 /* Tabs */,
 				EEF2F18B2AF7D1C5009F4677 /* Auth */,
 				EE140B1B2AFA5226001A4461 /* Home */,
 				EE140B222AFA523E001A4461 /* Favorites */,
 				EE140B062AFA35F6001A4461 /* Settings */,
-				EEF2F17F2AF7CE0B009F4677 /* Tabs */,
 			);
 			path = Features;
 			sourceTree = "<group>";

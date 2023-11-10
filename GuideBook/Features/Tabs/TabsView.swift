@@ -21,29 +21,29 @@ struct TabsView: View {
                     )
                 ) {
                     HomeView(
-                        store: Store(initialState: HomeFeature.State()) {
-                            HomeFeature()
-                                ._printChanges()
-                        }
+                        store: self.store.scope(
+                            state: \.homeState,
+                            action: TabsFeature.Action.home
+                        )
                     )
                     .tabItem { Label("Home", systemImage: "house") }
                     .tag(TabsFeature.Tab.home)
                     
                     
                     FavoritesView(
-                        store: Store(initialState: FavoritesFeature.State()) {
-                            FavoritesFeature()
-                                ._printChanges()
-                        }
+                        store: self.store.scope(
+                            state: \.favoritesState,
+                            action: TabsFeature.Action.favorites
+                        )
                     )
                     .tabItem { Label("Favorites", systemImage: "heart") }
                     .tag(TabsFeature.Tab.favorites)
                     
                     SettingsView(
-                        store: Store(initialState: SettingsFeature.State()) {
-                            SettingsFeature()
-                                ._printChanges()
-                        }
+                        store: self.store.scope(
+                            state: \.settingsState,
+                            action: TabsFeature.Action.settings
+                        )
                     )
                     .tabItem { Label("Settings", systemImage: "gearshape") }
                     .tag(TabsFeature.Tab.settings)
