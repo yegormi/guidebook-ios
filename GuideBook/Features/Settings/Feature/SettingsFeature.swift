@@ -16,23 +16,14 @@ struct SettingsFeature: Reducer {
         var isDeleteAlertPresented: Bool = false
         var user: UserInfo?
         var authState = AuthFeature.State()
-        var token: String {
-            authState.response?.accessToken ?? ""
-        }
     }
     
     enum Action: Equatable {
         case signOutButtonTapped
         case deleteButtonTapped
         
-        case signOutDismissed
-        case deleteDismissed
-        
         case confirmSignOutTapped
         case confirmDeleteTapped
-        
-        case signOutSuccess
-        case signOutError
         
         case deleteSuccess(UserDelete)
     }
@@ -51,7 +42,7 @@ struct SettingsFeature: Reducer {
             eraseAuthResponse()
             return .none
         case .confirmDeleteTapped:
-            let token = state.token
+            let token = state.authState.response?.accessToken ?? ""
             return .run { send in
                 do {
                     let result = try await performDelete(token: token)
@@ -62,17 +53,6 @@ struct SettingsFeature: Reducer {
             }
         case let .deleteSuccess(result):
             print("\(result.message)")
-            return .none
-        case .signOutDismissed:
-            state.isSignOutAlertPresented = false
-            return .none
-        case .deleteDismissed:
-            state.isDeleteAlertPresented = false
-            return .none
-        
-        case .signOutSuccess:
-            return .none
-        case .signOutError:
             return .none
         }
     }
