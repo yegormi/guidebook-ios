@@ -247,8 +247,8 @@
 		EE140B222AFA523E001A4461 /* Favorites */ = {
 			isa = PBXGroup;
 			children = (
-				EE140B1E2AFA523B001A4461 /* FavoritesView.swift */,
 				EE140B1F2AFA523B001A4461 /* FavoritesFeature.swift */,
+				EE140B1E2AFA523B001A4461 /* FavoritesView.swift */,
 			);
 			path = Favorites;
 			sourceTree = "<group>";

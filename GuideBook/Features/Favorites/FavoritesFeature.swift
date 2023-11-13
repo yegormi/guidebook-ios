@@ -18,7 +18,11 @@ struct FavoritesFeature: Reducer {
         
     }
     
-    func reduce(into state: inout State, action: Action) -> Effect<Action> {
-        
+    var body: some Reducer<State, Action> {
+        Reduce { state, action in
+            switch action {
+                
+            }
+        }
     }
 }

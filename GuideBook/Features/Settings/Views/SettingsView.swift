@@ -14,16 +14,6 @@ struct SettingsView: View {
     
     @AppStorage("selectedMode") var selectedMode: Appearance = .auto
     
-    let signOutAlert = AlertInfo(
-        title: "Sign Out",
-        description: "Are you sure you want to sign out?"
-    )
-    
-    let deleteAccountAlert = AlertInfo(
-        title: "Delete Account",
-        description: "Are you sure you want to sign out?"
-    )
-    
     private var preferredColorSchemeForSelectedMode: ColorScheme? {
         switch selectedMode {
         case .light:
@@ -68,34 +58,11 @@ struct SettingsView: View {
                 }
             }
             .preferredColorScheme(preferredColorSchemeForSelectedMode)
-            
             .navigationBarTitle("Settings")
             .pickerStyle(.segmented)
-            
-            .alert(signOutAlert.title, isPresented: viewStore.binding(
-                get: \.isSignOutAlertPresented,
-                send: SettingsFeature.Action.signOutButtonTapped
-            )) {
-                Button("Cancel", role: .cancel) {
-                }
-                Button("Confirm", role: .destructive) {
-                    viewStore.send(.confirmSignOutTapped)
-                }
-            } message: {
-                Text(signOutAlert.description)
-            }
-            
-            .alert(deleteAccountAlert.title, isPresented: viewStore.binding(
-                get: \.isDeleteAlertPresented,
-                send: SettingsFeature.Action.deleteButtonTapped
-            )) {
-                Button("Cancel", role: .cancel) {}
-                Button("Confirm", role: .destructive) {
-                    viewStore.send(.confirmDeleteTapped)
-                }
-            } message: {
-                Text(deleteAccountAlert.description)
-            }
+            .alert(
+                store: self.store.scope(state: \.$alert, action: { .alert($0) })
+            )
         }
     }
 }
