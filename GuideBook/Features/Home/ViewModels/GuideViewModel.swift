@@ -87,7 +87,9 @@ final class GuideViewModel: ObservableObject {
             DispatchQueue.main.async {
                 switch result {
                 case .success(let favorites):
-                    self.favorites = favorites
+                    withAnimation(.default) {
+                        self.favorites = favorites
+                    }
                     print("Successfully parsed favorites")
                 case .failure(let error):
                     self.handleError(error)
@@ -102,7 +104,9 @@ final class GuideViewModel: ObservableObject {
             DispatchQueue.main.async {
                 switch result {
                 case .success(let guideCards):
-                    self.guides = guideCards
+                    withAnimation(.spring) {
+                        self.guides = guideCards
+                    }
                     print("Successfully parsed guide cards")
                 case .failure(let error):
                     self.handleError(error)

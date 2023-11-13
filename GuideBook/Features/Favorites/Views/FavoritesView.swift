@@ -56,6 +56,7 @@ struct FavoritesView: View {
                     GuideStyle(item: guide)
                 }
         }
+        .transition(.move(edge: .trailing))
     }
 }
 

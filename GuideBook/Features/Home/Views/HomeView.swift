@@ -82,6 +82,7 @@ extension HomeView {
                 .onAppear { getDetails(for: guide)}
             ) { GuideStyle(item: guide) }
         }
+        .transition(.move(edge: .trailing))
         .listStyle(.insetGrouped)
         .navigationBarTitle("Home")
         .navigationBarTitleDisplayMode(.inline)
