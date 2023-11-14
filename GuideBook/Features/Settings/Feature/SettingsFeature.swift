@@ -13,7 +13,7 @@ import Alamofire
 struct SettingsFeature: Reducer {
     struct State: Equatable {
         var user: UserInfo?
-        var authState = AuthFeature.State()
+        var rootState = RootFeature.State()
         @PresentationState var alert: AlertState<Action.Alert>?
     }
     
@@ -36,12 +36,12 @@ struct SettingsFeature: Reducer {
             switch action {
             case .alert(.presented(.confirmSignOutTapped)):
                 state.alert = AlertState { TextState("Signed out!") }
-                state.authState.response = nil
+                state.rootState.authState.response = nil
                 eraseAuthResponse()
                 return .none
             case .alert(.presented(.confirmDeleteTapped)):
                 state.alert = AlertState { TextState("Account has been successfuly deleted!") }
-                let token = state.authState.response?.accessToken ?? ""
+                let token = state.rootState.authState.response?.accessToken ?? ""
                 return .run { send in
                     do {
                         let result = try await performDelete(token: token)
