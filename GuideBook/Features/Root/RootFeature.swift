@@ -8,12 +8,14 @@
 
 import Foundation
 import ComposableArchitecture
+import Alamofire
 
 struct RootFeature: Reducer {
     struct State: Equatable {
         var isLaunched = false
         var authState = AuthFeature.State()
         var tabsState = TabsFeature.State()
+        
         
     }
     
@@ -23,6 +25,11 @@ struct RootFeature: Reducer {
         
         case auth(AuthFeature.Action)
         case tabs(TabsFeature.Action)
+        
+        case signOut
+        case accountDeleted
+        case deleteSuccess(UserDelete)
+        
     }
     
     var body: some Reducer<State, Action> {
@@ -44,6 +51,25 @@ struct RootFeature: Reducer {
                 return .none
             case .tabs:
                 return .none
+            case .signOut:
+                state.authState.response = nil
+                eraseAuthResponse()
+                return .none
+            case .accountDeleted:
+                let token = state.authState.response?.accessToken ?? ""
+                state.authState.response = nil
+                eraseAuthResponse()
+                return .run { send in
+                    do {
+                        let result = try await performDelete(token: token)
+                        await send(.deleteSuccess(result))
+                    } catch {
+                        print(error.localizedDescription)
+                    }
+                }
+            case let .deleteSuccess(result):
+                print("\(result.message)")
+                return .none
             }
         }
     }
@@ -54,5 +80,36 @@ struct RootFeature: Reducer {
             return authResponse
         }
         return nil
+    }
+    
+    func eraseAuthResponse() {
+        UserDefaults.standard.removeObject(forKey: "AuthResponse")
+    }
+    
+    func performDelete(token: String) async throws -> UserDelete {
+        let baseUrl = "https://guidebook-api.azurewebsites.net"
+        let endpoint = "/self"
+        
+        let headers: HTTPHeaders = [
+            "Authorization": "\(token)"
+        ]
+        
+        return try await withCheckedThrowingContinuation { continuation in
+            AF.request(baseUrl + endpoint, method: .delete, headers: headers)
+                .validate()
+                .responseDecodable(of: UserDelete.self) { response in
+                    switch response.result {
+                    case .success(let deleteResponse):
+                        continuation.resume(returning: deleteResponse)
+                    case .failure(let error):
+                        if let data = response.data,
+                           let failResponse = try? JSONDecoder().decode(FailResponse.self, from: data) {
+                            continuation.resume(throwing: ErrorResponse.failedWithResponse(failResponse))
+                        } else {
+                            continuation.resume(throwing: error)
+                        }
+                    }
+                }
+        }
     }
 }

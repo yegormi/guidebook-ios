@@ -14,7 +14,7 @@ struct RootView: View {
     
     var body: some View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in
-            ZStack {
+            VStack {
                 if viewStore.isLaunched {
                     if viewStore.authState.response != nil {
                         TabsView(
@@ -37,7 +37,7 @@ struct RootView: View {
             }
             .onAppear {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-                    viewStore.send(.appLaunched, animation: .default)
+                    viewStore.send(.appLaunched)
                 }
 //                viewStore.send(.retrieveToken)
             }

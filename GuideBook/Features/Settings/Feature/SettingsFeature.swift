@@ -13,7 +13,6 @@ import Alamofire
 struct SettingsFeature: Reducer {
     struct State: Equatable {
         var user: UserInfo?
-        var rootState = RootFeature.State()
         @PresentationState var alert: AlertState<Action.Alert>?
     }
     
@@ -22,12 +21,10 @@ struct SettingsFeature: Reducer {
 
         case signOutButtonTapped
         case deleteButtonTapped
-        
-        case deleteSuccess(UserDelete)
-        
+                
         enum Alert: Equatable {
-            case confirmDeleteTapped
             case confirmSignOutTapped
+            case confirmDeleteTapped
         }
     }
     
@@ -36,20 +33,10 @@ struct SettingsFeature: Reducer {
             switch action {
             case .alert(.presented(.confirmSignOutTapped)):
                 state.alert = AlertState { TextState("Signed out!") }
-                state.rootState.authState.response = nil
-                eraseAuthResponse()
                 return .none
             case .alert(.presented(.confirmDeleteTapped)):
                 state.alert = AlertState { TextState("Account has been successfuly deleted!") }
-                let token = state.rootState.authState.response?.accessToken ?? ""
-                return .run { send in
-                    do {
-                        let result = try await performDelete(token: token)
-                        await send(.deleteSuccess(result))
-                    } catch {
-                        print(error.localizedDescription)
-                    }
-                }
+                return .none
             case .alert:
                 return .none
                 
@@ -80,44 +67,10 @@ struct SettingsFeature: Reducer {
                 } message: {
                     TextState("Are you sure you want to delete your account?")
                 }
-                return .none
-            case let .deleteSuccess(result):
-                print("\(result.message)")
-                return .none
+                return .send(RootFeature.Action.accountDeleted)
             }
         }
         .ifLet(\.$alert, action: /Action.alert)
-    }
-    
-    func eraseAuthResponse() {
-        UserDefaults.standard.removeObject(forKey: "AuthResponse")
-    }
-    
-    func performDelete(token: String) async throws -> UserDelete {
-        let baseUrl = "https://guidebook-api.azurewebsites.net"
-        let endpoint = "/self"
-        
-        let headers: HTTPHeaders = [
-            "Authorization": "\(token)"
-        ]
-        
-        return try await withCheckedThrowingContinuation { continuation in
-            AF.request(baseUrl + endpoint, method: .delete, headers: headers)
-                .validate()
-                .responseDecodable(of: UserDelete.self) { response in
-                    switch response.result {
-                    case .success(let deleteResponse):
-                        continuation.resume(returning: deleteResponse)
-                    case .failure(let error):
-                        if let data = response.data,
-                           let failResponse = try? JSONDecoder().decode(FailResponse.self, from: data) {
-                            continuation.resume(throwing: ErrorResponse.failedWithResponse(failResponse))
-                        } else {
-                            continuation.resume(throwing: error)
-                        }
-                    }
-                }
-        }
     }
     
 }
