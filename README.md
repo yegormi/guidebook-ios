@@ -21,15 +21,17 @@ PR](https://github.com/yegormi/guidebook-ios/edit/main/README.md)
     <img src="Screenshots/steps.png" width="250"/>
 </div>
 
+## Video
 
+https://github.com/yegormi/guidebook-ios/assets/72651640/fa99eb6c-6e0f-404d-8b03-7b9c384e6727
 
 ## Table of Contents
 
 - [Introduction](#introduction)
 - [Key Features](#key-features)
 - [Getting Started](#getting-started)
-  - [Installation](#installation)
-  - [Usage](#usage)
+- [Installation](#installation)
+- [Usage](#usage)
 - [Contributing](#contributing)
 - [License](#license)
 - [Acknowledgments](#acknowledgments)
