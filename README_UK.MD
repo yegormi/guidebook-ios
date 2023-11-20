@@ -12,6 +12,11 @@
     <img src="Screenshots/steps.png" width="250"/>
 </div>
 
+## Відео
+
+https://github.com/yegormi/guidebook-ios/assets/72651640/fa99eb6c-6e0f-404d-8b03-7b9c384e6727
+
+
 ## Зміст
 
 - [Вступ](#вступ)
