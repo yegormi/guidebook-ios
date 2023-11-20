@@ -4,6 +4,14 @@
 ![Platform](https://img.shields.io/badge/Platform-iOS-brightgreen.svg)
 ![License](https://img.shields.io/badge/License-MIT-blue.svg)
 
+## Translations
+
+The following translations of this README are translated by the members of our team:
+
+* [Ukrainian](https://github.com/yegormi/guidebook-ios/blob/main/README_UK.MD)
+
+If you'd like to contribute a translation, please [open a
+PR](https://github.com/yegormi/guidebook-ios/edit/main/README.md)
 
 ## Screenshots
 
