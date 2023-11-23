@@ -14,7 +14,7 @@ struct SettingsView: View {
     
     @AppStorage("selectedMode") var selectedMode: Appearance = .auto
     
-    private var preferredColorSchemeForSelectedMode: ColorScheme? {
+    private var colorSchemeOption: ColorScheme? {
         switch selectedMode {
         case .light:
             return .light
@@ -57,7 +57,7 @@ struct SettingsView: View {
                     .foregroundStyle(.red)
                 }
             }
-            .preferredColorScheme(preferredColorSchemeForSelectedMode)
+            .preferredColorScheme(colorSchemeOption)
             .pickerStyle(.segmented)
             .alert(
                 store: self.store.scope(state: \.$alert, action: { .alert($0) })
