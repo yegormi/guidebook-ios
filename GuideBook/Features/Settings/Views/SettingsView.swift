@@ -58,7 +58,6 @@ struct SettingsView: View {
                 }
             }
             .preferredColorScheme(preferredColorSchemeForSelectedMode)
-            .navigationBarTitle("Settings")
             .pickerStyle(.segmented)
             .alert(
                 store: self.store.scope(state: \.$alert, action: { .alert($0) })

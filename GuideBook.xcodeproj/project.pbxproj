@@ -24,6 +24,7 @@
 		EE2809562AF852E600093049 /* AuthType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2809552AF852E600093049 /* AuthType.swift */; };
 		EE2809582AF8534100093049 /* AuthTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2809572AF8534100093049 /* AuthTitle.swift */; };
 		EE28095A2AF856A600093049 /* AuthToggleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2809592AF856A600093049 /* AuthToggleButton.swift */; };
+		EE40B6832B0FDD0A000C07BD /* SkeletonUI in Frameworks */ = {isa = PBXBuildFile; productRef = EE40B6822B0FDD0A000C07BD /* SkeletonUI */; };
 		EE5AE1A72AF9407E00381B33 /* ErrorResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5AE1A62AF9407E00381B33 /* ErrorResponse.swift */; };
 		EE6127F12AF50FB200DA608F /* steps3.png in Resources */ = {isa = PBXBuildFile; fileRef = EE6127EC2AF50FB200DA608F /* steps3.png */; };
 		EE6127F22AF50FB200DA608F /* steps.png in Resources */ = {isa = PBXBuildFile; fileRef = EE6127ED2AF50FB200DA608F /* steps.png */; };
@@ -150,6 +151,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EEEB8D2C2AF920B6007DEBAE /* Alamofire in Frameworks */,
+				EE40B6832B0FDD0A000C07BD /* SkeletonUI in Frameworks */,
 				EEF2F1822AF7CE61009F4677 /* ComposableArchitecture in Frameworks */,
 				EE7A34432AF530A700685408 /* CachedAsyncImage in Frameworks */,
 			);
@@ -465,6 +467,7 @@
 				EE7A34422AF530A700685408 /* CachedAsyncImage */,
 				EEF2F1812AF7CE61009F4677 /* ComposableArchitecture */,
 				EEEB8D2B2AF920B6007DEBAE /* Alamofire */,
+				EE40B6822B0FDD0A000C07BD /* SkeletonUI */,
 			);
 			productName = GuideBook;
 			productReference = EE0C21842AE861D700668357 /* GuideBook.app */;
@@ -498,6 +501,7 @@
 				EE7A34412AF530A700685408 /* XCRemoteSwiftPackageReference "swiftui-cached-async-image" */,
 				EEF2F1802AF7CE61009F4677 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
 				EEEB8D2A2AF920B6007DEBAE /* XCRemoteSwiftPackageReference "Alamofire" */,
+				EE40B6812B0FDD0A000C07BD /* XCRemoteSwiftPackageReference "SkeletonUI" */,
 			);
 			productRefGroup = EE0C21852AE861D700668357 /* Products */;
 			projectDirPath = "";
@@ -800,6 +804,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		EE40B6812B0FDD0A000C07BD /* XCRemoteSwiftPackageReference "SkeletonUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/CSolanaM/SkeletonUI";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 		EE7A34412AF530A700685408 /* XCRemoteSwiftPackageReference "swiftui-cached-async-image" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/lorenzofiamingo/swiftui-cached-async-image";
@@ -827,6 +839,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		EE40B6822B0FDD0A000C07BD /* SkeletonUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EE40B6812B0FDD0A000C07BD /* XCRemoteSwiftPackageReference "SkeletonUI" */;
+			productName = SkeletonUI;
+		};
 		EE7A34422AF530A700685408 /* CachedAsyncImage */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = EE7A34412AF530A700685408 /* XCRemoteSwiftPackageReference "swiftui-cached-async-image" */;

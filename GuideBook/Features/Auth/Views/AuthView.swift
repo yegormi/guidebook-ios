@@ -13,93 +13,86 @@ struct AuthView: View {
     
     var body: some View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in
-            VStack {
-                Header("📘 GuideBook")
-                
-                if viewStore.authType == .signUp {
-                    AuthTitle(authType: .signUp)
-                        .padding(.vertical, 30)
-                } else {
-                    AuthTitle(authType: .signIn)
-                        .padding(.vertical, 30)
-                }
-                
-                if viewStore.authType == .signUp {
-                    InputField(
-                        label: "Username",
-                        text: viewStore.binding(
-                            get: \.username,
-                            send: AuthFeature.Action.usernameChanged
-                        ),
-                        type: .username,
-                        isInvalid: viewStore.usernameError != nil
-                    )
+            ScrollView {
+                VStack {
+                    Header("📘 GuideBook")
                     
-                    if let usernameError = viewStore.usernameError {
-                        ErrorText(message: usernameError)
+                    if viewStore.authType == .signUp {
+                        AuthTitle(authType: .signUp)
+                            .padding(.vertical, 30)
+                    } else {
+                        AuthTitle(authType: .signIn)
+                            .padding(.vertical, 30)
                     }
-                }
-                
-                InputField(
-                    label: "Email",
-                    text: viewStore.binding(
-                        get: \.email,
-                        send: AuthFeature.Action.emailChanged
-                    ),
-                    type: .email,
-                    isInvalid: viewStore.emailError != nil
-                )
-                                    
-                if let emailError = viewStore.emailError {
-                    ErrorText(message: emailError)
-                }
-                
-                InputField(
-                    label: "Password",
-                    text: viewStore.binding(
-                        get: \.password,
-                        send: AuthFeature.Action.passwordChanged
-                    ).removeDuplicates(),
-                    type: .password,
-                    isInvalid: viewStore.passwordError != nil
-                )
-                .padding(.top, 10)
-                
-                if let passwordError = viewStore.passwordError {
-                    ErrorText(message: passwordError)
-                }
-                
-                if viewStore.authType == .signUp {
-                    InputField(
-                        label: "Confirm Password",
-                        text: viewStore.binding(
-                            get: \.confirmPassword,
-                            send: AuthFeature.Action.confirmPasswordChanged
-                        ).removeDuplicates(),
-                        type: .password,
-                        isInvalid: (
-                            viewStore.password != viewStore.confirmPassword &&
-                            !viewStore.confirmPassword.isEmpty
+                    
+                    VStack(spacing: 15) {
+                        if viewStore.authType == .signUp {
+                            InputField(
+                                label: "Username",
+                                text: viewStore.binding(
+                                    get: \.username,
+                                    send: AuthFeature.Action.usernameChanged
+                                ),
+                                type: .username,
+                                isInvalid: viewStore.usernameError != nil,
+                                errorText: viewStore.usernameError
+                            )
+                        }
+                        
+                        InputField(
+                            label: "Email",
+                            text: viewStore.binding(
+                                get: \.email,
+                                send: AuthFeature.Action.emailChanged
+                            ),
+                            type: .email,
+                            isInvalid: viewStore.emailError != nil,
+                            errorText: viewStore.emailError
                         )
-                    )
-                    .padding(.top, 10)
+                        
+                        InputField(
+                            label: "Password",
+                            text: viewStore.binding(
+                                get: \.password,
+                                send: AuthFeature.Action.passwordChanged
+                            ).removeDuplicates(),
+                            type: .password,
+                            isInvalid: viewStore.passwordError != nil,
+                            errorText: viewStore.passwordError
+                        )
+                        
+                        if viewStore.authType == .signUp {
+                            InputField(
+                                label: "Confirm Password",
+                                text: viewStore.binding(
+                                    get: \.confirmPassword,
+                                    send: AuthFeature.Action.confirmPasswordChanged
+                                ).removeDuplicates(),
+                                type: .password,
+                                isInvalid: (
+                                    viewStore.password != viewStore.confirmPassword &&
+                                    !viewStore.confirmPassword.isEmpty
+                                )
+                            )
+                        }
+                    }
+                    
+                    AuthButton(authType: viewStore.authType, isLoading: viewStore.isLoading, action: {
+                        viewStore.send(.authButtonTapped)
+                    })
+                    .disabled(!viewStore.isLoginAllowed)
+                    .opacity(!viewStore.isLoginAllowed ? 0.5 : 1)
+                    .padding(.top, 20)
+                    
+                    AuthToggleButton(authType: viewStore.authType, onTap: {
+                        viewStore.send(.toggleButtonTapped, animation: .snappy)
+                    })
+                    .padding(.vertical, 20)
+                    
+                    Spacer()
                 }
-                
-                AuthButton(authType: viewStore.authType, isLoading: viewStore.isLoading, action: {
-                    viewStore.send(.authButtonTapped)
-                })
-                .disabled(!viewStore.isLoginAllowed)
-                .opacity(viewStore.isLoginAllowed ? 1 : 0.5)
-                .padding(.top, 20)
-                
-                AuthToggleButton(authType: viewStore.authType, onTap: {
-                    viewStore.send(.toggleButtonTapped, animation: .snappy)
-                })
-                .padding(.vertical, 20)
-                
-                Spacer()
+                .padding(30)
             }
-            .padding(30)
         }
     }
 }

@@ -20,6 +20,17 @@ struct TabsFeature: Reducer {
         case home
         case favorites
         case settings
+        
+        var name: String {
+            switch self {
+            case .favorites:
+                return "Favorites"
+            case .home:
+                return "Home"
+            case .settings:
+                return "Settings"
+            }
+        }
     }
     
     enum Action: Equatable {

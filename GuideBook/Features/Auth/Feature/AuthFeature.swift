@@ -33,7 +33,7 @@ struct AuthFeature: Reducer {
         }
         
         var isLoginAllowed: Bool {
-            authType == .signIn ? isAbleToSignIn : isAbleToSignUp
+            authType == .signIn ? isAbleToSignIn && !isLoading : isAbleToSignUp && !isLoading
         }
     }
     
