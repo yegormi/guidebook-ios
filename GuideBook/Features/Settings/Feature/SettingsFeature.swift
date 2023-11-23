@@ -67,7 +67,7 @@ struct SettingsFeature: Reducer {
                 } message: {
                     TextState("Are you sure you want to delete your account?")
                 }
-                return .send(RootFeature.Action.accountDeleted)
+                return .none
             }
         }
         .ifLet(\.$alert, action: /Action.alert)
