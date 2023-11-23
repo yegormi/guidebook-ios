@@ -49,6 +49,7 @@ struct TabsView: View {
                     .tag(TabsFeature.Tab.settings)
                 }
                 .navigationTitle(viewStore.selectedTab.name)
+                .navigationViewStyle(.columns)
             }
         }
     }

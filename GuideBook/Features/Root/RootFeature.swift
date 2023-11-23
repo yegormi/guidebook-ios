@@ -15,8 +15,6 @@ struct RootFeature: Reducer {
         var isLaunched = false
         var authState = AuthFeature.State()
         var tabsState = TabsFeature.State()
-        
-        
     }
     
     enum Action: Equatable {
