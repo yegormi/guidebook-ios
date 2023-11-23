@@ -24,6 +24,7 @@
 		EE3661362AEB0E09007B0B8B /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3661352AEB0E09007B0B8B /* AuthView.swift */; };
 		EE3949922AEB28360025F9BA /* SplashScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3949912AEB28360025F9BA /* SplashScreen.swift */; };
 		EE3949942AEB2C0F0025F9BA /* ParentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3949932AEB2C0F0025F9BA /* ParentView.swift */; };
+		EE40B6802B0FCC44000C07BD /* AuthRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE40B67F2B0FCC44000C07BD /* AuthRepository.swift */; };
 		EE6127F12AF50FB200DA608F /* steps3.png in Resources */ = {isa = PBXBuildFile; fileRef = EE6127EC2AF50FB200DA608F /* steps3.png */; };
 		EE6127F22AF50FB200DA608F /* steps.png in Resources */ = {isa = PBXBuildFile; fileRef = EE6127ED2AF50FB200DA608F /* steps.png */; };
 		EE6127F32AF50FB200DA608F /* steps2.png in Resources */ = {isa = PBXBuildFile; fileRef = EE6127EE2AF50FB200DA608F /* steps2.png */; };
@@ -97,6 +98,7 @@
 		EE3661352AEB0E09007B0B8B /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
 		EE3949912AEB28360025F9BA /* SplashScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreen.swift; sourceTree = "<group>"; };
 		EE3949932AEB2C0F0025F9BA /* ParentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentView.swift; sourceTree = "<group>"; };
+		EE40B67F2B0FCC44000C07BD /* AuthRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRepository.swift; sourceTree = "<group>"; };
 		EE6127EC2AF50FB200DA608F /* steps3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = steps3.png; sourceTree = "<group>"; };
 		EE6127ED2AF50FB200DA608F /* steps.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = steps.png; sourceTree = "<group>"; };
 		EE6127EE2AF50FB200DA608F /* steps2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = steps2.png; sourceTree = "<group>"; };
@@ -257,6 +259,7 @@
 				EE7AE9982AEADDCB002F3AA0 /* Settings */,
 				EE8749EC2AEFC14F00488094 /* Utilities */,
 				EE7AE9A22AEADFA4002F3AA0 /* Config */,
+				EE40B67F2B0FCC44000C07BD /* AuthRepository.swift */,
 			);
 			path = Features;
 			sourceTree = "<group>";
@@ -612,6 +615,7 @@
 				EED6CE362AF240B4007BEEA1 /* EmptyFavorites.swift in Sources */,
 				EEB408E82AF30E3F002F3FC6 /* PagerCount.swift in Sources */,
 				EED2FC342AF273F4004214AC /* GuideStepsStyle.swift in Sources */,
+				EE40B6802B0FCC44000C07BD /* AuthRepository.swift in Sources */,
 				EEB6F7392AEC8562003A9B93 /* SignInRequest.swift in Sources */,
 				EE8749FE2AF10AED00488094 /* Extensions.swift in Sources */,
 				EEB6F73B2AEC857E003A9B93 /* SignUpRequest.swift in Sources */,

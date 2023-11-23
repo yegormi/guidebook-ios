@@ -324,7 +324,7 @@ extension AuthView {
     
     
     private var loginButton: some View {
-        LoadingButtonStyle(isSignIn: authVM.isSignIn, isLoading: authVM.isRequestInProgress) {
+        LoadingButtonStyle(isSignIn: authVM.isSignIn, isLoading: $authVM.isRequestInProgress) {
             authVM.didLoginButtonClicked = true
             authVM.errorResponse = nil
             

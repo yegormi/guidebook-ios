@@ -48,6 +48,8 @@ final class AuthViewModel: ObservableObject {
     @Published var isWarningsShown: Bool = false
     @Published var showErrorEmail: Bool = false
     
+    let auth = AuthRepository.shared
+    
     
     let sessionExpiredAlert: AlertInfo = AlertInfo(
         title: "Session Expired",
@@ -55,7 +57,7 @@ final class AuthViewModel: ObservableObject {
     )
     
     init() {
-        self.retrieveAuthResponse()
+        response = auth.getResponse()
     }
     
     // MARK: - Validation Methods
@@ -125,7 +127,7 @@ final class AuthViewModel: ObservableObject {
     private func handleAuthSuccess(response: AuthResponse) {
         self.response = response
         if !response.accessToken.isEmpty {
-            saveAuthResponse(response: response)
+            auth.saveResponse(response)
             shouldNavigateToHomeView = true
         }
     }
@@ -174,7 +176,7 @@ final class AuthViewModel: ObservableObject {
     // MARK: - Session Management
 
     func clearUserData() {
-        deleteAuthResponse()
+        auth.deleteResponse()
         resetAuth()
     }
 
@@ -203,20 +205,20 @@ final class AuthViewModel: ObservableObject {
     
     // MARK: - User Defaults
     
-    func saveAuthResponse(response: AuthResponse) {
-        if let authResponse = try? JSONEncoder().encode(response) {
-            UserDefaults.standard.set(authResponse, forKey: "AuthResponse")
-        }
-    }
-    
-    func retrieveAuthResponse() {
-        if let savedAuthResponse = UserDefaults.standard.data(forKey: "AuthResponse"),
-           let authResponse = try? JSONDecoder().decode(AuthResponse.self, from: savedAuthResponse) {
-            self.response = authResponse
-        }
-    }
-    
-    func deleteAuthResponse() {
-        UserDefaults.standard.removeObject(forKey: "AuthResponse")
-    }
+//    func saveAuthResponse(response: AuthResponse) {
+//        if let authResponse = try? JSONEncoder().encode(response) {
+//            UserDefaults.standard.set(authResponse, forKey: "AuthResponse")
+//        }
+//    }
+//    
+//    func retrieveAuthResponse() {
+//        if let savedAuthResponse = UserDefaults.standard.data(forKey: "AuthResponse"),
+//           let authResponse = try? JSONDecoder().decode(AuthResponse.self, from: savedAuthResponse) {
+//            self.response = authResponse
+//        }
+//    }
+//    
+//    func deleteAuthResponse() {
+//        UserDefaults.standard.removeObject(forKey: "AuthResponse")
+//    }
 }

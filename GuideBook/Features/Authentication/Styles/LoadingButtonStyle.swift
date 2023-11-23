@@ -9,7 +9,7 @@ import SwiftUI
 
 struct LoadingButtonStyle: View {
     var isSignIn: Bool
-    var isLoading: Bool
+    @Binding var isLoading: Bool
     var action: () -> Void
     
     var body: some View {
@@ -38,13 +38,10 @@ struct LoadingButtonStyle: View {
 
 
 struct LoadingButtonStyle_Previews: PreviewProvider {
-    static var isSignIn: Bool = true
-    static var isLoading: Bool = false
-    
     static var previews: some View {
         LoadingButtonStyle(
-            isSignIn: isSignIn,
-            isLoading: isLoading
+            isSignIn: true,
+            isLoading: .constant(false)
         ) {}
             .previewLayout(.sizeThatFits)
     }
