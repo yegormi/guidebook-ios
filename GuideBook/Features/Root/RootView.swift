@@ -37,7 +37,7 @@ struct RootView: View {
             }
             .onAppear {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-                    viewStore.send(.appLaunched)
+                    viewStore.send(.appLaunched, animation: .default)
                 }
                 viewStore.send(.retrieveToken)
             }
