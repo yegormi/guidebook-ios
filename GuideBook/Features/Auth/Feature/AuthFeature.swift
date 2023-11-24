@@ -96,7 +96,7 @@ struct AuthFeature: Reducer {
                 case .signIn:
                     return .run { send in
                         do {
-                            let result = try await performSignIn(
+                            let result = try await signIn(
                                 email: email,
                                 password: password
                             )
@@ -110,7 +110,7 @@ struct AuthFeature: Reducer {
                 case .signUp:
                     return .run { send in
                         do {
-                            let result = try await performSignUp(
+                            let result = try await signUp(
                                 username: username,
                                 email: email,
                                 password: password
@@ -170,61 +170,12 @@ struct AuthFeature: Reducer {
         return predicate.evaluate(with: email)
     }
     
-    func performSignIn(email: String, password: String) async throws -> AuthResponse {
-        let signInRequest = SignIn(email: email, password: password)
-        let baseUrl = "https://guidebook-api.azurewebsites.net"
-        let endpoint = "/auth/signin"
-        
-        return try await withCheckedThrowingContinuation { continuation in
-            AF.request(baseUrl + endpoint,
-                       method: .post,
-                       parameters: signInRequest,
-                       encoder: JSONParameterEncoder.default
-            )
-            .validate()
-            .responseDecodable(of: AuthResponse.self) { response in
-                switch response.result {
-                case .success(let authResponse):
-                    continuation.resume(returning: authResponse)
-                case .failure(let error):
-                    if let data = response.data,
-                       let failResponse = try? JSONDecoder().decode(FailResponse.self, from: data) {
-                        continuation.resume(throwing: ErrorResponse.failedWithResponse(failResponse))
-                    } else {
-                        continuation.resume(throwing: error)
-                    }
-                }
-            }
-        }
+    private func signIn(email: String, password: String) async throws -> AuthResponse {
+        return try await AuthService.performSignIn(email: email, password: password)
     }
     
-    
-    func performSignUp(username: String, email: String, password: String) async throws -> AuthResponse {
-        let signUpRequest = SignUp(username: username, email: email, password: password)
-        let baseUrl = "https://guidebook-api.azurewebsites.net"
-        let endpoint = "/auth/signup"
-        
-        return try await withCheckedThrowingContinuation { continuation in
-            AF.request(baseUrl + endpoint,
-                       method: .post,
-                       parameters: signUpRequest,
-                       encoder: JSONParameterEncoder.default
-            )
-            .validate()
-            .responseDecodable(of: AuthResponse.self) { response in
-                switch response.result {
-                case let .success(authResponse):
-                    continuation.resume(returning: authResponse)
-                case let .failure(error):
-                    if let data = response.data,
-                       let failResponse = try? JSONDecoder().decode(FailResponse.self, from: data) {
-                        continuation.resume(throwing: ErrorResponse.failedWithResponse(failResponse))
-                    } else {
-                        continuation.resume(throwing: error)
-                    }
-                }
-            }
-        }
+    private func signUp(username: String, email: String, password: String) async throws -> AuthResponse {
+        return try await AuthService.performSignUp(username: username, email: email, password: password)
     }
     
     // MARK: - User Defaults Functions

@@ -13,44 +13,50 @@ struct TabsView: View {
     
     var body: some View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in
-            NavigationView {
-                TabView(
-                    selection: viewStore.binding(
-                        get: \.selectedTab,
-                        send: TabsFeature.Action.tabSelected
-                    )
-                ) {
+            TabView(
+                selection: viewStore.binding(
+                    get: \.selectedTab,
+                    send: TabsFeature.Action.tabSelected
+                )
+            ) {
+                NavigationView {
                     HomeView(
                         store: self.store.scope(
                             state: \.homeState,
                             action: TabsFeature.Action.home
                         )
                     )
-                    .tabItem { Label("Home", systemImage: "house") }
-                    .tag(TabsFeature.Tab.home)
-                    
-                    
+                    .navigationTitle(viewStore.selectedTab.name)
+                    .navigationBarTitleDisplayMode(.inline)
+                }
+                .tabItem { Label("Home", systemImage: "house") }
+                .tag(TabsFeature.Tab.home)
+                
+                NavigationView {
                     FavoritesView(
                         store: self.store.scope(
                             state: \.favoritesState,
                             action: TabsFeature.Action.favorites
                         )
                     )
-                    .tabItem { Label("Favorites", systemImage: "heart") }
-                    .tag(TabsFeature.Tab.favorites)
-                    
+                    .navigationTitle(viewStore.selectedTab.name)
+                    .navigationBarTitleDisplayMode(.inline)
+                }
+                .tabItem { Label("Favorites", systemImage: "heart") }
+                .tag(TabsFeature.Tab.favorites)
+                
+                NavigationView {
                     SettingsView(
                         store: self.store.scope(
                             state: \.settingsState,
                             action: TabsFeature.Action.settings
                         )
                     )
-                    .tabItem { Label("Settings", systemImage: "gearshape") }
-                    .tag(TabsFeature.Tab.settings)
+                    .navigationTitle(viewStore.selectedTab.name)
+                    .navigationBarTitleDisplayMode(.inline)
                 }
-                .navigationBarTitleDisplayMode(.inline)
-                .navigationTitle(viewStore.selectedTab.name)
-                .navigationViewStyle(.columns)
+                .tabItem { Label("Settings", systemImage: "gearshape") }
+                .tag(TabsFeature.Tab.settings)
             }
         }
     }
