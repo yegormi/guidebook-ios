@@ -17,10 +17,11 @@ struct AuthView: View {
                 VStack {
                     Header("📘 GuideBook")
                     
-                    if viewStore.authType == .signUp {
-                        AuthTitle(authType: .signUp)
+                    switch viewStore.authType {
+                    case .signIn:
+                        AuthTitle(authType: .signIn)
                             .padding(.vertical, 30)
-                    } else {
+                    case .signUp:
                         AuthTitle(authType: .signIn)
                             .padding(.vertical, 30)
                     }

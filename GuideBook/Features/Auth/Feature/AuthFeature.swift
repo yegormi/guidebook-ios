@@ -29,7 +29,9 @@ struct AuthFeature: Reducer {
             !email.isEmpty && !password.isEmpty
         }
         var isAbleToSignUp: Bool {
-            !username.isEmpty && !email.isEmpty && !password.isEmpty && !confirmPassword.isEmpty && password == confirmPassword
+            !username.isEmpty && !email.isEmpty && 
+            !password.isEmpty && !confirmPassword.isEmpty &&
+            password == confirmPassword
         }
         
         var isLoginAllowed: Bool {
@@ -81,12 +83,12 @@ struct AuthFeature: Reducer {
                 
                 state.isLoading = true
                 
-                if !isValidUsername(with: state.username) && state.authType == .signUp {
+                if !Validator.isValidUsername(with: state.username) && state.authType == .signUp {
                     state.usernameError = "Invalid username"
                     state.isLoading = false
                     return .none
                 }
-                if !isValidEmail(with: state.email) {
+                if !Validator.isValidEmail(with: state.email) {
                     state.emailError = "Invalid email"
                     state.isLoading = false
                     return .none
@@ -131,7 +133,6 @@ struct AuthFeature: Reducer {
             case let .saveToken(response):
                 saveAuthResponse(response: response)
                 return .none
-                
             case let .authFail(response):
                 state.failResponse = response
                 state.isLoading = false
@@ -158,29 +159,15 @@ struct AuthFeature: Reducer {
         }
     }
     
-    func isValidUsername(with username: String) -> Bool {
-        let regex = "^[a-zA-Z0-9_-]+$"
-        let predicate = NSPredicate(format:"SELF MATCHES %@", regex)
-        return predicate.evaluate(with: username)
-    }
-    
-    func isValidEmail(with email: String) -> Bool {
-        let regex = "(?:[a-z0-9!#$%\\&'*+/=?\\^_`{|}~-]+(?:\\.[a-z0-9!#$%\\&'*+/=?\\^_`{|}"+"~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\"+"x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[a-z0-9](?:[a-"+"z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:25[0-5"+"]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-"+"9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21"+"-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])"
-        let predicate = NSPredicate(format: "SELF MATCHES %@", regex)
-        return predicate.evaluate(with: email)
-    }
-    
     private func signIn(email: String, password: String) async throws -> AuthResponse {
-        return try await AuthService.performSignIn(email: email, password: password)
+        return try await AuthAPI.performSignIn(email: email, password: password)
     }
     
     private func signUp(username: String, email: String, password: String) async throws -> AuthResponse {
-        return try await AuthService.performSignUp(username: username, email: email, password: password)
+        return try await AuthAPI.performSignUp(username: username, email: email, password: password)
     }
     
-    // MARK: - User Defaults Functions
-    
-    func saveAuthResponse(response: AuthResponse) {
+    private func saveAuthResponse(response: AuthResponse) {
         if let authResponseData = try? JSONEncoder().encode(response) {
             UserDefaults.standard.set(authResponseData, forKey: "AuthResponse")
         }

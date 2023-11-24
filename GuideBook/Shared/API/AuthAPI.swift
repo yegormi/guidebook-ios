@@ -8,7 +8,7 @@
 import Foundation
 import Alamofire
 
-struct AuthService {
+struct AuthAPI {
     static let baseUrl = "https://guidebook-api.azurewebsites.net"
 
     static func performSignIn(email: String, password: String) async throws -> AuthResponse {
