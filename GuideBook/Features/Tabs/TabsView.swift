@@ -48,6 +48,7 @@ struct TabsView: View {
                     .tabItem { Label("Settings", systemImage: "gearshape") }
                     .tag(TabsFeature.Tab.settings)
                 }
+                .navigationBarTitleDisplayMode(.inline)
                 .navigationTitle(viewStore.selectedTab.name)
                 .navigationViewStyle(.columns)
             }
