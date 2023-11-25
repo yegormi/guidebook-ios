@@ -23,7 +23,7 @@ struct AuthAPI {
             )
             .validate()
             .responseDecodable(of: AuthResponse.self) { response in
-                handleResponse(response, continuation: continuation)
+                handleResponse(response, continuation)
             }
         }
     }
@@ -40,12 +40,31 @@ struct AuthAPI {
             )
             .validate()
             .responseDecodable(of: AuthResponse.self) { response in
-                handleResponse(response, continuation: continuation)
+                handleResponse(response, continuation)
             }
         }
     }
     
-    private static func handleResponse<T>(_ response: AFDataResponse<T>, continuation: CheckedContinuation<T, Error>) {
+    static func performDelete(token: String) async throws -> UserDelete {
+        let endpoint = "/self"
+        
+        let headers: HTTPHeaders = [
+            "Authorization": token
+        ]
+        
+        return try await withCheckedThrowingContinuation { continuation in
+            AF.request(baseUrl + endpoint,
+                       method: .delete,
+                       headers: headers
+            )
+            .validate()
+            .responseDecodable(of: UserDelete.self) { response in
+                handleResponse(response, continuation)
+            }
+        }
+    }
+    
+    private static func handleResponse<T>(_ response: AFDataResponse<T>, _ continuation: CheckedContinuation<T, Error>) {
         switch response.result {
         case .success(let value):
             continuation.resume(returning: value)

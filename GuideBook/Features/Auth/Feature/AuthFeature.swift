@@ -8,6 +8,7 @@
 import Foundation
 import ComposableArchitecture
 import Alamofire
+import KeychainSwift
 
 struct AuthFeature: Reducer {
     struct State: Equatable {
@@ -20,6 +21,7 @@ struct AuthFeature: Reducer {
         var emailError: String?
         var passwordError: String?
         
+        var isLoggedIn: Bool = false
         var authType: AuthType = .signIn
         var isLoading: Bool = false
         var response: AuthResponse?
@@ -167,10 +169,35 @@ struct AuthFeature: Reducer {
         return try await AuthAPI.performSignUp(username: username, email: email, password: password)
     }
     
+    
+    
+    
     private func saveAuthResponse(response: AuthResponse) {
         if let authResponseData = try? JSONEncoder().encode(response) {
-            UserDefaults.standard.set(authResponseData, forKey: "AuthResponse")
+            let keychain = KeychainSwift()
+            keychain.set(authResponseData, forKey: "AuthResponse")
         }
     }
+    
+    private func getAuthResponse() -> AuthResponse? {
+        let keychain = KeychainSwift()
+        if let authResponseData = keychain.getData("AuthResponse"),
+           let authResponse = try? JSONDecoder().decode(AuthResponse.self, from: authResponseData) {
+            return authResponse
+        }
+        return nil
+    }
+    
+    private func getToken() -> String? {
+        let response = getAuthResponse()
+        return response?.accessToken
+    }
+    
+    private func eraseAuthResponse() {
+        let keychain = KeychainSwift()
+        keychain.delete("AuthResponse")
+    }
+    
+    
 }
 

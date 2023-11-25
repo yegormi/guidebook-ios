@@ -7,9 +7,15 @@
 
 import SwiftUI
 import ComposableArchitecture
+import AlertToast
+//import Reachability
 
 struct AuthView: View {
     let store: StoreOf<AuthFeature>
+    
+//    var reachability = Reachability.shared
+    
+//    @State private var isShowingNoInternetAlert = false
     
     var body: some View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in
@@ -79,6 +85,11 @@ struct AuthView: View {
                     }
                     
                     AuthButton(authType: viewStore.authType, isLoading: viewStore.isLoading, action: {
+//                        if reachability.currentPath.isReachable {
+//                            viewStore.send(.authButtonTapped)
+//                        } else {
+//                            isShowingNoInternetAlert = true
+//                        }
                         viewStore.send(.authButtonTapped)
                     })
                     .disabled(!viewStore.isLoginAllowed)
@@ -95,6 +106,9 @@ struct AuthView: View {
                 .padding(30)
             }
         }
+//        .toast(isPresenting: $isShowingNoInternetAlert, alert: {
+//            AlertToast(displayMode: .hud, type: .error(.red), title: "No Internet Connection")
+//        })
     }
 }
 

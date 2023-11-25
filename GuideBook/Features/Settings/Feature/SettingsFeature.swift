@@ -9,11 +9,13 @@
 import Foundation
 import ComposableArchitecture
 import Alamofire
+import KeychainSwift
 
 struct SettingsFeature: Reducer {
     struct State: Equatable {
         var user: UserInfo?
         @PresentationState var alert: AlertState<Action.Alert>?
+        var authState = AuthFeature.State()
     }
     
     enum Action: Equatable {
@@ -21,6 +23,8 @@ struct SettingsFeature: Reducer {
 
         case signOutButtonTapped
         case deleteButtonTapped
+        
+        case signOut
                 
         enum Alert: Equatable {
             case confirmSignOutTapped
@@ -33,6 +37,9 @@ struct SettingsFeature: Reducer {
             switch action {
             case .alert(.presented(.confirmSignOutTapped)):
                 state.alert = AlertState { TextState("Signed out!") }
+                return .send(.signOut)
+            case .signOut:
+                eraseAuthResponse()
                 return .none
             case .alert(.presented(.confirmDeleteTapped)):
                 state.alert = AlertState { TextState("Account has been successfuly deleted!") }
@@ -71,6 +78,32 @@ struct SettingsFeature: Reducer {
             }
         }
         .ifLet(\.$alert, action: /Action.alert)
+    }
+    
+    private func saveAuthResponse(response: AuthResponse) {
+        if let authResponseData = try? JSONEncoder().encode(response) {
+            let keychain = KeychainSwift()
+            keychain.set(authResponseData, forKey: "AuthResponse")
+        }
+    }
+    
+    private func getAuthResponse() -> AuthResponse? {
+        let keychain = KeychainSwift()
+        if let authResponseData = keychain.getData("AuthResponse"),
+           let authResponse = try? JSONDecoder().decode(AuthResponse.self, from: authResponseData) {
+            return authResponse
+        }
+        return nil
+    }
+    
+    private func getToken() -> String? {
+        let response = getAuthResponse()
+        return response?.accessToken
+    }
+    
+    private func eraseAuthResponse() {
+        let keychain = KeychainSwift()
+        keychain.delete("AuthResponse")
     }
     
 }

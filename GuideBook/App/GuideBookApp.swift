@@ -7,14 +7,15 @@
 
 import SwiftUI
 import ComposableArchitecture
+import TCACoordinators
 
 @main
 struct GuideBookApp: App {
     var body: some Scene {
         WindowGroup {
-            RootView(
-                store: Store(initialState: RootFeature.State()) {
-                    RootFeature()
+            CoordinatorView(
+                store: Store(initialState: .initialState) {
+                    Coordinator()
                         ._printChanges()
                 }
             )
