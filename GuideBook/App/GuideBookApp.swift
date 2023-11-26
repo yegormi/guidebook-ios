@@ -10,7 +10,7 @@ import ComposableArchitecture
 import TCACoordinators
 
 @main
-struct GuideBookApp: App {
+struct GuideBookApp: App {
     var body: some Scene {
         WindowGroup {
             CoordinatorView(

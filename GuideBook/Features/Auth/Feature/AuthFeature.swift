@@ -133,7 +133,7 @@ struct AuthFeature: Reducer {
                 state.isLoading = false
                 return .send(.saveToken(response))
             case let .saveToken(response):
-                saveAuthResponse(response: response)
+                AuthService.shared.saveToken(with: response)
                 return .none
             case let .authFail(response):
                 state.failResponse = response
@@ -162,17 +162,11 @@ struct AuthFeature: Reducer {
     }
     
     private func signIn(email: String, password: String) async throws -> AuthResponse {
-        return try await AuthAPI.performSignIn(email: email, password: password)
+        return try await AuthAPI.shared.performSignIn(email: email, password: password)
     }
     
     private func signUp(username: String, email: String, password: String) async throws -> AuthResponse {
-        return try await AuthAPI.performSignUp(username: username, email: email, password: password)
-    }
-    
-    func saveAuthResponse(response: AuthResponse) {
-        if let authResponse = try? JSONEncoder().encode(response) {
-            UserDefaults.standard.set(authResponse, forKey: "AuthResponse")
-        }
+        return try await AuthAPI.shared.performSignUp(username: username, email: email, password: password)
     }
 }
 

@@ -88,23 +88,10 @@ struct AuthView: View {
                     .opacity(!viewStore.isLoginAllowed ? 0.5 : 1)
                     .padding(.top, 20)
                     
-                    switch viewStore.authType {
-                    case .signIn:
-                        AuthToggleButton(authType: viewStore.authType, onTap: {
-                            viewStore.send(.toggleButtonTapped, animation: .easeInOut)
-                        })
-                        .padding(.vertical, 20)
-                        .transition(.offset(x: 0, y: 45).combined(with: .opacity).animation(.easeIn(duration: 0.1)))
-                    case .signUp:
-                        AuthToggleButton(authType: viewStore.authType, onTap: {
-                            viewStore.send(.toggleButtonTapped, animation: .easeInOut)
-                        })
-                        .padding(.vertical, 20)
-                        .transition(.offset(x: 0, y: -45).combined(with: .opacity).animation(.easeIn(duration: 0.1)))
-
-                    }
-                    
-
+                    AuthToggleButton(authType: viewStore.authType, onTap: {
+                        viewStore.send(.toggleButtonTapped, animation: .easeInOut)
+                    })
+                    .padding(.vertical, 20)
                     
                     Spacer()
                 }

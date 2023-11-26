@@ -39,7 +39,7 @@ struct SettingsFeature: Reducer {
                 state.alert = AlertState { TextState("Signed out!") }
                 return .send(.signOut)
             case .signOut:
-                deleteAuthResponse()
+                AuthService.shared.deleteToken()
                 return .none
             case .alert(.presented(.confirmDeleteTapped)):
                 state.alert = AlertState { TextState("Account has been successfuly deleted!") }
@@ -78,32 +78,5 @@ struct SettingsFeature: Reducer {
             }
         }
         .ifLet(\.$alert, action: /Action.alert)
-    }
-    
-//    private func saveAuthResponse(response: AuthResponse) {
-//        if let authResponseData = try? JSONEncoder().encode(response) {
-//            keychain.set(authResponseData, forKey: "AuthResponse")
-//        }
-//    }
-//    
-//    private func getAuthResponse() -> AuthResponse? {
-//        if let authResponseData = keychain.getData("AuthResponse"),
-//           let authResponse = try? JSONDecoder().decode(AuthResponse.self, from: authResponseData) {
-//            return authResponse
-//        }
-//        return nil
-//    }
-//    
-//    private func getToken() -> String? {
-//        let response = getAuthResponse()
-//        return response?.accessToken
-//    }
-//    
-//    private func eraseAuthResponse() {
-//        keychain.delete("AuthResponse")
-//    }
-    
-    func deleteAuthResponse() {
-        UserDefaults.standard.removeObject(forKey: "AuthResponse")
     }
 }

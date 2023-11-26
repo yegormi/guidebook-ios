@@ -24,7 +24,7 @@ struct SplashView: View {
                     .transition(.opacity)
                     .onAppear {
                         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-                            viewStore.send(.timerFired, animation: .default)
+                            viewStore.send(.appDidLaunch, animation: .default)
                         }
                     }
                 Spacer()

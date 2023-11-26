@@ -11,16 +11,28 @@ import ComposableArchitecture
 
 struct SplashFeature: Reducer {
     struct State: Equatable {
+        var response: AuthResponse?
     }
     
     enum Action: Equatable {
-        case timerFired
+        case appDidLaunch
+        case auth
+        case tabs
     }
     
     var body: some Reducer<State, Action> {
         Reduce { state, action in
             switch action {
-            case .timerFired:
+            case .appDidLaunch:
+                state.response = AuthService.shared.retrieveToken()
+                if state.response != nil {
+                    return .send(.tabs)
+                } else {
+                    return .send(.auth)
+                }
+            case .auth:
+                return .none
+            case .tabs:
                 return .none
             }
         }

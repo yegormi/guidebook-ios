@@ -8,10 +8,12 @@
 import Foundation
 import Alamofire
 
-struct AuthAPI {
-    static let baseUrl = "https://guidebook-api.azurewebsites.net"
+class AuthAPI {
+    static let shared = AuthAPI()
+    
+    let baseUrl = "https://guidebook-api.azurewebsites.net"
 
-    static func performSignIn(email: String, password: String) async throws -> AuthResponse {
+    func performSignIn(email: String, password: String) async throws -> AuthResponse {
         let signInRequest = SignIn(email: email, password: password)
         let endpoint = "/auth/signin"
         
@@ -23,12 +25,12 @@ struct AuthAPI {
             )
             .validate()
             .responseDecodable(of: AuthResponse.self) { response in
-                handleResponse(response, continuation)
+                self.handleResponse(response, continuation)
             }
         }
     }
     
-    static func performSignUp(username: String, email: String, password: String) async throws -> AuthResponse {
+    func performSignUp(username: String, email: String, password: String) async throws -> AuthResponse {
         let signUpRequest = SignUp(username: username, email: email, password: password)
         let endpoint = "/auth/signup"
         
@@ -40,12 +42,12 @@ struct AuthAPI {
             )
             .validate()
             .responseDecodable(of: AuthResponse.self) { response in
-                handleResponse(response, continuation)
+                self.handleResponse(response, continuation)
             }
         }
     }
     
-    static func performDelete(token: String) async throws -> UserDelete {
+    func performDelete(with token: String) async throws -> UserDelete {
         let endpoint = "/self"
         
         let headers: HTTPHeaders = [
@@ -59,12 +61,12 @@ struct AuthAPI {
             )
             .validate()
             .responseDecodable(of: UserDelete.self) { response in
-                handleResponse(response, continuation)
+                self.handleResponse(response, continuation)
             }
         }
     }
     
-    private static func handleResponse<T>(_ response: AFDataResponse<T>, _ continuation: CheckedContinuation<T, Error>) {
+    private func handleResponse<T>(_ response: AFDataResponse<T>, _ continuation: CheckedContinuation<T, Error>) {
         switch response.result {
         case .success(let value):
             continuation.resume(returning: value)
