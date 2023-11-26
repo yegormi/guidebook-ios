@@ -31,11 +31,11 @@ struct Coordinator: Reducer {
                 state.routes.removeAll()
                 state.routes.push(.tabs(.init()))
                 
-            case .routeAction(_, .tabs(.settings(.alert(.presented(.confirmSignOutTapped))))):
+            case .routeAction(_, .tabs(.settings(.onSignOut))):
                 state.routes.removeAll()
                 state.routes.push(.auth(.init()))
                 
-            case .routeAction(_, .tabs(.settings(.alert(.presented(.confirmDeleteTapped))))):
+            case .routeAction(_, .tabs(.settings(.onDeleteSuccess))):
                 state.routes.removeAll()
                 state.routes.push(.auth(.init()))
                 

@@ -23,7 +23,9 @@ struct SettingsFeature: Reducer {
         case signOutButtonTapped
         case deleteButtonTapped
         
-        case signOut
+        case onSignOut
+        case onDeleteAccount
+        case onDeleteSuccess(UserDelete)
                 
         enum Alert: Equatable {
             case confirmSignOutTapped
@@ -36,13 +38,29 @@ struct SettingsFeature: Reducer {
             switch action {
             case .alert(.presented(.confirmSignOutTapped)):
                 state.alert = AlertState { TextState("Signed out!") }
-                return .send(.signOut)
-            case .signOut:
+                return .send(.onSignOut)
+            case .onSignOut:
                 AuthService.shared.deleteToken()
                 return .none
+                
             case .alert(.presented(.confirmDeleteTapped)):
                 state.alert = AlertState { TextState("Account has been successfuly deleted!") }
+                return .send(.onDeleteAccount)
+            case .onDeleteAccount:
+                let token = AuthService.shared.retrieveToken()?.accessToken ?? ""
+                
+                return .run { send in
+                    do {
+                        let result = try await AuthAPI.shared.performDelete(with: token)
+                        await send(.onDeleteSuccess(result))
+                    } catch {
+                        print(error)
+                    }
+                }
+            case .onDeleteSuccess:
+                AuthService.shared.deleteToken()
                 return .none
+                
             case .alert:
                 return .none
                 
