@@ -1,5 +1,5 @@
 //
-//  Validator.swift
+//  Validation.swift
 //  GuideBook
 //
 //  Created by Yegor Myropoltsev on 24.11.2023.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Validator {
+struct Validation {
     static func isValidUsername(with username: String) -> Bool {
         let regex = "^[a-zA-Z0-9_-]+$"
         return validateWithRegex(username, regex: regex)

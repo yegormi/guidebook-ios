@@ -10,8 +10,8 @@ import SwiftUI
 import ComposableArchitecture
 import TCACoordinators
 
-struct CoordinatorView: View {
-    let store: StoreOf<Coordinator>
+struct RootCoordinatorView: View {
+    let store: StoreOf<RootCoordinator>
     
     var body: some View {
         TCARouter(store) { screen in

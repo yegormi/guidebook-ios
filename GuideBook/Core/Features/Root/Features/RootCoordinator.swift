@@ -1,5 +1,5 @@
 //
-//  Coordinator.swift
+//  RootCoordinator.swift
 //  GuideBook
 //
 //  Created by Yegor Myropoltsev on 24.11.2023.
@@ -9,7 +9,7 @@ import Foundation
 import ComposableArchitecture
 import TCACoordinators
 
-struct Coordinator: Reducer {
+struct RootCoordinator: Reducer {
     struct State: Equatable, IndexedRouterState {
         var routes: [Route<RootFeature.State>]
         static let initialState = State(routes: [.root(.splash(.init()))])

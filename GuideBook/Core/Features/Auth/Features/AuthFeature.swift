@@ -87,12 +87,12 @@ struct AuthFeature: Reducer {
                 
                 state.isLoading = true
                 
-                if !Validator.isValidUsername(with: state.username) && state.authType == .signUp {
+                if !Validation.isValidUsername(with: state.username) && state.authType == .signUp {
                     state.usernameError = "Invalid username"
                     state.isLoading = false
                     return .none
                 }
-                if !Validator.isValidEmail(with: state.email) {
+                if !Validation.isValidEmail(with: state.email) {
                     state.emailError = "Invalid email"
                     state.isLoading = false
                     return .none

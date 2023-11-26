@@ -3,4 +3,353 @@
    uuid = "8736CB36-36D3-49C6-90FE-5F875BEF0C28"
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F09B7008-D119-46DC-9057-7F7A336C5C19"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GuideBook/Features/Auth/Feature/AuthFeature.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "119"
+            endingLineNumber = "119"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "4ABC8832-B26F-42EF-BF61-A025D08286D7"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GuideBook/Features/Auth/Feature/AuthFeature.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "124"
+            endingLineNumber = "124"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F52F06C8-2E66-4026-921B-DC313AFB08C1"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GuideBook/Features/Auth/Feature/AuthFeature.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "126"
+            endingLineNumber = "126"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "102E80D2-53B4-4623-931D-F5D5913F99D5"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GuideBook/Features/Auth/Feature/AuthFeature.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "105"
+            endingLineNumber = "105"
+            landmarkName = "body"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "102E80D2-53B4-4623-931D-F5D5913F99D5 - 30cc121746256ff1"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Sendable (ComposableArchitecture.Send&lt;GuideBook.AuthFeature.Action&gt;) async -&gt; () in closure #1 (inout GuideBook.AuthFeature.State, GuideBook.AuthFeature.Action) -&gt; ComposableArchitecture.Effect&lt;GuideBook.AuthFeature.Action&gt; in GuideBook.AuthFeature.body.getter : some"
+                  moduleName = "GuideBook"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yegormyropoltsev/Desktop/GuideBook/GuideBook/Features/Auth/Feature/AuthFeature.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "105"
+                  endingLineNumber = "105"
+                  offsetFromSymbolStart = "168">
+               </Location>
+               <Location
+                  uuid = "102E80D2-53B4-4623-931D-F5D5913F99D5 - 3ad9609fb36ae023"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) await resume partial function for closure #1 @Sendable (ComposableArchitecture.Send&lt;GuideBook.AuthFeature.Action&gt;) async -&gt; () in closure #1 (inout GuideBook.AuthFeature.State, GuideBook.AuthFeature.Action) -&gt; ComposableArchitecture.Effect&lt;GuideBook.AuthFeature.Action&gt; in GuideBook.AuthFeature.body.getter : some"
+                  moduleName = "GuideBook"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yegormyropoltsev/Desktop/GuideBook/GuideBook/Features/Auth/Feature/AuthFeature.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "105"
+                  endingLineNumber = "105"
+                  offsetFromSymbolStart = "48">
+               </Location>
+               <Location
+                  uuid = "102E80D2-53B4-4623-931D-F5D5913F99D5 - f29c93f454714c2c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(2) suspend resume partial function for closure #1 @Sendable (ComposableArchitecture.Send&lt;GuideBook.AuthFeature.Action&gt;) async -&gt; () in closure #1 (inout GuideBook.AuthFeature.State, GuideBook.AuthFeature.Action) -&gt; ComposableArchitecture.Effect&lt;GuideBook.AuthFeature.Action&gt; in GuideBook.AuthFeature.body.getter : some"
+                  moduleName = "GuideBook"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yegormyropoltsev/Desktop/GuideBook/GuideBook/Features/Auth/Feature/AuthFeature.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "105"
+                  endingLineNumber = "105"
+                  offsetFromSymbolStart = "28">
+               </Location>
+               <Location
+                  uuid = "102E80D2-53B4-4623-931D-F5D5913F99D5 - 5fe5f49b7ad01a31"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(7) suspend resume partial function for closure #1 @Sendable (ComposableArchitecture.Send&lt;GuideBook.AuthFeature.Action&gt;) async -&gt; () in closure #1 (inout GuideBook.AuthFeature.State, GuideBook.AuthFeature.Action) -&gt; ComposableArchitecture.Effect&lt;GuideBook.AuthFeature.Action&gt; in GuideBook.AuthFeature.body.getter : some"
+                  moduleName = "GuideBook"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yegormyropoltsev/Desktop/GuideBook/GuideBook/Features/Auth/Feature/AuthFeature.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "105"
+                  endingLineNumber = "105"
+                  offsetFromSymbolStart = "104">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "66F00D69-1474-487A-9093-ED962642CA2F"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GuideBook/Features/Auth/Feature/AuthFeature.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "109"
+            endingLineNumber = "109"
+            landmarkName = "body"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "66F00D69-1474-487A-9093-ED962642CA2F - f29c93f454714ca8"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(2) suspend resume partial function for closure #1 @Sendable (ComposableArchitecture.Send&lt;GuideBook.AuthFeature.Action&gt;) async -&gt; () in closure #1 (inout GuideBook.AuthFeature.State, GuideBook.AuthFeature.Action) -&gt; ComposableArchitecture.Effect&lt;GuideBook.AuthFeature.Action&gt; in GuideBook.AuthFeature.body.getter : some"
+                  moduleName = "GuideBook"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yegormyropoltsev/Desktop/GuideBook/GuideBook/Features/Auth/Feature/AuthFeature.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "109"
+                  endingLineNumber = "109"
+                  offsetFromSymbolStart = "80">
+               </Location>
+               <Location
+                  uuid = "66F00D69-1474-487A-9093-ED962642CA2F - 92e40c2216592a9"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for closure #1 @Sendable (ComposableArchitecture.Send&lt;GuideBook.AuthFeature.Action&gt;) async -&gt; () in closure #1 (inout GuideBook.AuthFeature.State, GuideBook.AuthFeature.Action) -&gt; ComposableArchitecture.Effect&lt;GuideBook.AuthFeature.Action&gt; in GuideBook.AuthFeature.body.getter : some"
+                  moduleName = "GuideBook"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yegormyropoltsev/Desktop/GuideBook/GuideBook/Features/Auth/Feature/AuthFeature.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "109"
+                  endingLineNumber = "109"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  uuid = "66F00D69-1474-487A-9093-ED962642CA2F - 1ff07dd1f20af0aa"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(4) suspend resume partial function for closure #1 @Sendable (ComposableArchitecture.Send&lt;GuideBook.AuthFeature.Action&gt;) async -&gt; () in closure #1 (inout GuideBook.AuthFeature.State, GuideBook.AuthFeature.Action) -&gt; ComposableArchitecture.Effect&lt;GuideBook.AuthFeature.Action&gt; in GuideBook.AuthFeature.body.getter : some"
+                  moduleName = "GuideBook"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yegormyropoltsev/Desktop/GuideBook/GuideBook/Features/Auth/Feature/AuthFeature.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "109"
+                  endingLineNumber = "109"
+                  offsetFromSymbolStart = "52">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "8598ECBA-D19A-4700-A854-ED8ECD147BA9"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GuideBook/Features/Auth/Feature/AuthFeature.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "111"
+            endingLineNumber = "111"
+            landmarkName = "body"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "8598ECBA-D19A-4700-A854-ED8ECD147BA9 - 32822abfdf3f56e5"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(5) suspend resume partial function for closure #1 @Sendable (ComposableArchitecture.Send&lt;GuideBook.AuthFeature.Action&gt;) async -&gt; () in closure #1 (inout GuideBook.AuthFeature.State, GuideBook.AuthFeature.Action) -&gt; ComposableArchitecture.Effect&lt;GuideBook.AuthFeature.Action&gt; in GuideBook.AuthFeature.body.getter : some"
+                  moduleName = "GuideBook"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yegormyropoltsev/Desktop/GuideBook/GuideBook/Features/Auth/Feature/AuthFeature.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "111"
+                  endingLineNumber = "111"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  uuid = "8598ECBA-D19A-4700-A854-ED8ECD147BA9 - 4953c78da823b495"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(6) suspend resume partial function for closure #1 @Sendable (ComposableArchitecture.Send&lt;GuideBook.AuthFeature.Action&gt;) async -&gt; () in closure #1 (inout GuideBook.AuthFeature.State, GuideBook.AuthFeature.Action) -&gt; ComposableArchitecture.Effect&lt;GuideBook.AuthFeature.Action&gt; in GuideBook.AuthFeature.body.getter : some"
+                  moduleName = "GuideBook"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yegormyropoltsev/Desktop/GuideBook/GuideBook/Features/Auth/Feature/AuthFeature.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "110"
+                  endingLineNumber = "110"
+                  offsetFromSymbolStart = "52">
+               </Location>
+               <Location
+                  uuid = "8598ECBA-D19A-4700-A854-ED8ECD147BA9 - 4953c78da823b4fa"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(6) suspend resume partial function for closure #1 @Sendable (ComposableArchitecture.Send&lt;GuideBook.AuthFeature.Action&gt;) async -&gt; () in closure #1 (inout GuideBook.AuthFeature.State, GuideBook.AuthFeature.Action) -&gt; ComposableArchitecture.Effect&lt;GuideBook.AuthFeature.Action&gt; in GuideBook.AuthFeature.body.getter : some"
+                  moduleName = "GuideBook"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yegormyropoltsev/Desktop/GuideBook/GuideBook/Features/Auth/Feature/AuthFeature.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "111"
+                  endingLineNumber = "111"
+                  offsetFromSymbolStart = "84">
+               </Location>
+               <Location
+                  uuid = "8598ECBA-D19A-4700-A854-ED8ECD147BA9 - 5fe5f49b7ad01afb"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(7) suspend resume partial function for closure #1 @Sendable (ComposableArchitecture.Send&lt;GuideBook.AuthFeature.Action&gt;) async -&gt; () in closure #1 (inout GuideBook.AuthFeature.State, GuideBook.AuthFeature.Action) -&gt; ComposableArchitecture.Effect&lt;GuideBook.AuthFeature.Action&gt; in GuideBook.AuthFeature.body.getter : some"
+                  moduleName = "GuideBook"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yegormyropoltsev/Desktop/GuideBook/GuideBook/Features/Auth/Feature/AuthFeature.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "111"
+                  endingLineNumber = "111"
+                  offsetFromSymbolStart = "328">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "DC407313-30B2-4B2F-8162-84D320395B07"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GuideBook/Features/Auth/Feature/AuthFeature.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "113"
+            endingLineNumber = "113"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "232760BF-51FC-4BC0-AF72-094A0D51A165"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GuideBook/Features/Auth/Feature/AuthFeature.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "133"
+            endingLineNumber = "133"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "787BFBA7-0D53-4ADA-B682-8B9ADF5FD0B1"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GuideBook/Features/Auth/Feature/AuthFeature.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "134"
+            endingLineNumber = "134"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "EAB55780-BB8C-46E2-9F03-1D8DEDCAA622"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GuideBook/Features/Auth/Feature/AuthFeature.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "135"
+            endingLineNumber = "135"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "43071363-D3FE-4247-BC67-CEB4CA0E16DA"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GuideBook/Features/Auth/Feature/AuthFeature.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "136"
+            endingLineNumber = "136"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

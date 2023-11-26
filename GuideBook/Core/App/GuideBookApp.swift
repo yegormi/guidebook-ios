@@ -13,9 +13,9 @@ import TCACoordinators
 struct GuideBookApp: App {         
     var body: some Scene {
         WindowGroup {
-            CoordinatorView(
+            RootCoordinatorView(
                 store: Store(initialState: .initialState) {
-                    Coordinator()
+                    RootCoordinator()
                         ._printChanges()
                 }
             )
