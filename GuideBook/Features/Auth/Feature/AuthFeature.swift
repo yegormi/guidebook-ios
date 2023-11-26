@@ -8,7 +8,6 @@
 import Foundation
 import ComposableArchitecture
 import Alamofire
-import KeychainSwift
 
 struct AuthFeature: Reducer {
     struct State: Equatable {

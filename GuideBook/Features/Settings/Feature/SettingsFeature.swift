@@ -9,7 +9,6 @@
 import Foundation
 import ComposableArchitecture
 import Alamofire
-import KeychainSwift
 
 struct SettingsFeature: Reducer {
     struct State: Equatable {

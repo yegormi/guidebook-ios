@@ -39,7 +39,7 @@ struct Coordinator: Reducer {
                 state.routes.removeAll()
                 state.routes.push(.auth(.init()))
                 
-            case .routeAction(_, action: .auth(.authSuccessful)):
+            case .routeAction(_, action: .auth(.saveToken)):
                 state.routes.removeAll()
                 state.routes.push(.tabs(.init()))
                 
