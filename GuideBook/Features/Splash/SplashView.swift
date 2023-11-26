@@ -14,13 +14,36 @@ struct SplashView: View {
 
     var body: some View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in
-            Text("📘 GuideBook")
-                .font(.system(size: 40))
-                .bold()
-                .transition(.offset(y: -(Helpers.screen.height*0.9))
-                    .combined(with: .scale(scale: 0.5))
-                    .combined(with: .opacity)
-                )
+            VStack {
+                Spacer()
+                Image("BookIcon")
+                    .resizable()
+                    .aspectRatio(1, contentMode: .fit)
+                    .scaledToFit()
+                    .frame(width: 150)
+                    .transition(.opacity)
+                    .onAppear {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                            viewStore.send(.timerFired, animation: .default)
+                        }
+                    }
+                Spacer()
+                Text("GuideBook")
+                    .font(.system(size: 30, weight: .regular))
+                    .padding(.bottom, 40)
+            }
         }
+
+    }
+}
+
+struct SplashView_Previews: PreviewProvider {
+    static var previews: some View {
+        SplashView(
+            store: Store(initialState: SplashFeature.State()) {
+                SplashFeature()
+                    ._printChanges()
+            }
+        )
     }
 }

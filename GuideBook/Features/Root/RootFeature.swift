@@ -23,15 +23,14 @@ struct RootFeature: Reducer {
     }
     
     var body: some Reducer<State, Action> {
+        Scope(state: /State.splash, action: /Action.splash) {
+            SplashFeature()
+        }
         Scope(state: /State.auth, action: /Action.auth) {
             AuthFeature()
         }
         Scope(state: /State.tabs, action: /Action.tabs) {
             TabsFeature()
         }
-        Scope(state: /State.splash, action: /Action.splash) {
-            SplashFeature()
-        }
-
     }
 }

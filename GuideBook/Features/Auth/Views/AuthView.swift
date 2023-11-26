@@ -7,15 +7,9 @@
 
 import SwiftUI
 import ComposableArchitecture
-import AlertToast
-//import Reachability
 
 struct AuthView: View {
     let store: StoreOf<AuthFeature>
-    
-//    var reachability = Reachability.shared
-    
-//    @State private var isShowingNoInternetAlert = false
     
     var body: some View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in
@@ -23,13 +17,16 @@ struct AuthView: View {
                 VStack {
                     Header("📘 GuideBook")
                     
-                    switch viewStore.authType {
-                    case .signIn:
-                        AuthTitle(authType: .signIn)
-                            .padding(.vertical, 30)
-                    case .signUp:
-                        AuthTitle(authType: .signIn)
-                            .padding(.vertical, 30)
+                    HStack {
+                        switch viewStore.authType {
+                        case .signIn:
+                            AuthTitle(authType: .signIn)
+                                .padding(.vertical, 30)
+                        case .signUp:
+                            AuthTitle(authType: .signUp)
+                                .padding(.vertical, 30)
+                        }
+                        Spacer()
                     }
                     
                     VStack(spacing: 15) {
@@ -85,30 +82,35 @@ struct AuthView: View {
                     }
                     
                     AuthButton(authType: viewStore.authType, isLoading: viewStore.isLoading, action: {
-//                        if reachability.currentPath.isReachable {
-//                            viewStore.send(.authButtonTapped)
-//                        } else {
-//                            isShowingNoInternetAlert = true
-//                        }
                         viewStore.send(.authButtonTapped)
                     })
                     .disabled(!viewStore.isLoginAllowed)
                     .opacity(!viewStore.isLoginAllowed ? 0.5 : 1)
                     .padding(.top, 20)
                     
-                    AuthToggleButton(authType: viewStore.authType, onTap: {
-                        viewStore.send(.toggleButtonTapped, animation: .snappy)
-                    })
-                    .padding(.vertical, 20)
+                    switch viewStore.authType {
+                    case .signIn:
+                        AuthToggleButton(authType: viewStore.authType, onTap: {
+                            viewStore.send(.toggleButtonTapped, animation: .easeInOut)
+                        })
+                        .padding(.vertical, 20)
+                        .transition(.offset(x: 0, y: 45).combined(with: .opacity).animation(.easeIn(duration: 0.1)))
+                    case .signUp:
+                        AuthToggleButton(authType: viewStore.authType, onTap: {
+                            viewStore.send(.toggleButtonTapped, animation: .easeInOut)
+                        })
+                        .padding(.vertical, 20)
+                        .transition(.offset(x: 0, y: -45).combined(with: .opacity).animation(.easeIn(duration: 0.1)))
+
+                    }
+                    
+
                     
                     Spacer()
                 }
                 .padding(30)
             }
         }
-//        .toast(isPresenting: $isShowingNoInternetAlert, alert: {
-//            AlertToast(displayMode: .hud, type: .error(.red), title: "No Internet Connection")
-//        })
     }
 }
 

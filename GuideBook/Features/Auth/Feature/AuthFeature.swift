@@ -169,35 +169,10 @@ struct AuthFeature: Reducer {
         return try await AuthAPI.performSignUp(username: username, email: email, password: password)
     }
     
-    
-    
-    
-    private func saveAuthResponse(response: AuthResponse) {
-        if let authResponseData = try? JSONEncoder().encode(response) {
-            let keychain = KeychainSwift()
-            keychain.set(authResponseData, forKey: "AuthResponse")
+    func saveAuthResponse(response: AuthResponse) {
+        if let authResponse = try? JSONEncoder().encode(response) {
+            UserDefaults.standard.set(authResponse, forKey: "AuthResponse")
         }
     }
-    
-    private func getAuthResponse() -> AuthResponse? {
-        let keychain = KeychainSwift()
-        if let authResponseData = keychain.getData("AuthResponse"),
-           let authResponse = try? JSONDecoder().decode(AuthResponse.self, from: authResponseData) {
-            return authResponse
-        }
-        return nil
-    }
-    
-    private func getToken() -> String? {
-        let response = getAuthResponse()
-        return response?.accessToken
-    }
-    
-    private func eraseAuthResponse() {
-        let keychain = KeychainSwift()
-        keychain.delete("AuthResponse")
-    }
-    
-    
 }
 

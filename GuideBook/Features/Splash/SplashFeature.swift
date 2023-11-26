@@ -11,14 +11,18 @@ import ComposableArchitecture
 
 struct SplashFeature: Reducer {
     struct State: Equatable {
-        
     }
     
     enum Action: Equatable {
-        
+        case timerFired
     }
     
-    func reduce(into state: inout State, action: Action) -> Effect<Action> {
-        
+    var body: some Reducer<State, Action> {
+        Reduce { state, action in
+            switch action {
+            case .timerFired:
+                return .none
+            }
+        }
     }
 }

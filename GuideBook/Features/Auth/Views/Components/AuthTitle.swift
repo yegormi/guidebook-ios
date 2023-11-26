@@ -9,13 +9,14 @@ import SwiftUI
 
 struct AuthTitle: View {
     let authType: AuthType
-
+    
     var body: some View {
-        HStack {
-            Text(authType.text)
-                .font(.system(size: 36))
-            Spacer()
-        }
-        .transition(.slide.combined(with: .opacity))
+        Text(authType.text)
+            .font(.system(size: 36))
+            .transition(
+                .scale(scale: 0.01, anchor: .center)
+                .combined(with: .opacity)
+                .animation(.easeInOut)
+            )
     }
 }
