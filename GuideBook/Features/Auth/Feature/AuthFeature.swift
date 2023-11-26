@@ -76,6 +76,9 @@ struct AuthFeature: Reducer {
             case .toggleButtonTapped:
                 state.authType = state.authType == .signIn ? .signUp : .signIn
                 state.failResponse = nil
+                state.emailError = nil
+                state.usernameError = nil
+                state.passwordError = nil
                 return .none
             case .authButtonTapped:
                 let username = state.username
@@ -134,6 +137,7 @@ struct AuthFeature: Reducer {
             case let .saveToken(response):
                 AuthService.shared.saveToken(with: response)
                 return .none
+                
             case let .authFail(response):
                 state.failResponse = response
                 state.isLoading = false

@@ -37,14 +37,12 @@ struct SettingsFeature: Reducer {
         Reduce { state, action in
             switch action {
             case .alert(.presented(.confirmSignOutTapped)):
-                state.alert = AlertState { TextState("Signed out!") }
                 return .send(.onSignOut)
             case .onSignOut:
                 AuthService.shared.deleteToken()
                 return .none
                 
             case .alert(.presented(.confirmDeleteTapped)):
-                state.alert = AlertState { TextState("Account has been successfuly deleted!") }
                 return .send(.onDeleteAccount)
             case .onDeleteAccount:
                 let token = AuthService.shared.retrieveToken()?.accessToken ?? ""
