@@ -19,20 +19,20 @@ struct RootCoordinatorView: View {
                 switch screen {
                 case .splash:
                     CaseLet(
-                        /RootFeature.State.splash,
-                         action: RootFeature.Action.splash,
+                        /RootScreen.State.splash,
+                         action: RootScreen.Action.splash,
                          then: SplashView.init
                     )
                 case .auth:
                     CaseLet(
-                        /RootFeature.State.auth,
-                         action: RootFeature.Action.auth,
+                        /RootScreen.State.auth,
+                         action: RootScreen.Action.auth,
                          then: AuthView.init
                     )
                 case .tabs:
                     CaseLet(
-                        /RootFeature.State.tabs,
-                         action: RootFeature.Action.tabs,
+                        /RootScreen.State.tabs,
+                         action: RootScreen.Action.tabs,
                          then: TabsCoordinatorView.init
                     )
                 }

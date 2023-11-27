@@ -17,11 +17,17 @@ struct SplashView: View {
             Text("📘 GuideBook")
                 .font(.system(size: 40))
                 .bold()
-                .transition(.move(edge: .bottom)
-                    .combined(with: .scale(scale: 0.3))
+                .transition(
+                    .offset(y: -(Helpers.screen.height))
+                    .combined(with: .scale(scale: 0.5))
                     .combined(with: .opacity)
-                    .animation(.spring)
                 )
+                .onAppear {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                        viewStore.send(.appDidLaunch, animation: .default)
+                    }
+                }
+            
         }
         
     }

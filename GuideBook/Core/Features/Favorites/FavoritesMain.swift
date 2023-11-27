@@ -1,5 +1,5 @@
 //
-//  HomeMain.swift
+//  FavoritesMain.swift
 //  GuideBook
 //
 //  Created by Yegor Myropoltsev on 27.11.2023.
@@ -8,18 +8,18 @@
 import SwiftUI
 import ComposableArchitecture
 
-struct HomeMainView: View {
-    let store: StoreOf<HomeMain>
+struct FavoritesMainView: View {
+    let store: StoreOf<FavoritesMain>
 
     var body: some View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in
-            Text("Home -> Main")
+            Text("Favorites -> Main")
         }
-        .navigationTitle(Tab.home.rawValue)
+        .navigationTitle(Tab.favorites.rawValue)
     }
 }
 
-struct HomeMain: Reducer {
+struct FavoritesMain: Reducer {
     struct State: Equatable {
 
     }

@@ -8,14 +8,23 @@
 
 import SwiftUI
 import ComposableArchitecture
+import TCACoordinators
 
 struct FavoritesCoordinatorView: View {
     let store: StoreOf<FavoritesCoordinator>
-
+    
     var body: some View {
-        WithViewStore(self.store, observe: { $0 }) { viewStore in
-            Text("Favorites page")
+        TCARouter(store) { screen in
+            SwitchStore(screen) { screen in
+                switch screen {
+                case .main:
+                    CaseLet(
+                        /FavoritesScreen.State.main,
+                         action: FavoritesScreen.Action.main,
+                         then: FavoritesMainView.init
+                    )
+                }
+            }
         }
-        .navigationTitle(Tab.favorites.rawValue)
     }
 }

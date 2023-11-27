@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum Appearance: String, CaseIterable, Identifiable, Codable {
+enum Appearance: String, CaseIterable, Identifiable {
     case light, auto, dark
     var id: Self { self }
 

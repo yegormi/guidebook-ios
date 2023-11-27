@@ -13,22 +13,6 @@ import ComposableArchitecture
 struct SettingsView: View {
     let store: StoreOf<SettingsFeature>
     
-    @State private var settingsDidAppear = false
-    
-    @AppStorage("selectedMode") var selectedMode: Appearance = .auto
-    
-    private var colorSchemeOption: ColorScheme? {
-        switch selectedMode {
-        case .light:
-            return .light
-        case .auto:
-            return nil
-        case .dark:
-            return .dark
-        }
-    }
-    
-    
     var body: some View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in
             Form {
@@ -39,7 +23,12 @@ struct SettingsView: View {
                     HStack{
                         Text("Color mode")
                         Spacer()
-                        Picker("Color mode", selection: $selectedMode) {
+                        Picker("Color mode",
+                               selection: viewStore.binding(
+                                get: \.selectedMode,
+                                send: { .updateSelectedMode($0) }
+                               )
+                        ) {
                             ForEach(Appearance.allCases) { mode in
                                 Image(systemName: mode.modeImage)
                             }
@@ -60,10 +49,10 @@ struct SettingsView: View {
                 }
             }
             .navigationTitle(Tab.settings.rawValue)
-            .preferredColorScheme(colorSchemeOption)
+            .preferredColorScheme(viewStore.colorSchemeOption)
             .pickerStyle(.segmented)
             .onAppear {
-                if !settingsDidAppear {
+                if !viewStore.settingsDidAppear {
                     viewStore.send(.settingsDidAppear)
                 }
             }

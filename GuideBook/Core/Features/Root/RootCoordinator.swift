@@ -11,13 +11,15 @@ import TCACoordinators
 
 struct RootCoordinator: Reducer {
     struct State: Equatable, IndexedRouterState {
-        var routes: [Route<RootFeature.State>]
-        static let initialState = State(routes: [.root(.splash(.init()))])
+        var routes: [Route<RootScreen.State>]
+        static let initialState = State(
+            routes: [.root(.splash(.init()))]
+        )
     }
     
     enum Action: IndexedRouterAction {
-        case routeAction(Int, action: RootFeature.Action)
-        case updateRoutes([Route<RootFeature.State>])
+        case routeAction(Int, action: RootScreen.Action)
+        case updateRoutes([Route<RootScreen.State>])
     }
     
     var body: some ReducerOf<Self> {
@@ -27,28 +29,28 @@ struct RootCoordinator: Reducer {
                 state.routes.removeAll()
                 state.routes.push(.auth(.init()))
                 
+            case .routeAction(_, action: .auth(.authSuccessful)):
+                state.routes.removeAll()
+                state.routes.push(.tabs(.initialState))
+                
             case .routeAction(_, action: .splash(.tabs)):
                 state.routes.removeAll()
                 state.routes.push(.tabs(.initialState))
                 
-            case .routeAction(_, .tabs(.settings(.onSignOut))):
+            case .routeAction(_, .tabs(.settings(.routeAction(_, action: .main(.onSignOut))))):
                 state.routes.removeAll()
                 state.routes.push(.auth(.init()))
                 
-            case .routeAction(_, .tabs(.settings(.onDeleteSuccess))):
+            case .routeAction(_, .tabs(.settings(.routeAction(_, action: .main(.onDeleteSuccess))))):
                 state.routes.removeAll()
                 state.routes.push(.auth(.init()))
-                
-            case .routeAction(_, action: .auth(.authSuccessful)):
-                state.routes.removeAll()
-                state.routes.push(.tabs(.initialState))
                 
             default:
                 break
             }
             return .none
         }.forEachRoute {
-            RootFeature()
+            RootScreen()
         }
     }
 }

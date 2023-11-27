@@ -1,5 +1,5 @@
 //
-//  RootFeature.swift
+//  RootScreen.swift
 //  GuideBook
 //
 //  Created by Yegor Myropoltsev on 07.11.2023.
@@ -9,7 +9,7 @@
 import Foundation
 import ComposableArchitecture
 
-struct RootFeature: Reducer {
+struct RootScreen: Reducer {
     enum State: Equatable {
         case splash(SplashFeature.State)
         case auth(AuthFeature.State)

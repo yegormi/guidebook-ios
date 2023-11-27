@@ -1,26 +1,26 @@
 //
-//  HomeFeature.swift
+//  SettingsScreen.swift
 //  GuideBook
 //
-//  Created by Yegor Myropoltsev on 07.11.2023.
-//
+//  Created by Yegor Myropoltsev on 27.11.2023.
 //
 
 import Foundation
 import ComposableArchitecture
+import TCACoordinators
 
-struct HomeFeature: Reducer {
+struct SettingsScreen: Reducer {
     enum State: Equatable {
-        case main(HomeMain.State)
+        case main(SettingsFeature.State)
     }
     
     enum Action: Equatable {
-        case main(HomeMain.Action)
+        case main(SettingsFeature.Action)
     }
     
     var body: some Reducer<State, Action> {
         Scope(state: /State.main, action: /Action.main) {
-            HomeMain()
+            SettingsFeature()
         }
     }
 }

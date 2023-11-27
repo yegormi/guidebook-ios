@@ -1,17 +1,16 @@
 //
-//  HomeCoordinatorView.swift
+//  SettingsCoordinatorView.swift
 //  GuideBook
 //
-//  Created by Yegor Myropoltsev on 07.11.2023.
-//
+//  Created by Yegor Myropoltsev on 27.11.2023.
 //
 
 import SwiftUI
 import ComposableArchitecture
 import TCACoordinators
 
-struct HomeCoordinatorView: View {
-    let store: StoreOf<HomeCoordinator>
+struct SettingsCoordinatorView: View {
+    let store: StoreOf<SettingsCoordinator>
     
     var body: some View {
         TCARouter(store) { screen in
@@ -19,9 +18,9 @@ struct HomeCoordinatorView: View {
                 switch screen {
                 case .main:
                     CaseLet(
-                        /HomeScreen.State.main,
-                         action: HomeScreen.Action.main,
-                         then: HomeMainView.init
+                        /SettingsScreen.State.main,
+                         action: SettingsScreen.Action.main,
+                         then: SettingsView.init
                     )
                 }
             }

@@ -19,13 +19,13 @@ struct TabsCoordinator: Reducer {
     struct State: Equatable {
         var home: HomeCoordinator.State
         var favorites: FavoritesCoordinator.State
-        var settings: SettingsFeature.State
+        var settings: SettingsCoordinator.State
         var selectedTab: Tab
         
         static let initialState = State(
             home: .initialState,
-            favorites: .init(),
-            settings: .init(),
+            favorites: .initialState,
+            settings: .initialState,
             selectedTab: .home
         )
     }
@@ -34,7 +34,7 @@ struct TabsCoordinator: Reducer {
         case tabSelected(Tab)
         case home(HomeCoordinator.Action)
         case favorites(FavoritesCoordinator.Action)
-        case settings(SettingsFeature.Action)
+        case settings(SettingsCoordinator.Action)
     }
     
     var body: some ReducerOf<Self> {
@@ -45,7 +45,7 @@ struct TabsCoordinator: Reducer {
             FavoritesCoordinator()
         }
         Scope(state: \.settings, action: /Action.settings) {
-            SettingsFeature()
+            SettingsCoordinator()
         }
         Reduce<State, Action> { state, action in
             switch action {

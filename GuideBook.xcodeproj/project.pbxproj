@@ -17,9 +17,9 @@
 		EE140B142AFA3B23001A4461 /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE140B132AFA3B23001A4461 /* UserInfo.swift */; };
 		EE140B162AFA41B0001A4461 /* UserDelete.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE140B152AFA41B0001A4461 /* UserDelete.swift */; };
 		EE140B192AFA5221001A4461 /* HomeCoordinatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE140B172AFA5221001A4461 /* HomeCoordinatorView.swift */; };
-		EE140B1A2AFA5221001A4461 /* HomeFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE140B182AFA5221001A4461 /* HomeFeature.swift */; };
+		EE140B1A2AFA5221001A4461 /* HomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE140B182AFA5221001A4461 /* HomeScreen.swift */; };
 		EE140B202AFA523B001A4461 /* FavoritesCoordinatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE140B1E2AFA523B001A4461 /* FavoritesCoordinatorView.swift */; };
-		EE140B212AFA523B001A4461 /* FavoritesCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE140B1F2AFA523B001A4461 /* FavoritesCoordinator.swift */; };
+		EE140B212AFA523B001A4461 /* FavoritesScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE140B1F2AFA523B001A4461 /* FavoritesScreen.swift */; };
 		EE2809542AF84F3400093049 /* Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2809532AF84F3400093049 /* Header.swift */; };
 		EE2809562AF852E600093049 /* AuthType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2809552AF852E600093049 /* AuthType.swift */; };
 		EE2809582AF8534100093049 /* AuthTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2809572AF8534100093049 /* AuthTitle.swift */; };
@@ -52,8 +52,13 @@
 		EE7B13B02AF500C800A45F1B /* details.png in Resources */ = {isa = PBXBuildFile; fileRef = EE7B13A52AF500C800A45F1B /* details.png */; };
 		EE7B13B22AF500C800A45F1B /* settings.png in Resources */ = {isa = PBXBuildFile; fileRef = EE7B13A72AF500C800A45F1B /* settings.png */; };
 		EE7B13B32AF500C800A45F1B /* home.png in Resources */ = {isa = PBXBuildFile; fileRef = EE7B13A82AF500C800A45F1B /* home.png */; };
+		EE9888BD2B153B75009445BC /* FavoritesMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9888BC2B153B75009445BC /* FavoritesMain.swift */; };
+		EE9888BF2B153C03009445BC /* FavoritesCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9888BE2B153C03009445BC /* FavoritesCoordinator.swift */; };
+		EE9888C12B153DE4009445BC /* SettingsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9888C02B153DE4009445BC /* SettingsCoordinator.swift */; };
+		EE9888C32B153E5D009445BC /* SettingsCoordinatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9888C22B153E5D009445BC /* SettingsCoordinatorView.swift */; };
+		EE9888C52B153ECF009445BC /* SettingsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9888C42B153ECF009445BC /* SettingsScreen.swift */; };
 		EEA012BA2AFA8180004311F3 /* RootCoordinatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA012B82AFA8180004311F3 /* RootCoordinatorView.swift */; };
-		EEA012BB2AFA8180004311F3 /* RootFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA012B92AFA8180004311F3 /* RootFeature.swift */; };
+		EEA012BB2AFA8180004311F3 /* RootScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA012B92AFA8180004311F3 /* RootScreen.swift */; };
 		EEA012C02AFABCA3004311F3 /* Guide.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA012BF2AFABCA3004311F3 /* Guide.swift */; };
 		EEA012CD2AFACCB7004311F3 /* GuideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA012C62AFACCB6004311F3 /* GuideView.swift */; };
 		EEA012CF2AFACCB7004311F3 /* ImageCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA012C82AFACCB7004311F3 /* ImageCard.swift */; };
@@ -92,9 +97,9 @@
 		EE140B132AFA3B23001A4461 /* UserInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
 		EE140B152AFA41B0001A4461 /* UserDelete.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDelete.swift; sourceTree = "<group>"; };
 		EE140B172AFA5221001A4461 /* HomeCoordinatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinatorView.swift; sourceTree = "<group>"; };
-		EE140B182AFA5221001A4461 /* HomeFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeFeature.swift; sourceTree = "<group>"; };
+		EE140B182AFA5221001A4461 /* HomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreen.swift; sourceTree = "<group>"; };
 		EE140B1E2AFA523B001A4461 /* FavoritesCoordinatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesCoordinatorView.swift; sourceTree = "<group>"; };
-		EE140B1F2AFA523B001A4461 /* FavoritesCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesCoordinator.swift; sourceTree = "<group>"; };
+		EE140B1F2AFA523B001A4461 /* FavoritesScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesScreen.swift; sourceTree = "<group>"; };
 		EE2809532AF84F3400093049 /* Header.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Header.swift; sourceTree = "<group>"; };
 		EE2809552AF852E600093049 /* AuthType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthType.swift; sourceTree = "<group>"; };
 		EE2809572AF8534100093049 /* AuthTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthTitle.swift; sourceTree = "<group>"; };
@@ -121,8 +126,13 @@
 		EE7B13A52AF500C800A45F1B /* details.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = details.png; sourceTree = "<group>"; };
 		EE7B13A72AF500C800A45F1B /* settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings.png; sourceTree = "<group>"; };
 		EE7B13A82AF500C800A45F1B /* home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home.png; sourceTree = "<group>"; };
+		EE9888BC2B153B75009445BC /* FavoritesMain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesMain.swift; sourceTree = "<group>"; };
+		EE9888BE2B153C03009445BC /* FavoritesCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesCoordinator.swift; sourceTree = "<group>"; };
+		EE9888C02B153DE4009445BC /* SettingsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCoordinator.swift; sourceTree = "<group>"; };
+		EE9888C22B153E5D009445BC /* SettingsCoordinatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCoordinatorView.swift; sourceTree = "<group>"; };
+		EE9888C42B153ECF009445BC /* SettingsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsScreen.swift; sourceTree = "<group>"; };
 		EEA012B82AFA8180004311F3 /* RootCoordinatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootCoordinatorView.swift; sourceTree = "<group>"; };
-		EEA012B92AFA8180004311F3 /* RootFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootFeature.swift; sourceTree = "<group>"; };
+		EEA012B92AFA8180004311F3 /* RootScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootScreen.swift; sourceTree = "<group>"; };
 		EEA012BF2AFABCA3004311F3 /* Guide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Guide.swift; sourceTree = "<group>"; };
 		EEA012C62AFACCB6004311F3 /* GuideView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuideView.swift; sourceTree = "<group>"; };
 		EEA012C82AFACCB7004311F3 /* ImageCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCard.swift; sourceTree = "<group>"; };
@@ -219,7 +229,11 @@
 		EE140B0A2AFA3765001A4461 /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				EE140B012AFA35E4001A4461 /* SettingsView.swift */,
 				EE140B022AFA35E4001A4461 /* SettingsFeature.swift */,
+				EE9888C42B153ECF009445BC /* SettingsScreen.swift */,
+				EE9888C02B153DE4009445BC /* SettingsCoordinator.swift */,
+				EE9888C22B153E5D009445BC /* SettingsCoordinatorView.swift */,
 			);
 			path = Features;
 			sourceTree = "<group>";
@@ -228,7 +242,6 @@
 			isa = PBXGroup;
 			children = (
 				EE140B0E2AFA38E6001A4461 /* Components */,
-				EE140B012AFA35E4001A4461 /* SettingsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -254,7 +267,9 @@
 		EE140B222AFA523E001A4461 /* Favorites */ = {
 			isa = PBXGroup;
 			children = (
-				EE140B1F2AFA523B001A4461 /* FavoritesCoordinator.swift */,
+				EE9888BC2B153B75009445BC /* FavoritesMain.swift */,
+				EE140B1F2AFA523B001A4461 /* FavoritesScreen.swift */,
+				EE9888BE2B153C03009445BC /* FavoritesCoordinator.swift */,
 				EE140B1E2AFA523B001A4461 /* FavoritesCoordinatorView.swift */,
 			);
 			path = Favorites;
@@ -328,7 +343,7 @@
 		EEA012BC2AFA8183004311F3 /* Root */ = {
 			isa = PBXGroup;
 			children = (
-				EEA012B92AFA8180004311F3 /* RootFeature.swift */,
+				EEA012B92AFA8180004311F3 /* RootScreen.swift */,
 				EE3767F22B112A65007DFA25 /* RootCoordinator.swift */,
 				EEA012B82AFA8180004311F3 /* RootCoordinatorView.swift */,
 			);
@@ -346,10 +361,10 @@
 		EEA012BE2AFABC76004311F3 /* Features */ = {
 			isa = PBXGroup;
 			children = (
-				EE140B182AFA5221001A4461 /* HomeFeature.swift */,
-				EE297A302B14A905006FC0C4 /* HomeMain.swift */,
 				EE297A2E2B14A5AD006FC0C4 /* HomeCoordinator.swift */,
 				EE140B172AFA5221001A4461 /* HomeCoordinatorView.swift */,
+				EE140B182AFA5221001A4461 /* HomeScreen.swift */,
+				EE297A302B14A905006FC0C4 /* HomeMain.swift */,
 			);
 			path = Features;
 			sourceTree = "<group>";
@@ -577,6 +592,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EE9888C32B153E5D009445BC /* SettingsCoordinatorView.swift in Sources */,
 				EE2809582AF8534100093049 /* AuthTitle.swift in Sources */,
 				EEFFBA0C2AF9A7F100238FA0 /* ErrorField.swift in Sources */,
 				EEEB8D1C2AF8D40F007DEBAE /* AuthButton.swift in Sources */,
@@ -588,11 +604,13 @@
 				EE297A2F2B14A5AD006FC0C4 /* HomeCoordinator.swift in Sources */,
 				EE140B202AFA523B001A4461 /* FavoritesCoordinatorView.swift in Sources */,
 				EEA012CD2AFACCB7004311F3 /* GuideView.swift in Sources */,
+				EE9888C12B153DE4009445BC /* SettingsCoordinator.swift in Sources */,
 				EE2809542AF84F3400093049 /* Header.swift in Sources */,
 				EEF2F1992AF82415009F4677 /* PasswordField.swift in Sources */,
 				EE28095A2AF856A600093049 /* AuthToggleButton.swift in Sources */,
 				EE140B0D2AFA38D8001A4461 /* ProfileCard.swift in Sources */,
 				EE56775C2B10AB8200DDE4A0 /* AuthAPI.swift in Sources */,
+				EE9888C52B153ECF009445BC /* SettingsScreen.swift in Sources */,
 				EE297A492B14D66C006FC0C4 /* TabsCoordinatorView.swift in Sources */,
 				EEFFBA0A2AF9A34600238FA0 /* ErrorText.swift in Sources */,
 				EE140B122AFA392D001A4461 /* AlertInfo.swift in Sources */,
@@ -602,13 +620,14 @@
 				EE5677602B10AEDD00DDE4A0 /* Validation.swift in Sources */,
 				EEA012DA2AFB7C69004311F3 /* Helpers.swift in Sources */,
 				EE5270982B13A36800950073 /* AuthService.swift in Sources */,
-				EE140B1A2AFA5221001A4461 /* HomeFeature.swift in Sources */,
+				EE140B1A2AFA5221001A4461 /* HomeScreen.swift in Sources */,
 				EEF2F19B2AF82710009F4677 /* Extensions.swift in Sources */,
 				EEF2F1902AF822DF009F4677 /* AuthView.swift in Sources */,
 				EE3767F32B112A65007DFA25 /* RootCoordinator.swift in Sources */,
 				EE297A322B14A905006FC0C4 /* HomeMain.swift in Sources */,
 				EE5AE1A72AF9407E00381B33 /* ErrorResponse.swift in Sources */,
 				EEA012BA2AFA8180004311F3 /* RootCoordinatorView.swift in Sources */,
+				EE9888BF2B153C03009445BC /* FavoritesCoordinator.swift in Sources */,
 				EEA012CF2AFACCB7004311F3 /* ImageCard.swift in Sources */,
 				EE140B042AFA35E4001A4461 /* SettingsFeature.swift in Sources */,
 				EE3767F92B112D48007DFA25 /* SplashView.swift in Sources */,
@@ -616,8 +635,9 @@
 				EE2809562AF852E600093049 /* AuthType.swift in Sources */,
 				EEEB8D272AF8EAEA007DEBAE /* SignIn.swift in Sources */,
 				EE0C21882AE861D700668357 /* GuideBookApp.swift in Sources */,
-				EEA012BB2AFA8180004311F3 /* RootFeature.swift in Sources */,
+				EEA012BB2AFA8180004311F3 /* RootScreen.swift in Sources */,
 				EEF2F1972AF8240E009F4677 /* InputField.swift in Sources */,
+				EE9888BD2B153B75009445BC /* FavoritesMain.swift in Sources */,
 				EEFFBA082AF99F3F00238FA0 /* RequestError.swift in Sources */,
 				EEF2F1A42AF82EC9009F4677 /* InputFieldStyle.swift in Sources */,
 				EEEB8D222AF8E5AD007DEBAE /* FailResponse.swift in Sources */,
@@ -626,7 +646,7 @@
 				EE140B032AFA35E4001A4461 /* SettingsView.swift in Sources */,
 				EE297A472B14D662006FC0C4 /* TabsCoordinator.swift in Sources */,
 				EE140B142AFA3B23001A4461 /* UserInfo.swift in Sources */,
-				EE140B212AFA523B001A4461 /* FavoritesCoordinator.swift in Sources */,
+				EE140B212AFA523B001A4461 /* FavoritesScreen.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

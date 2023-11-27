@@ -1,5 +1,5 @@
 //
-//  HomeCoordinator.swift
+//  SettingsCoordinator.swift
 //  GuideBook
 //
 //  Created by Yegor Myropoltsev on 27.11.2023.
@@ -9,17 +9,17 @@ import Foundation
 import ComposableArchitecture
 import TCACoordinators
 
-struct HomeCoordinator: Reducer {
+struct SettingsCoordinator: Reducer {
     struct State: Equatable, IndexedRouterState {
-        var routes: [Route<HomeScreen.State>]
+        var routes: [Route<SettingsScreen.State>]
         static let initialState = State(
             routes: [.root(.main(.init()), embedInNavigationView: true)]
         )
     }
     
     enum Action: Equatable, IndexedRouterAction {
-        case routeAction(Int, action: HomeScreen.Action)
-        case updateRoutes([Route<HomeScreen.State>])
+        case routeAction(Int, action: SettingsScreen.Action)
+        case updateRoutes([Route<SettingsScreen.State>])
     }
     
     var body: some ReducerOf<Self> {
@@ -30,7 +30,8 @@ struct HomeCoordinator: Reducer {
             }
             return .none
         }.forEachRoute {
-            HomeScreen()
+            SettingsScreen()
         }
     }
 }
+

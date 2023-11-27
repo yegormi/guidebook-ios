@@ -37,7 +37,7 @@ struct TabsCoordinatorView: View {
                 .tabItem { Label("Favorites", systemImage: "heart") }
                 .tag(Tab.favorites)
                 
-                SettingsView(
+                SettingsCoordinatorView(
                     store: self.store.scope(
                         state: \.settings,
                         action: { .settings($0) }

@@ -6,7 +6,7 @@
 //
 //
 
-import Foundation
+import SwiftUI
 import ComposableArchitecture
 import Alamofire
 
@@ -15,12 +15,24 @@ struct SettingsFeature: Reducer {
         var user: UserInfo?
         @PresentationState var alert: AlertState<Action.Alert>?
         let token = AuthService.shared.retrieveToken()?.accessToken ?? ""
-
+        var settingsDidAppear = false
+        var selectedMode: Appearance = .auto
+        
+        var colorSchemeOption: ColorScheme? {
+            switch self.selectedMode {
+            case .light:
+                return .light
+            case .auto:
+                return nil
+            case .dark:
+                return .dark
+            }
+        }
     }
     
     enum Action: Equatable {
         case alert(PresentationAction<Alert>)
-
+        
         case signOutButtonTapped
         case deleteButtonTapped
         
@@ -30,7 +42,9 @@ struct SettingsFeature: Reducer {
         
         case settingsDidAppear
         case onGetSelf(UserInfo)
-                
+        
+        case updateSelectedMode(Appearance)
+        
         enum Alert: Equatable {
             case confirmSignOutTapped
             case confirmDeleteTapped
@@ -94,6 +108,7 @@ struct SettingsFeature: Reducer {
                 }
                 return .none
             case .settingsDidAppear:
+                state.settingsDidAppear = true
                 let token = state.token
                 return .run { send in
                     do {
@@ -105,6 +120,9 @@ struct SettingsFeature: Reducer {
                 }
             case let .onGetSelf(user):
                 state.user = user
+                return .none
+            case let .updateSelectedMode(newMode):
+                state.selectedMode = newMode
                 return .none
             }
         }
