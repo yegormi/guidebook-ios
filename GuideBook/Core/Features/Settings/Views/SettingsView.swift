@@ -59,6 +59,7 @@ struct SettingsView: View {
                     .foregroundStyle(.red)
                 }
             }
+            .navigationTitle(Tab.settings.rawValue)
             .preferredColorScheme(colorSchemeOption)
             .pickerStyle(.segmented)
             .onAppear {

@@ -12,6 +12,7 @@ import ComposableArchitecture
 struct SplashFeature: Reducer {
     struct State: Equatable {
         var response: AuthResponse?
+        static let initialState = Self()
     }
     
     enum Action: Equatable {

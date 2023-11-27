@@ -10,19 +10,17 @@ import Foundation
 import ComposableArchitecture
 
 struct HomeFeature: Reducer {
-    struct State: Equatable {
-        
+    enum State: Equatable {
+        case main(HomeMain.State)
     }
     
     enum Action: Equatable {
-        
+        case main(HomeMain.Action)
     }
     
     var body: some Reducer<State, Action> {
-        Reduce { state, action in
-            switch action {
-                
-            }
+        Scope(state: /State.main, action: /Action.main) {
+            HomeMain()
         }
     }
 }

@@ -9,12 +9,13 @@
 import SwiftUI
 import ComposableArchitecture
 
-struct FavoritesView: View {
-    let store: StoreOf<FavoritesFeature>
+struct FavoritesCoordinatorView: View {
+    let store: StoreOf<FavoritesCoordinator>
 
     var body: some View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in
             Text("Favorites page")
         }
+        .navigationTitle(Tab.favorites.rawValue)
     }
 }

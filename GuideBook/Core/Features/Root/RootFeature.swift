@@ -12,14 +12,14 @@ import ComposableArchitecture
 struct RootFeature: Reducer {
     enum State: Equatable {
         case splash(SplashFeature.State)
-        case tabs(TabsFeature.State)
         case auth(AuthFeature.State)
+        case tabs(TabsCoordinator.State)
     }
     
     enum Action: Equatable {
         case splash(SplashFeature.Action)
-        case tabs(TabsFeature.Action)
         case auth(AuthFeature.Action)
+        case tabs(TabsCoordinator.Action)
     }
     
     var body: some Reducer<State, Action> {
@@ -30,7 +30,7 @@ struct RootFeature: Reducer {
             AuthFeature()
         }
         Scope(state: /State.tabs, action: /Action.tabs) {
-            TabsFeature()
+            TabsCoordinator()
         }
     }
 }

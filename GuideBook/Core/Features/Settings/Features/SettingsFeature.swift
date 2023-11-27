@@ -14,7 +14,6 @@ struct SettingsFeature: Reducer {
     struct State: Equatable {
         var user: UserInfo?
         @PresentationState var alert: AlertState<Action.Alert>?
-        var authState = AuthFeature.State()
         let token = AuthService.shared.retrieveToken()?.accessToken ?? ""
 
     }

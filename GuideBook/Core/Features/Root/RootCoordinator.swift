@@ -29,7 +29,7 @@ struct RootCoordinator: Reducer {
                 
             case .routeAction(_, action: .splash(.tabs)):
                 state.routes.removeAll()
-                state.routes.push(.tabs(.init()))
+                state.routes.push(.tabs(.initialState))
                 
             case .routeAction(_, .tabs(.settings(.onSignOut))):
                 state.routes.removeAll()
@@ -39,9 +39,9 @@ struct RootCoordinator: Reducer {
                 state.routes.removeAll()
                 state.routes.push(.auth(.init()))
                 
-            case .routeAction(_, action: .auth(.saveToken)):
+            case .routeAction(_, action: .auth(.authSuccessful)):
                 state.routes.removeAll()
-                state.routes.push(.tabs(.init()))
+                state.routes.push(.tabs(.initialState))
                 
             default:
                 break

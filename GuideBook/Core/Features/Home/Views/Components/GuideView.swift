@@ -1,6 +1,14 @@
+//
+//  GuideView.swift
+//  GuideBook
+//
+//  Created by Yegor Myropoltsev on 27.11.2023.
+//
+//
+
 import SwiftUI
 
-struct GuideVIew: View {
+struct GuideView: View {
     let item: Guide
     
     var body: some View {
@@ -23,17 +31,16 @@ struct GuideVIew: View {
 }
 
 
-struct GuideVIew_Previews: PreviewProvider {    
-    static var testItems: Guide = Guide(
+struct GuideView_Previews: PreviewProvider {
+    static var testItem: Guide = Guide(
         id: "bs9d8f908s7dv9usdf",
         title: "Guide",
         description: "Dive into data science with Python",
         emoji: "🐍"
-        
     )
     
     static var previews: some View {
-        GuideVIew(item: testItems)
+        GuideView(item: testItem)
             .previewLayout(.sizeThatFits)
     }
 }

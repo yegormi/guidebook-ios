@@ -8,8 +8,9 @@
 
 import Foundation
 import ComposableArchitecture
+import TCACoordinators
 
-struct FavoritesFeature: Reducer {
+struct FavoritesCoordinator: Reducer {
     struct State: Equatable {
         
     }

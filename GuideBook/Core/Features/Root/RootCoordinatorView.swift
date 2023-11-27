@@ -23,19 +23,17 @@ struct RootCoordinatorView: View {
                          action: RootFeature.Action.splash,
                          then: SplashView.init
                     )
-                    
-                case .tabs:
-                    CaseLet(
-                        /RootFeature.State.tabs,
-                         action: RootFeature.Action.tabs,
-                         then: TabsView.init
-                    )
-                    
                 case .auth:
                     CaseLet(
                         /RootFeature.State.auth,
                          action: RootFeature.Action.auth,
                          then: AuthView.init
+                    )
+                case .tabs:
+                    CaseLet(
+                        /RootFeature.State.tabs,
+                         action: RootFeature.Action.tabs,
+                         then: TabsCoordinatorView.init
                     )
                 }
             }

@@ -51,8 +51,6 @@ struct AuthFeature: Reducer {
         
         case authSuccessful(AuthResponse)
         case authFail(FailResponse)
-        
-        case saveToken(AuthResponse)
     }
     
     var body: some Reducer<State, Action> {
@@ -133,8 +131,6 @@ struct AuthFeature: Reducer {
                 state.response = response
                 state.failResponse = nil
                 state.isLoading = false
-                return .send(.saveToken(response))
-            case let .saveToken(response):
                 AuthService.shared.saveToken(with: response)
                 return .none
                 
