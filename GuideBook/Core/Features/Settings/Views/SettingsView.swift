@@ -9,8 +9,11 @@
 import SwiftUI
 import ComposableArchitecture
 
+
 struct SettingsView: View {
     let store: StoreOf<SettingsFeature>
+    
+    @State private var settingsDidAppear = false
     
     @AppStorage("selectedMode") var selectedMode: Appearance = .auto
     
@@ -25,13 +28,12 @@ struct SettingsView: View {
         }
     }
     
+    
     var body: some View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in
             Form {
                 Section(header: Text("Profile")) {
-                    ProfileCardStyle(card: viewStore.user ??
-                                     UserInfo(id: "1", username: "No user found", email: "No email found")
-                    )
+                    ProfileCardStyle(user: viewStore.user)
                 }
                 Section(header: Text("Preferences")) {
                     HStack{
@@ -59,6 +61,11 @@ struct SettingsView: View {
             }
             .preferredColorScheme(colorSchemeOption)
             .pickerStyle(.segmented)
+            .onAppear {
+                if !settingsDidAppear {
+                    viewStore.send(.settingsDidAppear)
+                }
+            }
             .alert(
                 store: self.store.scope(state: \.$alert, action: { .alert($0) })
             )

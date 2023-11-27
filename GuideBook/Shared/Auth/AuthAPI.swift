@@ -51,7 +51,7 @@ class AuthAPI {
         let endpoint = "/self"
         
         let headers: HTTPHeaders = [
-            "Authorization": token
+            "Authorization": "\(token)"
         ]
         
         return try await withCheckedThrowingContinuation { continuation in
@@ -61,6 +61,25 @@ class AuthAPI {
             )
             .validate()
             .responseDecodable(of: UserDelete.self) { response in
+                self.handleResponse(response, continuation)
+            }
+        }
+    }
+    
+    func performGetSelf(with token: String) async throws -> UserInfo {
+        let endpoint = "/self"
+        
+        let headers: HTTPHeaders = [
+            "Authorization": "\(token)"
+        ]
+        
+        return try await withCheckedThrowingContinuation { continuation in
+            AF.request(baseUrl + endpoint,
+                       method: .get,
+                       headers: headers
+            )
+            .validate()
+            .responseDecodable(of: UserInfo.self) { response in
                 self.handleResponse(response, continuation)
             }
         }

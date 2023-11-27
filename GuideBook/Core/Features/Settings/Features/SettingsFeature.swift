@@ -15,6 +15,8 @@ struct SettingsFeature: Reducer {
         var user: UserInfo?
         @PresentationState var alert: AlertState<Action.Alert>?
         var authState = AuthFeature.State()
+        let token = AuthService.shared.retrieveToken()?.accessToken ?? ""
+
     }
     
     enum Action: Equatable {
@@ -26,6 +28,9 @@ struct SettingsFeature: Reducer {
         case onSignOut
         case onDeleteAccount
         case onDeleteSuccess(UserDelete)
+        
+        case settingsDidAppear
+        case onGetSelf(UserInfo)
                 
         enum Alert: Equatable {
             case confirmSignOutTapped
@@ -39,24 +44,23 @@ struct SettingsFeature: Reducer {
             case .alert(.presented(.confirmSignOutTapped)):
                 return .send(.onSignOut)
             case .onSignOut:
-                AuthService.shared.deleteToken()
+                deleteToken()
                 return .none
                 
             case .alert(.presented(.confirmDeleteTapped)):
                 return .send(.onDeleteAccount)
             case .onDeleteAccount:
-                let token = AuthService.shared.retrieveToken()?.accessToken ?? ""
-                
+                let token = state.token
                 return .run { send in
                     do {
-                        let result = try await AuthAPI.shared.performDelete(with: token)
+                        let result = try await deleteAccount(with: token)
                         await send(.onDeleteSuccess(result))
                     } catch {
                         print(error)
                     }
                 }
             case .onDeleteSuccess:
-                AuthService.shared.deleteToken()
+                deleteToken()
                 return .none
                 
             case .alert:
@@ -90,8 +94,33 @@ struct SettingsFeature: Reducer {
                     TextState("Are you sure you want to delete your account?")
                 }
                 return .none
+            case .settingsDidAppear:
+                let token = state.token
+                return .run { send in
+                    do {
+                        let user = try await getSelf(with: token)
+                        await send(.onGetSelf(user))
+                    } catch {
+                        print(error)
+                    }
+                }
+            case let .onGetSelf(user):
+                state.user = user
+                return .none
             }
         }
         .ifLet(\.$alert, action: /Action.alert)
+    }
+    
+    private func getSelf(with token: String) async throws -> UserInfo {
+        return try await AuthAPI.shared.performGetSelf(with: token)
+    }
+    
+    private func deleteAccount(with token: String) async throws -> UserDelete {
+        return try await AuthAPI.shared.performDelete(with: token)
+    }
+    
+    private func deleteToken() {
+        AuthService.shared.deleteToken()
     }
 }
