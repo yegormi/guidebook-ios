@@ -13,7 +13,7 @@ struct HomeCoordinator: Reducer {
     struct State: Equatable, IndexedRouterState {
         var routes: [Route<HomeScreen.State>]
         static let initialState = State(
-            routes: [.root(.main(.init()), embedInNavigationView: true)]
+            routes: [.root(.main(.init(guides: [])), embedInNavigationView: true)]
         )
     }
     

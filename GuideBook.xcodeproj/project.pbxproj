@@ -57,6 +57,7 @@
 		EE9888C12B153DE4009445BC /* SettingsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9888C02B153DE4009445BC /* SettingsCoordinator.swift */; };
 		EE9888C32B153E5D009445BC /* SettingsCoordinatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9888C22B153E5D009445BC /* SettingsCoordinatorView.swift */; };
 		EE9888C52B153ECF009445BC /* SettingsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9888C42B153ECF009445BC /* SettingsScreen.swift */; };
+		EE9888C72B1552B3009445BC /* GuideAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9888C62B1552B3009445BC /* GuideAPI.swift */; };
 		EEA012BA2AFA8180004311F3 /* RootCoordinatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA012B82AFA8180004311F3 /* RootCoordinatorView.swift */; };
 		EEA012BB2AFA8180004311F3 /* RootScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA012B92AFA8180004311F3 /* RootScreen.swift */; };
 		EEA012C02AFABCA3004311F3 /* Guide.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA012BF2AFABCA3004311F3 /* Guide.swift */; };
@@ -131,6 +132,7 @@
 		EE9888C02B153DE4009445BC /* SettingsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCoordinator.swift; sourceTree = "<group>"; };
 		EE9888C22B153E5D009445BC /* SettingsCoordinatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCoordinatorView.swift; sourceTree = "<group>"; };
 		EE9888C42B153ECF009445BC /* SettingsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsScreen.swift; sourceTree = "<group>"; };
+		EE9888C62B1552B3009445BC /* GuideAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideAPI.swift; sourceTree = "<group>"; };
 		EEA012B82AFA8180004311F3 /* RootCoordinatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootCoordinatorView.swift; sourceTree = "<group>"; };
 		EEA012B92AFA8180004311F3 /* RootScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootScreen.swift; sourceTree = "<group>"; };
 		EEA012BF2AFABCA3004311F3 /* Guide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Guide.swift; sourceTree = "<group>"; };
@@ -305,6 +307,7 @@
 			isa = PBXGroup;
 			children = (
 				EE5677612B10B24C00DDE4A0 /* Auth */,
+				EE9888C82B1552B7009445BC /* Guide */,
 				EEA012DC2AFBAA11004311F3 /* Components */,
 				EEF2F19A2AF82710009F4677 /* Extensions.swift */,
 				EEA012D92AFB7C69004311F3 /* Helpers.swift */,
@@ -340,6 +343,14 @@
 			path = Screenshots;
 			sourceTree = "<group>";
 		};
+		EE9888C82B1552B7009445BC /* Guide */ = {
+			isa = PBXGroup;
+			children = (
+				EE9888C62B1552B3009445BC /* GuideAPI.swift */,
+			);
+			path = Guide;
+			sourceTree = "<group>";
+		};
 		EEA012BC2AFA8183004311F3 /* Root */ = {
 			isa = PBXGroup;
 			children = (
@@ -354,6 +365,8 @@
 			isa = PBXGroup;
 			children = (
 				EEA012D42AFACCBF004311F3 /* Components */,
+				EE297A302B14A905006FC0C4 /* HomeMain.swift */,
+				EE140B172AFA5221001A4461 /* HomeCoordinatorView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -361,10 +374,8 @@
 		EEA012BE2AFABC76004311F3 /* Features */ = {
 			isa = PBXGroup;
 			children = (
-				EE297A2E2B14A5AD006FC0C4 /* HomeCoordinator.swift */,
-				EE140B172AFA5221001A4461 /* HomeCoordinatorView.swift */,
 				EE140B182AFA5221001A4461 /* HomeScreen.swift */,
-				EE297A302B14A905006FC0C4 /* HomeMain.swift */,
+				EE297A2E2B14A5AD006FC0C4 /* HomeCoordinator.swift */,
 			);
 			path = Features;
 			sourceTree = "<group>";
@@ -410,8 +421,8 @@
 				EE3767FB2B112D51007DFA25 /* Splash */,
 				EEF2F17F2AF7CE0B009F4677 /* Tabs */,
 				EEF2F18B2AF7D1C5009F4677 /* Auth */,
-				EE140B1B2AFA5226001A4461 /* Home */,
 				EE140B222AFA523E001A4461 /* Favorites */,
+				EE140B1B2AFA5226001A4461 /* Home */,
 				EE140B062AFA35F6001A4461 /* Settings */,
 			);
 			path = Features;
@@ -633,6 +644,7 @@
 				EE3767F92B112D48007DFA25 /* SplashView.swift in Sources */,
 				EE140B162AFA41B0001A4461 /* UserDelete.swift in Sources */,
 				EE2809562AF852E600093049 /* AuthType.swift in Sources */,
+				EE9888C72B1552B3009445BC /* GuideAPI.swift in Sources */,
 				EEEB8D272AF8EAEA007DEBAE /* SignIn.swift in Sources */,
 				EE0C21882AE861D700668357 /* GuideBookApp.swift in Sources */,
 				EEA012BB2AFA8180004311F3 /* RootScreen.swift in Sources */,

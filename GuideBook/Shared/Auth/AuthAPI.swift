@@ -11,7 +11,7 @@ import Alamofire
 class AuthAPI {
     static let shared = AuthAPI()
     
-    let baseUrl = "https://guidebook-api.azurewebsites.net"
+    let baseUrl = Helpers.baseUrl
 
     func performSignIn(email: String, password: String) async throws -> AuthResponse {
         let signInRequest = SignIn(email: email, password: password)

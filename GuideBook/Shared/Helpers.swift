@@ -8,5 +8,6 @@
 import SwiftUI
 
 struct Helpers {
+    static let baseUrl = "https://guidebook-api.azurewebsites.net"
     static let screen = UIScreen.main.bounds
 }
