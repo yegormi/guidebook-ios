@@ -58,6 +58,7 @@
 		EE9888C32B153E5D009445BC /* SettingsCoordinatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9888C22B153E5D009445BC /* SettingsCoordinatorView.swift */; };
 		EE9888C52B153ECF009445BC /* SettingsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9888C42B153ECF009445BC /* SettingsScreen.swift */; };
 		EE9888C72B1552B3009445BC /* GuideAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9888C62B1552B3009445BC /* GuideAPI.swift */; };
+		EE9888D02B15557D009445BC /* FavoritesMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9888CF2B15557D009445BC /* FavoritesMainView.swift */; };
 		EEA012BA2AFA8180004311F3 /* RootCoordinatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA012B82AFA8180004311F3 /* RootCoordinatorView.swift */; };
 		EEA012BB2AFA8180004311F3 /* RootScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA012B92AFA8180004311F3 /* RootScreen.swift */; };
 		EEA012C02AFABCA3004311F3 /* Guide.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA012BF2AFABCA3004311F3 /* Guide.swift */; };
@@ -133,6 +134,7 @@
 		EE9888C22B153E5D009445BC /* SettingsCoordinatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCoordinatorView.swift; sourceTree = "<group>"; };
 		EE9888C42B153ECF009445BC /* SettingsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsScreen.swift; sourceTree = "<group>"; };
 		EE9888C62B1552B3009445BC /* GuideAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideAPI.swift; sourceTree = "<group>"; };
+		EE9888CF2B15557D009445BC /* FavoritesMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesMainView.swift; sourceTree = "<group>"; };
 		EEA012B82AFA8180004311F3 /* RootCoordinatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootCoordinatorView.swift; sourceTree = "<group>"; };
 		EEA012B92AFA8180004311F3 /* RootScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootScreen.swift; sourceTree = "<group>"; };
 		EEA012BF2AFABCA3004311F3 /* Guide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Guide.swift; sourceTree = "<group>"; };
@@ -269,10 +271,8 @@
 		EE140B222AFA523E001A4461 /* Favorites */ = {
 			isa = PBXGroup;
 			children = (
-				EE9888BC2B153B75009445BC /* FavoritesMain.swift */,
-				EE140B1F2AFA523B001A4461 /* FavoritesScreen.swift */,
-				EE9888BE2B153C03009445BC /* FavoritesCoordinator.swift */,
-				EE140B1E2AFA523B001A4461 /* FavoritesCoordinatorView.swift */,
+				EE9888D12B155596009445BC /* Features */,
+				EE9888D22B15559E009445BC /* Views */,
 			);
 			path = Favorites;
 			sourceTree = "<group>";
@@ -297,8 +297,8 @@
 		EE3767FB2B112D51007DFA25 /* Splash */ = {
 			isa = PBXGroup;
 			children = (
-				EE3767F82B112D48007DFA25 /* SplashFeature.swift */,
-				EE3767F72B112D48007DFA25 /* SplashView.swift */,
+				EE9888CB2B155544009445BC /* Features */,
+				EE9888CC2B155548009445BC /* Views */,
 			);
 			path = Splash;
 			sourceTree = "<group>";
@@ -351,12 +351,79 @@
 			path = Guide;
 			sourceTree = "<group>";
 		};
-		EEA012BC2AFA8183004311F3 /* Root */ = {
+		EE9888C92B155528009445BC /* Features */ = {
 			isa = PBXGroup;
 			children = (
 				EEA012B92AFA8180004311F3 /* RootScreen.swift */,
 				EE3767F22B112A65007DFA25 /* RootCoordinator.swift */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		EE9888CA2B15553C009445BC /* Views */ = {
+			isa = PBXGroup;
+			children = (
 				EEA012B82AFA8180004311F3 /* RootCoordinatorView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		EE9888CB2B155544009445BC /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				EE3767F82B112D48007DFA25 /* SplashFeature.swift */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		EE9888CC2B155548009445BC /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				EE3767F72B112D48007DFA25 /* SplashView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		EE9888CD2B155550009445BC /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				EE297A462B14D662006FC0C4 /* TabsCoordinator.swift */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		EE9888CE2B155557009445BC /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				EE297A482B14D66C006FC0C4 /* TabsCoordinatorView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		EE9888D12B155596009445BC /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				EE9888BC2B153B75009445BC /* FavoritesMain.swift */,
+				EE140B1F2AFA523B001A4461 /* FavoritesScreen.swift */,
+				EE9888BE2B153C03009445BC /* FavoritesCoordinator.swift */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		EE9888D22B15559E009445BC /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				EE9888CF2B15557D009445BC /* FavoritesMainView.swift */,
+				EE140B1E2AFA523B001A4461 /* FavoritesCoordinatorView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		EEA012BC2AFA8183004311F3 /* Root */ = {
+			isa = PBXGroup;
+			children = (
+				EE9888C92B155528009445BC /* Features */,
+				EE9888CA2B15553C009445BC /* Views */,
 			);
 			path = Root;
 			sourceTree = "<group>";
@@ -408,8 +475,8 @@
 		EEF2F17F2AF7CE0B009F4677 /* Tabs */ = {
 			isa = PBXGroup;
 			children = (
-				EE297A462B14D662006FC0C4 /* TabsCoordinator.swift */,
-				EE297A482B14D66C006FC0C4 /* TabsCoordinatorView.swift */,
+				EE9888CD2B155550009445BC /* Features */,
+				EE9888CE2B155557009445BC /* Views */,
 			);
 			path = Tabs;
 			sourceTree = "<group>";
@@ -643,6 +710,7 @@
 				EE140B042AFA35E4001A4461 /* SettingsFeature.swift in Sources */,
 				EE3767F92B112D48007DFA25 /* SplashView.swift in Sources */,
 				EE140B162AFA41B0001A4461 /* UserDelete.swift in Sources */,
+				EE9888D02B15557D009445BC /* FavoritesMainView.swift in Sources */,
 				EE2809562AF852E600093049 /* AuthType.swift in Sources */,
 				EE9888C72B1552B3009445BC /* GuideAPI.swift in Sources */,
 				EEEB8D272AF8EAEA007DEBAE /* SignIn.swift in Sources */,

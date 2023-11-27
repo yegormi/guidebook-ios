@@ -1,8 +1,8 @@
 //
-//  FavoritesMain.swift
+//  FavoritesMainView.swift
 //  GuideBook
 //
-//  Created by Yegor Myropoltsev on 27.11.2023.
+//  Created by Yegor Myropoltsev on 28.11.2023.
 //
 
 import SwiftUI
@@ -16,19 +16,5 @@ struct FavoritesMainView: View {
             Text("Favorites -> Main")
         }
         .navigationTitle(Tab.favorites.rawValue)
-    }
-}
-
-struct FavoritesMain: Reducer {
-    struct State: Equatable {
-
-    }
-    
-    enum Action: Equatable {
-        
-    }
-    
-    var body: some Reducer<State, Action> {
-        EmptyReducer()
     }
 }
