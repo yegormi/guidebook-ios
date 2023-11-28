@@ -9,6 +9,7 @@
 import Foundation
 import ComposableArchitecture
 
+@Reducer
 struct RootScreen: Reducer {
     enum State: Equatable {
         case splash(SplashFeature.State)

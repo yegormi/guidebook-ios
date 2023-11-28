@@ -16,13 +16,13 @@ struct TabsCoordinatorView: View {
             TabView(
                 selection: viewStore.binding(
                     get: \.selectedTab,
-                    send: { .tabSelected($0) }
+                    send: TabsCoordinator.Action.tabSelected
                 )
             ) {
                 HomeCoordinatorView(
                     store: self.store.scope(
                         state: \.home,
-                        action: { .home($0) }
+                        action: \.home
                     )
                 )
                 .tabItem { Label("Home", systemImage: "house") }
@@ -31,7 +31,7 @@ struct TabsCoordinatorView: View {
                 FavoritesCoordinatorView(
                     store: self.store.scope(
                         state: \.favorites,
-                        action: { .favorites($0) }
+                        action: \.favorites
                     )
                 )
                 .tabItem { Label("Favorites", systemImage: "heart") }
@@ -40,7 +40,7 @@ struct TabsCoordinatorView: View {
                 SettingsCoordinatorView(
                     store: self.store.scope(
                         state: \.settings,
-                        action: { .settings($0) }
+                        action: \.settings
                     )
                 )
                 .tabItem { Label("Settings", systemImage: "gearshape") }

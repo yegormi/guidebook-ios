@@ -10,6 +10,7 @@ import Foundation
 import ComposableArchitecture
 import TCACoordinators
 
+@Reducer
 struct FavoritesScreen: Reducer {
     enum State: Equatable {
         case main(FavoritesMain.State)

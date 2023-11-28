@@ -9,6 +9,7 @@ import Foundation
 import ComposableArchitecture
 import TCACoordinators
 
+@Reducer
 struct HomeCoordinator: Reducer {
     struct State: Equatable, IndexedRouterState {
         var routes: [Route<HomeScreen.State>]

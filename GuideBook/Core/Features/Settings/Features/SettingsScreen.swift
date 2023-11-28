@@ -9,6 +9,7 @@ import Foundation
 import ComposableArchitecture
 import TCACoordinators
 
+@Reducer
 struct SettingsScreen: Reducer {
     enum State: Equatable {
         case main(SettingsFeature.State)

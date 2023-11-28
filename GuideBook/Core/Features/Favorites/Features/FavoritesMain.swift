@@ -8,6 +8,7 @@
 import Foundation
 import ComposableArchitecture
 
+@Reducer
 struct FavoritesMain: Reducer {
     struct State: Equatable {
 

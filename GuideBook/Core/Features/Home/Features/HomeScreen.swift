@@ -9,6 +9,7 @@
 import Foundation
 import ComposableArchitecture
 
+@Reducer
 struct HomeScreen: Reducer {
     enum State: Equatable {
         case main(HomeMain.State)

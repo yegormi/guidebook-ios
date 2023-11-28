@@ -9,6 +9,7 @@ import Foundation
 import ComposableArchitecture
 import TCACoordinators
 
+@Reducer
 struct FavoritesCoordinator: Reducer {
     struct State: Equatable, IndexedRouterState {
         var routes: [Route<FavoritesScreen.State>]

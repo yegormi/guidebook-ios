@@ -9,6 +9,7 @@ import Foundation
 import ComposableArchitecture
 import Alamofire
 
+@Reducer
 struct AuthFeature: Reducer {
     struct State: Equatable {
         var username: String = ""

@@ -15,6 +15,7 @@ enum Tab: String, CaseIterable, Equatable {
     case settings = "Settings"
 }
 
+@Reducer
 struct TabsCoordinator: Reducer {
     struct State: Equatable {
         var home: HomeCoordinator.State

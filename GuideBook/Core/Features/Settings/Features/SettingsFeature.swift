@@ -10,6 +10,7 @@ import SwiftUI
 import ComposableArchitecture
 import Alamofire
 
+@Reducer
 struct SettingsFeature: Reducer {
     struct State: Equatable {
         var user: UserInfo?
@@ -126,7 +127,7 @@ struct SettingsFeature: Reducer {
                 return .none
             }
         }
-        .ifLet(\.$alert, action: /Action.alert)
+        .ifLet(\.$alert, action: \.alert)
     }
     
     private func getSelf(with token: String) async throws -> UserInfo {

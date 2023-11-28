@@ -9,6 +9,7 @@
 import Foundation
 import ComposableArchitecture
 
+@Reducer
 struct SplashFeature: Reducer {
     struct State: Equatable {
         var response: AuthResponse?

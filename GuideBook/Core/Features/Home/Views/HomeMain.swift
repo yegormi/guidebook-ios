@@ -24,6 +24,7 @@ struct HomeMainView: View {
     }
 }
 
+@Reducer
 struct HomeMain: Reducer {
     struct State: Equatable {
         var guides: [Guide]
