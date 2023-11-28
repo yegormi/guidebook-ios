@@ -16,11 +16,14 @@ struct HomeMainView: View {
             List(viewStore.guides) { guide in
                 GuideView(item: guide)
             }
+            .navigationTitle(Tab.home.rawValue)
+            .onAppear {
+                if !viewStore.viewDidAppear {
+                    viewStore.send(.onAppear)
+                }
+            }
         }
-        .navigationTitle(Tab.home.rawValue)
-        .onAppear {
-            store.send(.onAppear)
-        }
+        
     }
 }
 
@@ -30,6 +33,7 @@ struct HomeMain: Reducer {
     @Dependency(\.guideClient) var guideClient
     
     struct State: Equatable {
+        var viewDidAppear = false
         var guides: [Guide]
     }
     
@@ -43,6 +47,7 @@ struct HomeMain: Reducer {
         Reduce { state, action in
             switch action {
             case .onAppear :
+                state.viewDidAppear = true
                 return .send(.fetchGuides)
             case .fetchGuides:
                 return .run { send in

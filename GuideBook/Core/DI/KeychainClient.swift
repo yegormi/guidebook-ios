@@ -12,9 +12,9 @@ import Alamofire
 
 @DependencyClient
 struct KeychainClient {
-    var saveToken: @Sendable (AuthResponse) -> Void
+    var saveToken:     @Sendable (AuthResponse) -> Void
     var retrieveToken: @Sendable () -> AuthResponse?
-    var deleteToken: @Sendable () -> Void
+    var deleteToken:   @Sendable () -> Void
 }
 
 extension DependencyValues {

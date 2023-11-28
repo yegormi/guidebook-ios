@@ -425,8 +425,8 @@
             filePath = "GuideBook/Core/Features/Home/Views/HomeMain.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "64"
-            endingLineNumber = "64"
+            startingLineNumber = "69"
+            endingLineNumber = "69"
             landmarkName = "fetchGuides()"
             landmarkType = "7">
          </BreakpointContent>
@@ -441,8 +441,8 @@
             filePath = "GuideBook/Core/Features/Home/Views/HomeMain.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "65"
-            endingLineNumber = "65"
+            startingLineNumber = "70"
+            endingLineNumber = "70"
             landmarkName = "fetchGuides()"
             landmarkType = "7">
             <Locations>
@@ -523,6 +523,54 @@
             endingLineNumber = "116"
             landmarkName = "body"
             landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "ADC8332C-4639-4004-B8A0-3EAF9E1DE29F"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GuideBook/Core/Features/Home/Views/HomeMain.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "62"
+            endingLineNumber = "62"
+            landmarkName = "body"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "ADC8332C-4639-4004-B8A0-3EAF9E1DE29F - 350d542ce29f7063"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "GuideBook.HomeMain.body.getter : some"
+                  moduleName = "GuideBook"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yegormyropoltsev/Desktop/GuideBook/GuideBook/Core/Features/Home/Views/HomeMain.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "62"
+                  endingLineNumber = "62"
+                  offsetFromSymbolStart = "412">
+               </Location>
+               <Location
+                  uuid = "ADC8332C-4639-4004-B8A0-3EAF9E1DE29F - 8ec0436159f02f93"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (inout GuideBook.HomeMain.State, GuideBook.HomeMain.Action) -&gt; ComposableArchitecture.Effect&lt;GuideBook.HomeMain.Action&gt; in GuideBook.HomeMain.body.getter : some"
+                  moduleName = "GuideBook"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yegormyropoltsev/Desktop/GuideBook/GuideBook/Core/Features/Home/Views/HomeMain.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "62"
+                  endingLineNumber = "62"
+                  offsetFromSymbolStart = "488">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
