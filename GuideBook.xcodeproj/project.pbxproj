@@ -34,7 +34,6 @@
 		EE3767FA2B112D48007DFA25 /* SplashFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3767F82B112D48007DFA25 /* SplashFeature.swift */; };
 		EE40B6832B0FDD0A000C07BD /* SkeletonUI in Frameworks */ = {isa = PBXBuildFile; productRef = EE40B6822B0FDD0A000C07BD /* SkeletonUI */; };
 		EE5270982B13A36800950073 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5270972B13A36800950073 /* AuthService.swift */; };
-		EE56775C2B10AB8200DDE4A0 /* AuthAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE56775B2B10AB8200DDE4A0 /* AuthAPI.swift */; };
 		EE5677602B10AEDD00DDE4A0 /* Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE56775F2B10AEDD00DDE4A0 /* Validation.swift */; };
 		EE5677642B10BDBF00DDE4A0 /* KeychainSwift in Frameworks */ = {isa = PBXBuildFile; productRef = EE5677632B10BDBF00DDE4A0 /* KeychainSwift */; };
 		EE5677672B11090A00DDE4A0 /* AlertToast in Frameworks */ = {isa = PBXBuildFile; productRef = EE5677662B11090A00DDE4A0 /* AlertToast */; };
@@ -52,6 +51,7 @@
 		EE7B13B02AF500C800A45F1B /* details.png in Resources */ = {isa = PBXBuildFile; fileRef = EE7B13A52AF500C800A45F1B /* details.png */; };
 		EE7B13B22AF500C800A45F1B /* settings.png in Resources */ = {isa = PBXBuildFile; fileRef = EE7B13A72AF500C800A45F1B /* settings.png */; };
 		EE7B13B32AF500C800A45F1B /* home.png in Resources */ = {isa = PBXBuildFile; fileRef = EE7B13A82AF500C800A45F1B /* home.png */; };
+		EE7F96E22B1571B50071A99F /* AuthClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7F96E12B1571B50071A99F /* AuthClient.swift */; };
 		EE9888BD2B153B75009445BC /* FavoritesMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9888BC2B153B75009445BC /* FavoritesMain.swift */; };
 		EE9888BF2B153C03009445BC /* FavoritesCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9888BE2B153C03009445BC /* FavoritesCoordinator.swift */; };
 		EE9888C12B153DE4009445BC /* SettingsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9888C02B153DE4009445BC /* SettingsCoordinator.swift */; };
@@ -114,7 +114,6 @@
 		EE3767F72B112D48007DFA25 /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		EE3767F82B112D48007DFA25 /* SplashFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashFeature.swift; sourceTree = "<group>"; };
 		EE5270972B13A36800950073 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
-		EE56775B2B10AB8200DDE4A0 /* AuthAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthAPI.swift; sourceTree = "<group>"; };
 		EE56775F2B10AEDD00DDE4A0 /* Validation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validation.swift; sourceTree = "<group>"; };
 		EE5AE1A62AF9407E00381B33 /* ErrorResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorResponse.swift; sourceTree = "<group>"; };
 		EE6127EC2AF50FB200DA608F /* steps3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = steps3.png; sourceTree = "<group>"; };
@@ -128,6 +127,7 @@
 		EE7B13A52AF500C800A45F1B /* details.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = details.png; sourceTree = "<group>"; };
 		EE7B13A72AF500C800A45F1B /* settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings.png; sourceTree = "<group>"; };
 		EE7B13A82AF500C800A45F1B /* home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home.png; sourceTree = "<group>"; };
+		EE7F96E12B1571B50071A99F /* AuthClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthClient.swift; sourceTree = "<group>"; };
 		EE9888BC2B153B75009445BC /* FavoritesMain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesMain.swift; sourceTree = "<group>"; };
 		EE9888BE2B153C03009445BC /* FavoritesCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesCoordinator.swift; sourceTree = "<group>"; };
 		EE9888C02B153DE4009445BC /* SettingsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCoordinator.swift; sourceTree = "<group>"; };
@@ -282,6 +282,7 @@
 			children = (
 				EE3767F12B1127A5007DFA25 /* App */,
 				EEF2F1882AF7D1AF009F4677 /* Features */,
+				EE7F96E32B1571BA0071A99F /* DI */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -319,7 +320,6 @@
 		EE5677612B10B24C00DDE4A0 /* Auth */ = {
 			isa = PBXGroup;
 			children = (
-				EE56775B2B10AB8200DDE4A0 /* AuthAPI.swift */,
 				EE5270972B13A36800950073 /* AuthService.swift */,
 			);
 			path = Auth;
@@ -341,6 +341,14 @@
 				EE6127F02AF50FB200DA608F /* steps5.png */,
 			);
 			path = Screenshots;
+			sourceTree = "<group>";
+		};
+		EE7F96E32B1571BA0071A99F /* DI */ = {
+			isa = PBXGroup;
+			children = (
+				EE7F96E12B1571B50071A99F /* AuthClient.swift */,
+			);
+			path = DI;
 			sourceTree = "<group>";
 		};
 		EE9888C82B1552B7009445BC /* Guide */ = {
@@ -687,7 +695,6 @@
 				EEF2F1992AF82415009F4677 /* PasswordField.swift in Sources */,
 				EE28095A2AF856A600093049 /* AuthToggleButton.swift in Sources */,
 				EE140B0D2AFA38D8001A4461 /* ProfileCard.swift in Sources */,
-				EE56775C2B10AB8200DDE4A0 /* AuthAPI.swift in Sources */,
 				EE9888C52B153ECF009445BC /* SettingsScreen.swift in Sources */,
 				EE297A492B14D66C006FC0C4 /* TabsCoordinatorView.swift in Sources */,
 				EEFFBA0A2AF9A34600238FA0 /* ErrorText.swift in Sources */,
@@ -706,6 +713,7 @@
 				EE5AE1A72AF9407E00381B33 /* ErrorResponse.swift in Sources */,
 				EEA012BA2AFA8180004311F3 /* RootCoordinatorView.swift in Sources */,
 				EE9888BF2B153C03009445BC /* FavoritesCoordinator.swift in Sources */,
+				EE7F96E22B1571B50071A99F /* AuthClient.swift in Sources */,
 				EEA012CF2AFACCB7004311F3 /* ImageCard.swift in Sources */,
 				EE140B042AFA35E4001A4461 /* SettingsFeature.swift in Sources */,
 				EE3767F92B112D48007DFA25 /* SplashView.swift in Sources */,

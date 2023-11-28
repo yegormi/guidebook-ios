@@ -21,7 +21,7 @@ struct SplashFeature: Reducer {
         case auth
         case tabs
     }
-    
+        
     var body: some Reducer<State, Action> {
         Reduce { state, action in
             switch action {

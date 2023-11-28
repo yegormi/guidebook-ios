@@ -54,6 +54,8 @@ struct AuthFeature: Reducer {
         case authFail(FailResponse)
     }
     
+    @Dependency(\.authClient) var authClient
+    
     var body: some Reducer<State, Action> {
         Reduce { state, action in
             switch action {
@@ -162,11 +164,11 @@ struct AuthFeature: Reducer {
     }
     
     private func signIn(email: String, password: String) async throws -> AuthResponse {
-        return try await AuthAPI.shared.performSignIn(email: email, password: password)
+        return try await authClient.performSignIn(email, password)
     }
     
     private func signUp(username: String, email: String, password: String) async throws -> AuthResponse {
-        return try await AuthAPI.shared.performSignUp(username: username, email: email, password: password)
+        return try await authClient.performSignUp(username, email, password)
     }
 }
 

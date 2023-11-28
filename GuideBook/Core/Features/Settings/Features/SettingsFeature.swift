@@ -52,6 +52,8 @@ struct SettingsFeature: Reducer {
         }
     }
     
+    @Dependency(\.authClient) var authClient
+    
     var body: some Reducer<State, Action> {
         Reduce { state, action in
             switch action {
@@ -131,11 +133,11 @@ struct SettingsFeature: Reducer {
     }
     
     private func getSelf(with token: String) async throws -> UserInfo {
-        return try await AuthAPI.shared.performGetSelf(with: token)
+        return try await authClient.performGetSelf(token)
     }
     
     private func deleteAccount(with token: String) async throws -> UserDelete {
-        return try await AuthAPI.shared.performDelete(with: token)
+        return try await authClient.performDelete(token)
     }
     
     private func deleteToken() {
