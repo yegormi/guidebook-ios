@@ -17,6 +17,10 @@ struct HomeMainView: View {
                 GuideView(item: guide)
             }
             .navigationTitle(Tab.home.rawValue)
+            .searchable(text: viewStore.binding(
+                get: \.searchText,
+                send: { .searchTextChanged($0) }
+            ))
             .onAppear {
                 if !viewStore.viewDidAppear {
                     viewStore.send(.onAppear)
@@ -35,12 +39,14 @@ struct HomeMain: Reducer {
     struct State: Equatable {
         var viewDidAppear = false
         var guides: [Guide]
+        var searchText: String = ""
     }
     
     enum Action: Equatable {
         case onAppear
         case fetchGuides
         case onfetchGuidesSuccess([Guide])
+        case searchTextChanged(String)
     }
     
     var body: some Reducer<State, Action> {
@@ -60,6 +66,9 @@ struct HomeMain: Reducer {
                 }
             case let .onfetchGuidesSuccess(guides):
                 state.guides = guides
+                return .none
+            case let .searchTextChanged(query):
+                state.searchText = query
                 return .none
             }
         }
