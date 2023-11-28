@@ -1,19 +1,20 @@
 import Foundation
+import KeychainSwift
 
 class AuthService {
 
     // MARK: Singleton
     static let shared = AuthService()
 
-    // MARK: UserDefaults
-    private let userDefaults = UserDefaults.standard
-    private let userDefaultsKey = "Token"
+    // MARK: Keychain
+    private let keychain = KeychainSwift()
+    private let keychainKey = "Token"
 
     // MARK: - Save
     func saveToken(with response: AuthResponse) {
         do {
             let authResponse = try JSONEncoder().encode(response)
-            userDefaults.set(authResponse, forKey: userDefaultsKey)
+            keychain.set(authResponse, forKey: keychainKey)
         } catch {
             print("Error saving auth response: \(error)")
         }
@@ -21,7 +22,7 @@ class AuthService {
 
     // MARK: - Retrieve
     func retrieveToken() -> AuthResponse? {
-        if let authResponseData = userDefaults.data(forKey: userDefaultsKey),
+        if let authResponseData = keychain.getData(keychainKey),
             let authResponse = try? JSONDecoder().decode(AuthResponse.self, from: authResponseData) {
             return authResponse
         }
@@ -30,6 +31,6 @@ class AuthService {
 
     // MARK: - Delete
     func deleteToken() {
-        userDefaults.removeObject(forKey: userDefaultsKey)
+        keychain.delete(keychainKey)
     }
 }
