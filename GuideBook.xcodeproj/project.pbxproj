@@ -202,8 +202,8 @@
 			children = (
 				EEF2F1A02AF82BBA009F4677 /* Assets.xcassets */,
 				EE32F9BC2B14065900EBE360 /* Core */,
-				EEF2F19E2AF82BBA009F4677 /* Preview Content */,
 				EE56775E2B10AB8F00DDE4A0 /* Shared */,
+				EEF2F19E2AF82BBA009F4677 /* Preview Content */,
 			);
 			path = GuideBook;
 			sourceTree = "<group>";
@@ -233,11 +233,9 @@
 		EE140B0A2AFA3765001A4461 /* Features */ = {
 			isa = PBXGroup;
 			children = (
-				EE140B012AFA35E4001A4461 /* SettingsView.swift */,
 				EE140B022AFA35E4001A4461 /* SettingsFeature.swift */,
 				EE9888C42B153ECF009445BC /* SettingsScreen.swift */,
 				EE9888C02B153DE4009445BC /* SettingsCoordinator.swift */,
-				EE9888C22B153E5D009445BC /* SettingsCoordinatorView.swift */,
 			);
 			path = Features;
 			sourceTree = "<group>";
@@ -246,6 +244,8 @@
 			isa = PBXGroup;
 			children = (
 				EE140B0E2AFA38E6001A4461 /* Components */,
+				EE140B012AFA35E4001A4461 /* SettingsView.swift */,
+				EE9888C22B153E5D009445BC /* SettingsCoordinatorView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";

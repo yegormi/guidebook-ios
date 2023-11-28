@@ -67,8 +67,7 @@ struct SettingsFeature: Reducer {
             case .alert(.presented(.confirmDeleteTapped)):
                 return .send(.onDeleteAccount)
             case .onDeleteAccount:
-                let token = state.token
-                return .run { send in
+                return .run { [token = state.token] send in
                     do {
                         let result = try await deleteAccount(with: token)
                         await send(.onDeleteSuccess(result))
@@ -114,8 +113,7 @@ struct SettingsFeature: Reducer {
             case .settingsDidAppear:
                 state.settingsDidAppear = true
                 state.token = keychainClient.retrieveToken()?.accessToken ?? ""
-                let token = state.token
-                return .run { send in
+                return .run { [token = state.token] send in
                     do {
                         let user = try await getSelf(with: token)
                         await send(.onGetSelf(user))
