@@ -11,7 +11,7 @@ import Foundation
 
 @DependencyClient
 struct GuideClient {
-    var fetchGuides: @Sendable (String) async throws -> [Guide]
+    var searchGuides: @Sendable (_ token: String, _ query: String) async throws -> [Guide]
 }
 
 extension DependencyValues {
@@ -29,8 +29,12 @@ extension GuideClient: DependencyKey, TestDependencyKey {
     
     /// Live implementation for production use
     static let liveValue = Self(
-        fetchGuides: { token in
+        searchGuides: { token, query in
             let endpoint = "/guides"
+            
+            let parameters: Parameters  = [
+                "query": "\(query)",
+            ]
             
             let headers: HTTPHeaders = [
                 "Authorization": "\(token)"
@@ -39,6 +43,7 @@ extension GuideClient: DependencyKey, TestDependencyKey {
             return try await withCheckedThrowingContinuation { continuation in
                 AF.request(baseUrl + endpoint,
                            method: .get,
+                           parameters: parameters,
                            headers: headers
                 )
                 .validate()

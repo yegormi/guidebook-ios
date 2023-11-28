@@ -18,13 +18,19 @@ struct HomeMainView: View {
             }
             .navigationTitle(Tab.home.rawValue)
             .searchable(text: viewStore.binding(
-                get: \.searchText,
-                send: { .searchTextChanged($0) }
+                get: \.searchQuery,
+                send: { .searchQueryChanged($0) }
             ))
             .onAppear {
                 if !viewStore.viewDidAppear {
                     viewStore.send(.onAppear)
                 }
+            }
+            .task(id: viewStore.searchQuery) {
+                do {
+                    try await Task.sleep(nanoseconds: 200_000_000)
+                    await viewStore.send(.searchQueryChangeDebounced).finish()
+                } catch {}
             }
         }
         
@@ -38,15 +44,18 @@ struct HomeMain: Reducer {
     
     struct State: Equatable {
         var viewDidAppear = false
+        var searchQuery   = ""
         var guides: [Guide]
-        var searchText: String = ""
     }
     
     enum Action: Equatable {
         case onAppear
-        case fetchGuides
-        case onfetchGuidesSuccess([Guide])
-        case searchTextChanged(String)
+        
+        case searchQueryChanged(String)
+        case searchQueryChangeDebounced
+        
+        case searchGuides
+        case onSearchGuidesSuccess([Guide])
     }
     
     var body: some Reducer<State, Action> {
@@ -54,28 +63,30 @@ struct HomeMain: Reducer {
             switch action {
             case .onAppear :
                 state.viewDidAppear = true
-                return .send(.fetchGuides)
-            case .fetchGuides:
-                return .run { send in
+                return .send(.searchGuides)
+            case .searchGuides:
+                return .run { [query = state.searchQuery] send in
                     do {
-                        let guides = try await fetchGuides()
-                        await send(.onfetchGuidesSuccess(guides))
+                        let guides = try await searchGuides(query: query)
+                        await send(.onSearchGuidesSuccess(guides))
                     } catch {
                         print(error)
                     }
                 }
-            case let .onfetchGuidesSuccess(guides):
+            case let .onSearchGuidesSuccess(guides):
                 state.guides = guides
                 return .none
-            case let .searchTextChanged(query):
-                state.searchText = query
+            case let .searchQueryChanged(query):
+                state.searchQuery = query
                 return .none
+            case .searchQueryChangeDebounced:
+                return .send(.searchGuides)
             }
         }
     }
     
-    private func fetchGuides() async throws -> [Guide] {
+    private func searchGuides(query: String) async throws -> [Guide] {
         let token = keychainClient.retrieveToken()?.accessToken ?? ""
-        return try await guideClient.fetchGuides(token)
+        return try await guideClient.searchGuides(token: token, query: query)
     }
 }
