@@ -11,6 +11,8 @@ import ComposableArchitecture
 
 @Reducer
 struct SplashFeature: Reducer {
+    @Dependency(\.keychainClient) var keychainClient
+    
     struct State: Equatable {
         var response: AuthResponse?
         static let initialState = Self()
@@ -21,12 +23,12 @@ struct SplashFeature: Reducer {
         case auth
         case tabs
     }
-        
+    
     var body: some Reducer<State, Action> {
         Reduce { state, action in
             switch action {
             case .appDidLaunch:
-                state.response = AuthService.shared.retrieveToken()
+                state.response = keychainClient.retrieveToken()
                 if state.response != nil {
                     return .send(.tabs)
                 } else {

@@ -9,13 +9,11 @@ import Alamofire
 import ComposableArchitecture
 import Foundation
 
-// MARK: - AuthClient
-
 @DependencyClient
 struct AuthClient {
-    var performSignIn: @Sendable (String, String) async throws -> AuthResponse
-    var performSignUp: @Sendable (String, String, String) async throws -> AuthResponse
-    var performDelete: @Sendable (String) async throws -> UserDelete
+    var performSignIn:  @Sendable (String, String) async throws -> AuthResponse
+    var performSignUp:  @Sendable (String, String, String) async throws -> AuthResponse
+    var performDelete:  @Sendable (String) async throws -> UserDelete
     var performGetSelf: @Sendable (String) async throws -> UserInfo
 }
 
@@ -27,28 +25,12 @@ extension DependencyValues {
 }
 
 extension AuthClient {
-    // Base URL for API requests
     static let baseUrl = Helpers.baseUrl
 }
 
-// MARK: - Response Handling
-
-private func handleResponse<T>(_ response: AFDataResponse<T>, _ continuation: CheckedContinuation<T, Error>) {
-    switch response.result {
-    case .success(let value):
-        continuation.resume(returning: value)
-    case .failure(let error):
-        if let data = response.data,
-           let failResponse = try? JSONDecoder().decode(FailResponse.self, from: data) {
-            continuation.resume(throwing: ErrorResponse.failedWithResponse(failResponse))
-        } else {
-            continuation.resume(throwing: error)
-        }
-    }
-}
-
-extension AuthClient: DependencyKey {
-    // Live implementation for production use
+extension AuthClient: DependencyKey, TestDependencyKey {
+    
+    /// Live implementation for production use
     static let liveValue = Self(
         performSignIn: { email, password in
             let signInRequest = SignIn(email: email, password: password)
@@ -120,6 +102,21 @@ extension AuthClient: DependencyKey {
         }
     )
     
-    // Test implementation with no-op functions
+    /// Test implementation with no-op functions
     static let testValue = Self()
+}
+
+// MARK: - Response Handling
+private func handleResponse<T>(_ response: AFDataResponse<T>, _ continuation: CheckedContinuation<T, Error>) {
+    switch response.result {
+    case .success(let value):
+        continuation.resume(returning: value)
+    case .failure(let error):
+        if let data = response.data,
+           let failResponse = try? JSONDecoder().decode(FailResponse.self, from: data) {
+            continuation.resume(throwing: ErrorResponse.failedWithResponse(failResponse))
+        } else {
+            continuation.resume(throwing: error)
+        }
+    }
 }

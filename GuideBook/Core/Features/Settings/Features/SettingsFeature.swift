@@ -12,10 +12,13 @@ import Alamofire
 
 @Reducer
 struct SettingsFeature: Reducer {
+    @Dependency(\.authClient) var authClient
+    @Dependency(\.keychainClient) var keychainClient
+    
     struct State: Equatable {
         var user: UserInfo?
         @PresentationState var alert: AlertState<Action.Alert>?
-        let token = AuthService.shared.retrieveToken()?.accessToken ?? ""
+        var token: String = ""
         var settingsDidAppear = false
         var selectedMode: Appearance = .auto
         
@@ -51,8 +54,6 @@ struct SettingsFeature: Reducer {
             case confirmDeleteTapped
         }
     }
-    
-    @Dependency(\.authClient) var authClient
     
     var body: some Reducer<State, Action> {
         Reduce { state, action in
@@ -112,6 +113,7 @@ struct SettingsFeature: Reducer {
                 return .none
             case .settingsDidAppear:
                 state.settingsDidAppear = true
+                state.token = keychainClient.retrieveToken()?.accessToken ?? ""
                 let token = state.token
                 return .run { send in
                     do {
@@ -141,6 +143,6 @@ struct SettingsFeature: Reducer {
     }
     
     private func deleteToken() {
-        AuthService.shared.deleteToken()
+        keychainClient.deleteToken()
     }
 }

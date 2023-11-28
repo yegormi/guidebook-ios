@@ -11,6 +11,9 @@ import Alamofire
 
 @Reducer
 struct AuthFeature: Reducer {
+    @Dependency(\.authClient) var authClient
+    @Dependency(\.keychainClient) var keychainClient
+    
     struct State: Equatable {
         var username: String = ""
         var email: String = ""
@@ -53,8 +56,6 @@ struct AuthFeature: Reducer {
         case authSuccessful(AuthResponse)
         case authFail(FailResponse)
     }
-    
-    @Dependency(\.authClient) var authClient
     
     var body: some Reducer<State, Action> {
         Reduce { state, action in
@@ -134,7 +135,7 @@ struct AuthFeature: Reducer {
                 state.response = response
                 state.failResponse = nil
                 state.isLoading = false
-                AuthService.shared.saveToken(with: response)
+                keychainClient.saveToken(response)
                 return .none
                 
             case let .authFail(response):

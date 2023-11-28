@@ -26,6 +26,9 @@ struct HomeMainView: View {
 
 @Reducer
 struct HomeMain: Reducer {
+    @Dependency(\.keychainClient) var keychainClient
+    @Dependency(\.guideClient) var guideClient
+    
     struct State: Equatable {
         var guides: [Guide]
     }
@@ -58,7 +61,7 @@ struct HomeMain: Reducer {
     }
     
     private func fetchGuides() async throws -> [Guide] {
-        let token = AuthService.shared.retrieveToken()?.accessToken ?? ""
-        return try await GuideAPI.shared.fetchGuides(with: token)
+        let token = keychainClient.retrieveToken()?.accessToken ?? ""
+        return try await guideClient.fetchGuides(token)
     }
 }
