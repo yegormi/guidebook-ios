@@ -28,7 +28,7 @@ struct HomeMainView: View {
             }
             .task(id: viewStore.searchQuery) {
                 do {
-                    try await Task.sleep(nanoseconds: 200_000_000)
+                    try await Task.sleep(nanoseconds: 250_000_000)
                     await viewStore.send(.searchQueryChangeDebounced).finish()
                 } catch {}
             }
