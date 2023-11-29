@@ -12,7 +12,7 @@ import Foundation
 @DependencyClient
 struct GuideClient {
     var searchGuides: @Sendable (_ token: String, _ query: String) async throws -> [Guide]
-    var fetchFavorites: @Sendable (_ token: String) async throws -> [Guide]
+    var searchFavorites: @Sendable (_ token: String, _ query: String) async throws -> [Guide]
 }
 
 extension DependencyValues {
@@ -52,8 +52,12 @@ extension GuideClient: DependencyKey, TestDependencyKey {
                     handleResponse(response, continuation)
                 }
             }
-        }, fetchFavorites: { token in
+        }, searchFavorites: { token, query in
             let endpoint = "/favorite/guides"
+            
+            let parameters: Parameters  = [
+                "query": "\(query)",
+            ]
             
             let headers: HTTPHeaders = [
                 "Authorization": "\(token)"
@@ -62,6 +66,7 @@ extension GuideClient: DependencyKey, TestDependencyKey {
             return try await withCheckedThrowingContinuation { continuation in
                 AF.request(baseUrl + endpoint,
                            method: .get,
+                           parameters: parameters,
                            headers: headers
                 )
                 .validate()

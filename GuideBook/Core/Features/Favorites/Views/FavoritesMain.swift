@@ -17,10 +17,20 @@ struct FavoritesMainView: View {
                 GuideView(item: guide)
             }
             .navigationTitle(Tab.favorites.rawValue)
+            .searchable(text: viewStore.binding(
+                get: \.searchQuery,
+                send: { .searchQueryChanged($0) }
+            ))
             .onAppear {
                 if !viewStore.viewDidAppear {
                     viewStore.send(.onAppear)
                 }
+            }
+            .task(id: viewStore.searchQuery) {
+                do {
+                    try await Task.sleep(nanoseconds: 250_000_000)
+                    await viewStore.send(.searchQueryChangeDebounced).finish()
+                } catch {}
             }
         }
         
@@ -34,14 +44,18 @@ struct FavoritesMain: Reducer {
     
     struct State: Equatable {
         var viewDidAppear = false
+        var searchQuery: String = ""
         var favorites: [Guide]
     }
     
     enum Action: Equatable {
         case onAppear
         
-        case fetchFavorites
-        case onFetchFavoritesSuccess([Guide])
+        case searchQueryChanged(String)
+        case searchQueryChangeDebounced
+        
+        case searchFavorites
+        case onSearchFavoritesSuccess([Guide])
     }
     
     var body: some Reducer<State, Action> {
@@ -49,25 +63,30 @@ struct FavoritesMain: Reducer {
             switch action {
             case .onAppear :
                 state.viewDidAppear = true
-                return .send(.fetchFavorites)
-            case .fetchFavorites:
-                return .run { send in
+                return .send(.searchFavorites)
+            case .searchFavorites:
+                return .run { [query = state.searchQuery] send in
                     do {
-                        let favorites = try await fetchFavorites()
-                        await send(.onFetchFavoritesSuccess(favorites))
+                        let guides = try await searchFavorites(query: query)
+                        await send(.onSearchFavoritesSuccess(guides))
                     } catch {
                         print(error)
                     }
                 }
-            case let .onFetchFavoritesSuccess(guides):
+            case let .onSearchFavoritesSuccess(guides):
                 state.favorites = guides
                 return .none
+            case let .searchQueryChanged(query):
+                state.searchQuery = query
+                return .none
+            case .searchQueryChangeDebounced:
+                return .send(.searchFavorites)
             }
         }
     }
     
-    private func fetchFavorites() async throws -> [Guide] {
+    private func searchFavorites(query: String) async throws -> [Guide] {
         let token = keychainClient.retrieveToken()?.accessToken ?? ""
-        return try await guideClient.fetchFavorites(token: token)
+        return try await guideClient.searchFavorites(token: token, query: query)
     }
 }
