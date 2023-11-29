@@ -1,5 +1,5 @@
 //
-//  Header.swift
+//  HeaderView.swift
 //  GuideBook
 //
 //  Created by Yegor Myropoltsev on 06.11.2023.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct Header: View {
+struct HeaderView: View {
     let text: String
     
     init(_ text: String) {
@@ -21,9 +21,9 @@ struct Header: View {
     }
 }
 
-struct Header_Previews: PreviewProvider {
+struct HeaderView_Previews: PreviewProvider {
     static var previews: some View {
-        Header("📘 GuideBook")
+        HeaderView("📘 GuideBook")
             .previewLayout(.sizeThatFits)
             .padding()
     }

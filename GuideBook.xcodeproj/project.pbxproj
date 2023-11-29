@@ -20,7 +20,7 @@
 		EE140B1A2AFA5221001A4461 /* HomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE140B182AFA5221001A4461 /* HomeScreen.swift */; };
 		EE140B202AFA523B001A4461 /* FavoritesCoordinatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE140B1E2AFA523B001A4461 /* FavoritesCoordinatorView.swift */; };
 		EE140B212AFA523B001A4461 /* FavoritesScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE140B1F2AFA523B001A4461 /* FavoritesScreen.swift */; };
-		EE2809542AF84F3400093049 /* Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2809532AF84F3400093049 /* Header.swift */; };
+		EE2809542AF84F3400093049 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2809532AF84F3400093049 /* HeaderView.swift */; };
 		EE2809562AF852E600093049 /* AuthType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2809552AF852E600093049 /* AuthType.swift */; };
 		EE2809582AF8534100093049 /* AuthTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2809572AF8534100093049 /* AuthTitle.swift */; };
 		EE28095A2AF856A600093049 /* AuthToggleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2809592AF856A600093049 /* AuthToggleButton.swift */; };
@@ -58,7 +58,6 @@
 		EE9888C12B153DE4009445BC /* SettingsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9888C02B153DE4009445BC /* SettingsCoordinator.swift */; };
 		EE9888C32B153E5D009445BC /* SettingsCoordinatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9888C22B153E5D009445BC /* SettingsCoordinatorView.swift */; };
 		EE9888C52B153ECF009445BC /* SettingsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9888C42B153ECF009445BC /* SettingsScreen.swift */; };
-		EE9888D02B15557D009445BC /* FavoritesMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9888CF2B15557D009445BC /* FavoritesMainView.swift */; };
 		EEA012BA2AFA8180004311F3 /* RootCoordinatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA012B82AFA8180004311F3 /* RootCoordinatorView.swift */; };
 		EEA012BB2AFA8180004311F3 /* RootScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA012B92AFA8180004311F3 /* RootScreen.swift */; };
 		EEA012C02AFABCA3004311F3 /* Guide.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA012BF2AFABCA3004311F3 /* Guide.swift */; };
@@ -102,7 +101,7 @@
 		EE140B182AFA5221001A4461 /* HomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreen.swift; sourceTree = "<group>"; };
 		EE140B1E2AFA523B001A4461 /* FavoritesCoordinatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesCoordinatorView.swift; sourceTree = "<group>"; };
 		EE140B1F2AFA523B001A4461 /* FavoritesScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesScreen.swift; sourceTree = "<group>"; };
-		EE2809532AF84F3400093049 /* Header.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Header.swift; sourceTree = "<group>"; };
+		EE2809532AF84F3400093049 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		EE2809552AF852E600093049 /* AuthType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthType.swift; sourceTree = "<group>"; };
 		EE2809572AF8534100093049 /* AuthTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthTitle.swift; sourceTree = "<group>"; };
 		EE2809592AF856A600093049 /* AuthToggleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthToggleButton.swift; sourceTree = "<group>"; };
@@ -134,7 +133,6 @@
 		EE9888C02B153DE4009445BC /* SettingsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCoordinator.swift; sourceTree = "<group>"; };
 		EE9888C22B153E5D009445BC /* SettingsCoordinatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCoordinatorView.swift; sourceTree = "<group>"; };
 		EE9888C42B153ECF009445BC /* SettingsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsScreen.swift; sourceTree = "<group>"; };
-		EE9888CF2B15557D009445BC /* FavoritesMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesMainView.swift; sourceTree = "<group>"; };
 		EEA012B82AFA8180004311F3 /* RootCoordinatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootCoordinatorView.swift; sourceTree = "<group>"; };
 		EEA012B92AFA8180004311F3 /* RootScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootScreen.swift; sourceTree = "<group>"; };
 		EEA012BF2AFABCA3004311F3 /* Guide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Guide.swift; sourceTree = "<group>"; };
@@ -304,10 +302,19 @@
 			path = Splash;
 			sourceTree = "<group>";
 		};
+		EE3AB5F82B16B2D0008132CE /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				EEA012BF2AFABCA3004311F3 /* Guide.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		EE56775E2B10AB8F00DDE4A0 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
 				EEA012DC2AFBAA11004311F3 /* Components */,
+				EE3AB5F82B16B2D0008132CE /* Models */,
 				EEF2F19A2AF82710009F4677 /* Extensions.swift */,
 				EEA012D92AFB7C69004311F3 /* Helpers.swift */,
 				EE56775F2B10AEDD00DDE4A0 /* Validation.swift */,
@@ -395,7 +402,6 @@
 		EE9888D12B155596009445BC /* Features */ = {
 			isa = PBXGroup;
 			children = (
-				EE9888BC2B153B75009445BC /* FavoritesMain.swift */,
 				EE140B1F2AFA523B001A4461 /* FavoritesScreen.swift */,
 				EE9888BE2B153C03009445BC /* FavoritesCoordinator.swift */,
 			);
@@ -405,7 +411,7 @@
 		EE9888D22B15559E009445BC /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				EE9888CF2B15557D009445BC /* FavoritesMainView.swift */,
+				EE9888BC2B153B75009445BC /* FavoritesMain.swift */,
 				EE140B1E2AFA523B001A4461 /* FavoritesCoordinatorView.swift */,
 			);
 			path = Views;
@@ -423,7 +429,6 @@
 		EEA012BD2AFABC69004311F3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				EEA012D42AFACCBF004311F3 /* Components */,
 				EE297A302B14A905006FC0C4 /* HomeMain.swift */,
 				EE140B172AFA5221001A4461 /* HomeCoordinatorView.swift */,
 			);
@@ -442,23 +447,15 @@
 		EEA012C32AFABDE0004311F3 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				EEA012BF2AFABCA3004311F3 /* Guide.swift */,
 			);
 			path = Models;
-			sourceTree = "<group>";
-		};
-		EEA012D42AFACCBF004311F3 /* Components */ = {
-			isa = PBXGroup;
-			children = (
-				EEA012C62AFACCB6004311F3 /* GuideView.swift */,
-			);
-			path = Components;
 			sourceTree = "<group>";
 		};
 		EEA012DC2AFBAA11004311F3 /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				EE2809532AF84F3400093049 /* Header.swift */,
+				EEA012C62AFACCB6004311F3 /* GuideView.swift */,
+				EE2809532AF84F3400093049 /* HeaderView.swift */,
 				EEA012C82AFACCB7004311F3 /* ImageCard.swift */,
 			);
 			path = Components;
@@ -676,7 +673,7 @@
 				EE140B202AFA523B001A4461 /* FavoritesCoordinatorView.swift in Sources */,
 				EEA012CD2AFACCB7004311F3 /* GuideView.swift in Sources */,
 				EE9888C12B153DE4009445BC /* SettingsCoordinator.swift in Sources */,
-				EE2809542AF84F3400093049 /* Header.swift in Sources */,
+				EE2809542AF84F3400093049 /* HeaderView.swift in Sources */,
 				EEF2F1992AF82415009F4677 /* PasswordField.swift in Sources */,
 				EE28095A2AF856A600093049 /* AuthToggleButton.swift in Sources */,
 				EE140B0D2AFA38D8001A4461 /* ProfileCard.swift in Sources */,
@@ -702,7 +699,6 @@
 				EE140B042AFA35E4001A4461 /* SettingsFeature.swift in Sources */,
 				EE3767F92B112D48007DFA25 /* SplashView.swift in Sources */,
 				EE140B162AFA41B0001A4461 /* UserDelete.swift in Sources */,
-				EE9888D02B15557D009445BC /* FavoritesMainView.swift in Sources */,
 				EE2809562AF852E600093049 /* AuthType.swift in Sources */,
 				EE7F96E52B15E40B0071A99F /* KeychainClient.swift in Sources */,
 				EEEB8D272AF8EAEA007DEBAE /* SignIn.swift in Sources */,
@@ -861,7 +857,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -893,7 +889,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

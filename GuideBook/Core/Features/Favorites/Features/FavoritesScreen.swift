@@ -8,7 +8,6 @@
 
 import Foundation
 import ComposableArchitecture
-import TCACoordinators
 
 @Reducer
 struct FavoritesScreen: Reducer {

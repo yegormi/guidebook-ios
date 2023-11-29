@@ -15,7 +15,7 @@ struct AuthView: View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in
             ScrollView {
                 VStack {
-                    Header("📘 GuideBook")
+                    HeaderView("📘 GuideBook")
                     
                     HStack {
                         switch viewStore.authType {

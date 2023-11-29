@@ -12,6 +12,7 @@ import Foundation
 @DependencyClient
 struct GuideClient {
     var searchGuides: @Sendable (_ token: String, _ query: String) async throws -> [Guide]
+    var fetchFavorites: @Sendable (_ token: String) async throws -> [Guide]
 }
 
 extension DependencyValues {
@@ -44,6 +45,23 @@ extension GuideClient: DependencyKey, TestDependencyKey {
                 AF.request(baseUrl + endpoint,
                            method: .get,
                            parameters: parameters,
+                           headers: headers
+                )
+                .validate()
+                .responseDecodable(of: [Guide].self) { response in
+                    handleResponse(response, continuation)
+                }
+            }
+        }, fetchFavorites: { token in
+            let endpoint = "/favorite/guides"
+            
+            let headers: HTTPHeaders = [
+                "Authorization": "\(token)"
+            ]
+            
+            return try await withCheckedThrowingContinuation { continuation in
+                AF.request(baseUrl + endpoint,
+                           method: .get,
                            headers: headers
                 )
                 .validate()

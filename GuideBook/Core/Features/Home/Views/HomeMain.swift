@@ -59,7 +59,7 @@ struct HomeMain: Reducer {
     }
     
     var body: some Reducer<State, Action> {
-        Reduce { state, action in
+        Reduce<State, Action> { state, action in
             switch action {
             case .onAppear :
                 state.viewDidAppear = true

@@ -14,7 +14,7 @@ struct FavoritesCoordinator: Reducer {
     struct State: Equatable, IndexedRouterState {
         var routes: [Route<FavoritesScreen.State>]
         static let initialState = State(
-            routes: [.root(.main(.init()), embedInNavigationView: true)]
+            routes: [.root(.main(.init(favorites: [])), embedInNavigationView: true)]
         )
     }
     
