@@ -12,11 +12,10 @@ struct ProfileCardStyle: View {
     let user: UserInfo?
     
     var body: some View {
-        HStack {
+        HStack(spacing: 20) {
             Image(systemName: "person.circle.fill")
                 .font(.system(size: 50))
                 .frame(width: 50, height: 50)
-                .padding(5)
                 .skeleton(with: user == nil,
                           size: CGSize(width: 50, height: 50), 
                           shape: .circle)

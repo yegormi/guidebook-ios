@@ -84,6 +84,7 @@ struct AuthView: View {
                     AuthButton(authType: viewStore.authType, isLoading: viewStore.isLoading, action: {
                         viewStore.send(.authButtonTapped)
                     })
+                    .scaleButtonStyle()
                     .disabled(!viewStore.isLoginAllowed)
                     .opacity(!viewStore.isLoginAllowed ? 0.5 : 1)
                     .padding(.top, 20)

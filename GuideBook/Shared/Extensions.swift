@@ -15,7 +15,12 @@ extension View {
     func inputFieldStyle(type: KeyboardType) -> some View {
         self.modifier(InputFieldStyle(keyboard: type))
     }
+    
+    func scaleButtonStyle() -> some View {
+        self.buttonStyle(ScaleButtonStyle())
+    }
 }
+
 
 extension UIDevice {
     var hasNotch: Bool {
