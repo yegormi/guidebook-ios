@@ -14,10 +14,14 @@ struct FavoritesMainView: View {
     var body: some View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in
             List(viewStore.favorites) { guide in
-                GuideView(item: guide)
-                    .onTapGesture {
-                        viewStore.send(.onGuideTapped(guide))
-                    }
+                NavigationLink {
+                    EmptyView()
+                } label: {
+                    GuideView(item: guide)
+                }
+                .onTapGesture {
+                    viewStore.send(.onItemTapped(guide))
+                }
             }
             .listStyle(.insetGrouped)
             .transition(.move(edge: .bottom))
@@ -65,8 +69,7 @@ struct FavoritesMain: Reducer {
         case searchQueryChanged(String)
         case searchQueryChangeDebounced
         
-        case onGuideTapped(Guide)
-        case onDetailsSuccess(GuideDetails)
+        case onItemTapped(Guide)
     }
     
     var body: some Reducer<State, Action> {
@@ -100,17 +103,7 @@ struct FavoritesMain: Reducer {
                     await send(.searchFavorites)
                 }
                 
-            case .onGuideTapped(let guide):
-                return .run { send in
-                    do {
-                        let details = try await getDetails(id: guide.id)
-                        await send(.onDetailsSuccess(details))
-                    } catch {
-                        print(error)
-                    }
-                }
-            case .onDetailsSuccess(let details):
-                state.details = details
+            case .onItemTapped:
                 return .none
             }
         }
