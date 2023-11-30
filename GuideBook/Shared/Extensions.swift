@@ -16,7 +16,7 @@ extension View {
         self.modifier(InputFieldStyle(keyboard: type))
     }
     
-    func scaleButtonStyle() -> some View {
+    func scaleButton() -> some View {
         self.buttonStyle(ScaleButtonStyle())
     }
 }

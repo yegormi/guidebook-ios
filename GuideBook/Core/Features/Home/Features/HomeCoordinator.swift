@@ -14,7 +14,7 @@ struct HomeCoordinator: Reducer {
     struct State: Equatable, IndexedRouterState {
         var routes: [Route<HomeScreen.State>]
         static let initialState = State(
-            routes: [.root(.main(.init(guides: [])), embedInNavigationView: true)]
+            routes: [.root(.main(.init(guides: [], details: nil)), embedInNavigationView: true)]
         )
     }
     
@@ -26,6 +26,8 @@ struct HomeCoordinator: Reducer {
     var body: some ReducerOf<Self> {
         Reduce<State, Action> { state, action in
             switch action {
+            case .routeAction(_, action: .main(.onItemTapped(let guide))):
+                state.routes.push(.details(.init(guide: guide)))
             default:
                 break
             }

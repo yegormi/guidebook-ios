@@ -5,9 +5,9 @@
 //  Created by Yegor Myropoltsev on 28.11.2023.
 //
 
-import Alamofire
-import ComposableArchitecture
 import Foundation
+import ComposableArchitecture
+import Alamofire
 
 // MARK: - API client interface
 

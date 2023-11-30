@@ -13,15 +13,20 @@ import ComposableArchitecture
 struct HomeScreen: Reducer {
     enum State: Equatable {
         case main(HomeMain.State)
+        case details(DetailsFeature.State)
     }
     
     enum Action: Equatable {
         case main(HomeMain.Action)
+        case details(DetailsFeature.Action)
     }
     
     var body: some Reducer<State, Action> {
         Scope(state: /State.main, action: /Action.main) {
             HomeMain()
+        }
+        Scope(state: /State.details, action: /Action.details) {
+            DetailsFeature()
         }
     }
 }

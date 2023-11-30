@@ -14,24 +14,33 @@ struct HomeMainView: View {
     var body: some View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in
             List(viewStore.guides) { guide in
-                GuideView(item: guide)
+                NavigationLink {
+                    EmptyView()
+                } label: {
+                    GuideView(item: guide)
+                }
+                .onTapGesture {
+                    viewStore.send(.onItemTapped(guide))
+                }
             }
+            .listStyle(.insetGrouped)
+            .transition(.move(edge: .bottom))
             .navigationTitle(Tab.home.rawValue)
             .searchable(text: viewStore.binding(
                 get: \.searchQuery,
                 send: { .searchQueryChanged($0) }
             ))
+            .refreshable {
+                viewStore.send(.onRefresh, animation: .default)
+            }
             .onAppear {
                 if !viewStore.viewDidAppear {
                     viewStore.send(.onAppear)
                 }
             }
-            .task(id: viewStore.searchQuery) {
-                do {
-                    try await Task.sleep(nanoseconds: 250_000_000)
-                    await viewStore.send(.searchQueryChangeDebounced).finish()
-                } catch {}
-            }
+            .onChange(of: viewStore.searchQuery, perform: { query in
+                viewStore.send(.searchQueryChangeDebounced)
+            })
         }
         
     }
@@ -41,21 +50,26 @@ struct HomeMainView: View {
 struct HomeMain: Reducer {
     @Dependency(\.keychainClient) var keychainClient
     @Dependency(\.guideClient) var guideClient
+    @Dependency(\.mainQueue) var mainQueue
     
     struct State: Equatable {
         var viewDidAppear = false
         var searchQuery   = ""
         var guides: [Guide]
+        var details: GuideDetails?
     }
     
     enum Action: Equatable {
         case onAppear
         
+        case searchGuides
+        case onSearchGuidesSuccess([Guide])
+        case onRefresh
+        
         case searchQueryChanged(String)
         case searchQueryChangeDebounced
         
-        case searchGuides
-        case onSearchGuidesSuccess([Guide])
+        case onItemTapped(Guide)
     }
     
     var body: some Reducer<State, Action> {
@@ -68,19 +82,31 @@ struct HomeMain: Reducer {
                 return .run { [query = state.searchQuery] send in
                     do {
                         let guides = try await searchGuides(query: query)
-                        await send(.onSearchGuidesSuccess(guides))
+                        await send(.onSearchGuidesSuccess(guides), animation: .default)
                     } catch {
                         print(error)
                     }
                 }
-            case let .onSearchGuidesSuccess(guides):
+            case .onSearchGuidesSuccess(let guides):
                 state.guides = guides
                 return .none
-            case let .searchQueryChanged(query):
+            case .onRefresh:
+                state.guides = []
+                return .send(.searchGuides)
+                
+            case .searchQueryChanged(let query):
                 state.searchQuery = query
                 return .none
             case .searchQueryChangeDebounced:
-                return .send(.searchGuides)
+                return .run { send in
+                    do {
+                        try await mainQueue.sleep(for: .seconds(0.3))
+                        await send(.searchGuides)
+                    } catch {}
+                }
+                
+            case .onItemTapped:
+                return .none
             }
         }
     }
@@ -88,5 +114,10 @@ struct HomeMain: Reducer {
     private func searchGuides(query: String) async throws -> [Guide] {
         let token = keychainClient.retrieveToken()?.accessToken ?? ""
         return try await guideClient.searchGuides(token: token, query: query)
+    }
+    
+    private func getDetails(id: String) async throws -> GuideDetails {
+        let token = keychainClient.retrieveToken()?.accessToken ?? ""
+        return try await guideClient.getDetails(token: token, id: id)
     }
 }

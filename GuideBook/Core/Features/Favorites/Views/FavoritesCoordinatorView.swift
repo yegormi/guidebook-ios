@@ -23,7 +23,14 @@ struct FavoritesCoordinatorView: View {
                          action: FavoritesScreen.Action.main,
                          then: FavoritesMainView.init
                     )
+                case .details:
+                    CaseLet(
+                        /FavoritesScreen.State.details,
+                         action: FavoritesScreen.Action.details,
+                         then: DetailsView.init
+                    )
                 }
+                
             }
         }
     }

@@ -17,18 +17,16 @@ struct SettingsView: View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in
             Form {
                 Section(header: Text("Profile")) {
-                    ProfileCardStyle(user: viewStore.user)
+                    ProfileCard(user: viewStore.user)
                 }
                 Section(header: Text("Preferences")) {
                     HStack{
                         Text("Color mode")
                         Spacer()
-                        Picker("Color mode",
-                               selection: viewStore.binding(
-                                get: \.selectedMode,
-                                send: { .updateSelectedMode($0) }
-                               )
-                        ) {
+                        Picker("Color mode", selection: viewStore.binding(
+                            get: \.selectedMode,
+                            send: { .updateSelectedMode($0) }
+                        )) {
                             ForEach(Appearance.allCases) { mode in
                                 Image(systemName: mode.modeImage)
                             }

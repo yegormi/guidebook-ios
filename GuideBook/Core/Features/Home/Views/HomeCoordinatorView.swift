@@ -23,6 +23,12 @@ struct HomeCoordinatorView: View {
                          action: HomeScreen.Action.main,
                          then: HomeMainView.init
                     )
+                case .details:
+                    CaseLet(
+                        /HomeScreen.State.details,
+                         action: HomeScreen.Action.details,
+                         then: DetailsView.init
+                    )
                 }
             }
         }

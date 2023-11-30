@@ -1,5 +1,5 @@
 //
-//  GuideStepsPager.swift
+//  StepsPager.swift
 //  GuideBook
 //
 //  Created by Yegor Myropoltsev on 30.11.2023.
@@ -7,9 +7,9 @@
 
 import SwiftUI
 
-struct GuideStepsPager: View {
+struct StepsPager: View {
     let steps: [GuideStep]
-    let guide: GuideDetails
+    let details: GuideDetails
     
     @State private var currentPage = 0
     
@@ -17,7 +17,7 @@ struct GuideStepsPager: View {
         GeometryReader { geometry in
             TabView(selection: $currentPage) {
                 ForEach(0..<steps.count, id: \.self) { index in
-                    GuideStepsStyle(step: steps[index], guide: guide)
+                    StepView(step: steps[index], details: details)
                         .frame(width: geometry.size.width, height: geometry.size.height)
                         .padding(.bottom, 70)
                 }
@@ -68,7 +68,7 @@ struct GuideStepsPager: View {
     }
 }
 
-struct GuideStepsPager_Previews: PreviewProvider {
+struct StepsPager_Previews: PreviewProvider {
     static var sampleGuide = GuideDetails(
         id: "1",
         emoji: "📚",
@@ -88,7 +88,7 @@ struct GuideStepsPager_Previews: PreviewProvider {
     ]
     
     static var previews: some View {
-        GuideStepsPager(steps: sampleGuideSteps, guide: sampleGuide)
+        StepsPager(steps: sampleGuideSteps, details: sampleGuide)
             .previewLayout(.sizeThatFits)
     }
 }

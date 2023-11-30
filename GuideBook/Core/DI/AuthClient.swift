@@ -5,9 +5,14 @@
 //  Created by Yegor Myropoltsev on 28.11.2023.
 //
 
-import Alamofire
-import ComposableArchitecture
 import Foundation
+import ComposableArchitecture
+import Alamofire
+
+// MARK: - API client interface
+
+// Typically this interface would live in its own module, separate from the live implementation.
+// This allows the search feature to compile faster since it only depends on the interface.
 
 @DependencyClient
 struct AuthClient {
@@ -24,14 +29,10 @@ extension DependencyValues {
     }
 }
 
-extension AuthClient {
-    static let baseUrl = Helpers.baseUrl
-}
+// MARK: - Live API implementation
 
 extension AuthClient: DependencyKey, TestDependencyKey {
-    
-    /// Live implementation for production use
-    static let liveValue = Self(
+    static let liveValue = AuthClient(
         performSignIn: { email, password in
             let signInRequest = SignIn(email: email, password: password)
             let endpoint = "/auth/signin"
@@ -101,12 +102,20 @@ extension AuthClient: DependencyKey, TestDependencyKey {
             }
         }
     )
-    
-    /// Test implementation with no-op functions
+}
+
+// MARK: - Test Implementation
+
+extension AuthClient {
     static let testValue = Self()
 }
 
-// MARK: - Response Handling
+// MARK: - Helpers
+
+extension AuthClient {
+    static let baseUrl = Helpers.baseUrl
+}
+
 private func handleResponse<T>(_ response: AFDataResponse<T>, _ continuation: CheckedContinuation<T, Error>) {
     switch response.result {
     case .success(let value):

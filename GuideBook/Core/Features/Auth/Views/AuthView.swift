@@ -11,6 +11,8 @@ import ComposableArchitecture
 struct AuthView: View {
     let store: StoreOf<AuthFeature>
     
+    @Namespace private var animation
+    
     var body: some View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in
             ScrollView {
@@ -78,13 +80,14 @@ struct AuthView: View {
                                     !viewStore.confirmPassword.isEmpty
                                 )
                             )
+                            .transition(.scale)
                         }
                     }
                     
                     AuthButton(authType: viewStore.authType, isLoading: viewStore.isLoading, action: {
                         viewStore.send(.authButtonTapped)
                     })
-                    .scaleButtonStyle()
+                    .scaleButton()
                     .disabled(!viewStore.isLoginAllowed)
                     .opacity(!viewStore.isLoginAllowed ? 0.5 : 1)
                     .padding(.top, 20)
@@ -93,6 +96,8 @@ struct AuthView: View {
                         viewStore.send(.toggleButtonTapped, animation: .easeInOut)
                     })
                     .padding(.vertical, 20)
+                    .animation(.default, value: viewStore.authType)
+                    .matchedGeometryEffect(id: "authToggle", in: animation)
                     
                     Spacer()
                 }

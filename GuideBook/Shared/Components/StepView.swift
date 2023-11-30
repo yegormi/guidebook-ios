@@ -1,5 +1,5 @@
 //
-//  GuideStepsView.swift
+//  StepView.swift
 //  GuideBook
 //
 //  Created by Yegor Myropoltsev on 30.11.2023.
@@ -7,9 +7,9 @@
 
 import SwiftUI
 
-struct GuideStepsView: View {
+struct StepView: View {
     let step:  GuideStep
-    let guide: GuideDetails
+    let details: GuideDetails
     
     var body: some View {
         ScrollView {
@@ -30,7 +30,7 @@ struct GuideStepsView: View {
     }
     
     private var guideTitle: some View {
-        Text("\(guide.emoji) \(guide.title)")
+        Text("\(details.emoji) \(details.title)")
             .font(.system(size: 16))
     }
     
@@ -45,7 +45,7 @@ struct GuideStepsView: View {
 }
 
 
-struct GuideStepsView_Previews: PreviewProvider {
+struct StepView_Previews: PreviewProvider {
     static let sampleStep = GuideStep(id: "1", title: "Step 1", description: "Description for Step 1", image: "https://www.naveedulhaq.com/wp-content/uploads/2023/04/image.png", order: 1, guideId: "guide1")
     static let sampleGuide = GuideDetails(
         id: "1",
@@ -58,7 +58,7 @@ struct GuideStepsView_Previews: PreviewProvider {
         isFavorite: false
     )
     static var previews: some View {
-        GuideStepsView(step: sampleStep, guide: sampleGuide)
+        StepView(step: sampleStep, details: sampleGuide)
             .previewLayout(.sizeThatFits)
     }
 }

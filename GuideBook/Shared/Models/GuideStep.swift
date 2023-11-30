@@ -6,3 +6,12 @@
 //
 
 import Foundation
+
+struct GuideStep: Codable, Equatable {
+    let id: String
+    let title: String
+    let description: String
+    let image: String
+    let order: Int
+    let guideId: String
+}

@@ -5,10 +5,15 @@
 //  Created by Yegor Myropoltsev on 28.11.2023.
 //
 
-import KeychainSwift
-import ComposableArchitecture
 import Foundation
+import ComposableArchitecture
 import Alamofire
+import KeychainSwift
+
+// MARK: - API client interface
+
+// Typically this interface would live in its own module, separate from the live implementation.
+// This allows the search feature to compile faster since it only depends on the interface.
 
 @DependencyClient
 struct KeychainClient {
@@ -24,10 +29,9 @@ extension DependencyValues {
     }
 }
 
-extension KeychainClient: DependencyKey, TestDependencyKey {
-    static let keychainKey = "Token"
+// MARK: - Live API implementation
 
-    /// Live implementation for production use
+extension KeychainClient: DependencyKey, TestDependencyKey {
     static let liveValue = Self(
         saveToken: { response in
             let keychain = KeychainSwift()
@@ -51,7 +55,16 @@ extension KeychainClient: DependencyKey, TestDependencyKey {
             keychain.delete(keychainKey)
         }
     )
+}
 
-    /// Test implementation with no-op functions
+// MARK: - Test Implementation
+
+extension KeychainClient {
     static let testValue = Self()
+}
+
+// MARK: - Helpres
+
+extension KeychainClient {
+    static let keychainKey = "Token"
 }

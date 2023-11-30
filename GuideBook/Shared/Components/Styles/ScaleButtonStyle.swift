@@ -7,13 +7,13 @@
 
 import SwiftUI
 
-public struct ScaleButtonStyle: ButtonStyle {
+struct ScaleButtonStyle: ButtonStyle {
     public init() {}
     
-    public func makeBody(configuration: Self.Configuration) -> some View {
+    func makeBody(configuration: Self.Configuration) -> some View {
         configuration.label
-            .scaleEffect(configuration.isPressed ? 0.95 : 1)
-            .brightness(configuration.isPressed ? -0.10 : 0)
+            .scaleEffect(configuration.isPressed ? 0.9 : 1)
+            .brightness(configuration.isPressed ? -0.1 : 0)
             .animation(.linear(duration: 0.2), value: configuration.isPressed)
     }
 }

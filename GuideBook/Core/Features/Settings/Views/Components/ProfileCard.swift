@@ -8,7 +8,7 @@
 import SwiftUI
 import SkeletonUI
 
-struct ProfileCardStyle: View {
+struct ProfileCard: View {
     let user: UserInfo?
     
     var body: some View {
@@ -42,7 +42,7 @@ struct ProfileCardStyle: View {
 
 
 
-struct ProfileCardStyle_Previews: PreviewProvider {
+struct ProfileCard_Previews: PreviewProvider {
     static var testItem: UserInfo = UserInfo(
         id: "1",
         username: "yegormi",
@@ -50,7 +50,7 @@ struct ProfileCardStyle_Previews: PreviewProvider {
     )
     
     static var previews: some View {
-        ProfileCardStyle(user: testItem)
+        ProfileCard(user: testItem)
             .previewLayout(.sizeThatFits)
     }
 }
