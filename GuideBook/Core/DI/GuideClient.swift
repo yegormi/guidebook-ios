@@ -9,10 +9,17 @@ import Alamofire
 import ComposableArchitecture
 import Foundation
 
+// MARK: - API client interface
+
+// Typically this interface would live in its own module, separate from the live implementation.
+// This allows the search feature to compile faster since it only depends on the interface.
+
 @DependencyClient
 struct GuideClient {
-    var searchGuides: @Sendable (_ token: String, _ query: String) async throws -> [Guide]
+    var searchGuides:    @Sendable (_ token: String, _ query: String) async throws -> [Guide]
     var searchFavorites: @Sendable (_ token: String, _ query: String) async throws -> [Guide]
+    var getDetails:      @Sendable (_ token: String, _ id: String) async throws -> GuideDetails
+    var getSteps:        @Sendable (_ token: String, _ id: String) async throws -> [GuideStep]
 }
 
 extension DependencyValues {
@@ -22,14 +29,10 @@ extension DependencyValues {
     }
 }
 
-extension GuideClient {
-    static let baseUrl = Helpers.baseUrl
-}
+// MARK: - Live API implementation
 
 extension GuideClient: DependencyKey, TestDependencyKey {
-    
-    /// Live implementation for production use
-    static let liveValue = Self(
+    static let liveValue = GuideClient(
         searchGuides: { token, query in
             let endpoint = "/guides"
             
@@ -74,14 +77,57 @@ extension GuideClient: DependencyKey, TestDependencyKey {
                     handleResponse(response, continuation)
                 }
             }
+        }, getDetails: { token, id in
+            let endpoint = "/guides/\(id)"
+            
+            let headers: HTTPHeaders = [
+                "Authorization": "\(token)"
+            ]
+            
+            return try await withCheckedThrowingContinuation { continuation in
+                AF.request(baseUrl + endpoint,
+                           method: .get,
+                           headers: headers
+                )
+                .validate()
+                .responseDecodable(of: GuideDetails.self) { response in
+                    handleResponse(response, continuation)
+                }
+            }
+        }, getSteps: { token, id in
+            let endpoint = "/guides/\(id)/steps"
+            
+            let headers: HTTPHeaders = [
+                "Authorization": "\(token)"
+            ]
+            
+            return try await withCheckedThrowingContinuation { continuation in
+                AF.request(baseUrl + endpoint,
+                           method: .get,
+                           headers: headers
+                )
+                .validate()
+                .responseDecodable(of: [GuideStep].self) { response in
+                    handleResponse(response, continuation)
+                }
+            }
         }
     )
-    
-    /// Test implementation with no-op functions
+}
+
+// MARK: - Test Implementation
+
+extension GuideClient {
     static let testValue = Self()
 }
 
-// MARK: - Response Handling
+// MARK: - Helpers
+
+extension GuideClient {
+    static let baseUrl = Helpers.baseUrl
+}
+
+
 private func handleResponse<T>(_ response: AFDataResponse<T>, _ continuation: CheckedContinuation<T, Error>) {
     switch response.result {
     case .success(let value):
