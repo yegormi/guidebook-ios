@@ -38,8 +38,7 @@ struct DetailsView: View {
                                 Text(viewStore.details?.title)
                                     .font(.system(size: 20))
                                     .skeleton(with: viewStore.details == nil,
-                                              size: CGSize(width: 100, height: 30),
-                                              shape: .rectangle)
+                                              size: CGSize(width: 200, height: 27))
                                 Spacer()
                             }
                         }

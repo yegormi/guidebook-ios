@@ -353,7 +353,7 @@
 		EE56775E2B10AB8F00DDE4A0 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				EE13F5D72B190A0E00B0A8CC /* Details */,
+				EEE811F42B1A152F006681DA /* Features */,
 				EE3AB5F82B16B2D0008132CE /* Models */,
 				EEA012DC2AFBAA11004311F3 /* Components */,
 				EEF2F19A2AF82710009F4677 /* Extensions.swift */,
@@ -504,6 +504,14 @@
 				EE13F5CD2B18AFFE00B0A8CC /* StepView.swift */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		EEE811F42B1A152F006681DA /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				EE13F5D72B190A0E00B0A8CC /* Details */,
+			);
+			path = Features;
 			sourceTree = "<group>";
 		};
 		EEF2F17F2AF7CE0B009F4677 /* Tabs */ = {
