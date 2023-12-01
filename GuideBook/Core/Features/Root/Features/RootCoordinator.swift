@@ -45,6 +45,10 @@ struct RootCoordinator: Reducer {
             case .routeAction(_, .tabs(.settings(.routeAction(_, action: .main(.onDeleteSuccess))))):
                 state.routes.removeAll()
                 state.routes.push(.auth(.init()))
+            
+            case .routeAction(_, .tabs(.alert(.presented(.confirmTapped)))):
+                state.routes.removeAll()
+                state.routes.push(.auth(.init()))
                 
             default:
                 break

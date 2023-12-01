@@ -22,6 +22,9 @@ struct HomeMainView: View {
                 .onTapGesture {
                     viewStore.send(.onItemTapped(guide))
                 }
+                .onLongPressGesture {
+                    viewStore.send(.onItemTapped(guide))
+                }
             }
             .listStyle(.insetGrouped)
             .transition(.move(edge: .bottom))

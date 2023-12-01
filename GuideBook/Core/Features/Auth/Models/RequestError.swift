@@ -12,6 +12,9 @@ enum RequestError: String, Equatable {
     case invalidPassword    // signin password
     case usernameNotUnique  // signup username
     case emailNotUnique     // signup email
+    case tokenExpired       // token expired
+    case tokenInvalid       // token invalid
+    case guideNotFound      // guide not found
     
     var code: String {
         switch self {
@@ -23,6 +26,12 @@ enum RequestError: String, Equatable {
             return "username-not-unique"
         case .emailNotUnique:
             return "email-not-unique"
+        case .tokenExpired:
+            return "jwt-expired"
+        case .tokenInvalid:
+            return "jwt-invalid"
+        case .guideNotFound:
+            return "guide-not-found"
         }
     }
     
@@ -36,6 +45,12 @@ enum RequestError: String, Equatable {
             return "Username is not unique"
         case .emailNotUnique:
             return "Email is not unique"
+        case .tokenExpired:
+            return "Token expired"
+        case .tokenInvalid:
+            return "Token invalid"
+        case .guideNotFound:
+            return "Guide is not found"
         }
     }
 }

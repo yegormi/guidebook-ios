@@ -46,6 +46,15 @@ struct TabsCoordinatorView: View {
                 .tabItem { Label("Settings", systemImage: "gearshape") }
                 .tag(Tab.settings)
             }
+            .alert(
+                store: self.store.scope(
+                    state: \.$alert,
+                    action: \.alert
+                )
+            )
+            .onAppear {
+                viewStore.send(.onAppear)
+            }
         }
     }
 }
