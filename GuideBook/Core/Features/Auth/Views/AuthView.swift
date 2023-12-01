@@ -7,9 +7,12 @@
 
 import SwiftUI
 import ComposableArchitecture
+import AlertToast
+import Reachability
 
 struct AuthView: View {
     let store: StoreOf<AuthFeature>
+    let reachability = Reachability.shared
     
     @Namespace private var animation
     
@@ -85,7 +88,11 @@ struct AuthView: View {
                     }
                     
                     AuthButton(authType: viewStore.authType, isLoading: viewStore.isLoading, action: {
-                        viewStore.send(.authButtonTapped)
+                        if reachability.currentPath.isReachable {
+                            viewStore.send(.authButtonTapped)
+                        } else {
+                            viewStore.send(.toastPresented)
+                        }
                     })
                     .scaleButton()
                     .disabled(!viewStore.isLoginAllowed)
@@ -102,6 +109,12 @@ struct AuthView: View {
                     Spacer()
                 }
                 .padding(30)
+            }
+            .toast(isPresenting: viewStore.binding(
+                get: \.isToastPresented,
+                send: AuthFeature.Action.toastPresented
+            )) {
+                AlertToast(displayMode: .hud, type: .error(Color.red), title: "No internet connection")
             }
         }
     }

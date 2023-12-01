@@ -73,7 +73,6 @@
 		EEA012CD2AFACCB7004311F3 /* GuideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA012C62AFACCB6004311F3 /* GuideView.swift */; };
 		EEA012CF2AFACCB7004311F3 /* ImageCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA012C82AFACCB7004311F3 /* ImageCard.swift */; };
 		EEA012DA2AFB7C69004311F3 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA012D92AFB7C69004311F3 /* Helpers.swift */; };
-		EEE811F32B1A038E006681DA /* StatefulTabView in Frameworks */ = {isa = PBXBuildFile; productRef = EEE811F22B1A038E006681DA /* StatefulTabView */; };
 		EEEB8D1C2AF8D40F007DEBAE /* AuthButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEB8D1B2AF8D40F007DEBAE /* AuthButton.swift */; };
 		EEEB8D1E2AF8D895007DEBAE /* AuthResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEB8D1D2AF8D895007DEBAE /* AuthResponse.swift */; };
 		EEEB8D222AF8E5AD007DEBAE /* FailResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEB8D212AF8E5AD007DEBAE /* FailResponse.swift */; };
@@ -187,7 +186,6 @@
 				EE56776A2B110A6B00DDE4A0 /* Reachability in Frameworks */,
 				EE40B6832B0FDD0A000C07BD /* SkeletonUI in Frameworks */,
 				EE5677642B10BDBF00DDE4A0 /* KeychainSwift in Frameworks */,
-				EEE811F32B1A038E006681DA /* StatefulTabView in Frameworks */,
 				EE5677672B11090A00DDE4A0 /* AlertToast in Frameworks */,
 				EEF2F1822AF7CE61009F4677 /* ComposableArchitecture in Frameworks */,
 				EE3767F62B112AAA007DFA25 /* TCACoordinators in Frameworks */,
@@ -528,8 +526,8 @@
 			children = (
 				EEA012BC2AFA8183004311F3 /* Root */,
 				EE3767FB2B112D51007DFA25 /* Splash */,
-				EEF2F17F2AF7CE0B009F4677 /* Tabs */,
 				EEF2F18B2AF7D1C5009F4677 /* Auth */,
+				EEF2F17F2AF7CE0B009F4677 /* Tabs */,
 				EE140B1B2AFA5226001A4461 /* Home */,
 				EE140B222AFA523E001A4461 /* Favorites */,
 				EE140B062AFA35F6001A4461 /* Settings */,
@@ -636,7 +634,6 @@
 				EE5677662B11090A00DDE4A0 /* AlertToast */,
 				EE5677692B110A6B00DDE4A0 /* Reachability */,
 				EE3767F52B112AAA007DFA25 /* TCACoordinators */,
-				EEE811F22B1A038E006681DA /* StatefulTabView */,
 			);
 			productName = GuideBook;
 			productReference = EE0C21842AE861D700668357 /* GuideBook.app */;
@@ -675,7 +672,6 @@
 				EE5677652B11090A00DDE4A0 /* XCRemoteSwiftPackageReference "AlertToast" */,
 				EE5677682B110A6B00DDE4A0 /* XCRemoteSwiftPackageReference "Reachability" */,
 				EE3767F42B112AAA007DFA25 /* XCRemoteSwiftPackageReference "TCACoordinators" */,
-				EEE811F12B1A038E006681DA /* XCRemoteSwiftPackageReference "StatefulTabView" */,
 			);
 			productRefGroup = EE0C21852AE861D700668357 /* Products */;
 			projectDirPath = "";
@@ -1040,14 +1036,6 @@
 				minimumVersion = 2.1.1;
 			};
 		};
-		EEE811F12B1A038E006681DA /* XCRemoteSwiftPackageReference "StatefulTabView" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/NicholasBellucci/StatefulTabView";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.1.10;
-			};
-		};
 		EEEB8D2A2AF920B6007DEBAE /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
@@ -1096,11 +1084,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = EE7A34412AF530A700685408 /* XCRemoteSwiftPackageReference "swiftui-cached-async-image" */;
 			productName = CachedAsyncImage;
-		};
-		EEE811F22B1A038E006681DA /* StatefulTabView */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = EEE811F12B1A038E006681DA /* XCRemoteSwiftPackageReference "StatefulTabView" */;
-			productName = StatefulTabView;
 		};
 		EEEB8D2B2AF920B6007DEBAE /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;

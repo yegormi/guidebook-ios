@@ -30,6 +30,8 @@ struct AuthFeature: Reducer {
         var response: AuthResponse?
         var failResponse: FailResponse?
         
+        var isToastPresented = false
+        
         var isAbleToSignIn: Bool {
             !email.isEmpty && !password.isEmpty
         }
@@ -55,6 +57,8 @@ struct AuthFeature: Reducer {
         
         case authSuccessful(AuthResponse)
         case authFail(FailResponse)
+        
+        case toastPresented
     }
     
     var body: some Reducer<State, Action> {
@@ -159,6 +163,10 @@ struct AuthFeature: Reducer {
                     break
                 }
                 
+                return .none
+                
+            case .toastPresented:
+                state.isToastPresented.toggle()
                 return .none
             }
         }
