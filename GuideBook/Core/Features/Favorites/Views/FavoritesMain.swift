@@ -14,13 +14,10 @@ struct FavoritesMainView: View {
     var body: some View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in
             List(viewStore.favorites) { guide in
-                NavigationLink {
-                    EmptyView()
+                Button {
+                    viewStore.send(.onItemTapped(guide))
                 } label: {
                     GuideView(item: guide)
-                }
-                .onTapGesture {
-                    viewStore.send(.onItemTapped(guide))
                 }
             }
             .listStyle(.insetGrouped)

@@ -12,9 +12,9 @@ struct GuideView: View {
     let item: Guide
     
     var body: some View {
-        HStack {
+        HStack(spacing: 0) {
             Text(item.emoji)
-                .font(.system(size: 35))
+                .font(.system(size: 30))
                 .padding([.top,.bottom,.trailing], 10)
             VStack(alignment: .leading) {
                 Text(item.title)
@@ -26,6 +26,11 @@ struct GuideView: View {
                     .font(.system(size: 15))
                     .foregroundColor(.secondary)
             }
+            Spacer()
+            Image(systemName: "chevron.forward")
+                .font(.system(size: 13, weight: .semibold))
+                .frame(width: 15, height: 15)
+                .foregroundStyle(Color.primary.opacity(0.4))
         }
     }
 }
@@ -34,7 +39,7 @@ struct GuideView: View {
 struct GuideView_Previews: PreviewProvider {
     static var testItem: Guide = Guide(
         id: "bs9d8f908s7dv9usdf",
-        title: "Guide",
+        title: "Guide to Python Data Science",
         description: "Dive into data science with Python",
         emoji: "🐍"
     )

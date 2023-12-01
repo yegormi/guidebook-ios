@@ -64,6 +64,15 @@
       }
     },
     {
+      "identity" : "statefultabview",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/NicholasBellucci/StatefulTabView",
+      "state" : {
+        "revision" : "9faa432592874b6e20065f2aa63f20f72c5df71c",
+        "version" : "0.1.10"
+      }
+    },
+    {
       "identity" : "swift-case-paths",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/pointfreeco/swift-case-paths",
