@@ -42,9 +42,13 @@ struct DetailsView: View {
                                 Spacer()
                             }
                         }
-                        Image(systemName: "heart")
-                            .foregroundColor(Color.gray)
-                            .font(.system(size: 28))
+                        Button {
+                            viewStore.send(.favoriteTapped)
+                        } label: {
+                            Image(systemName: viewStore.isFavorite ? "heart.fill" : "heart")
+                                .foregroundColor(viewStore.isFavorite ? Color.red : Color.gray)
+                                .font(.system(size: 28))
+                        }
                     }
                     Divider()
                     

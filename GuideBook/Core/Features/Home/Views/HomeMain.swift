@@ -35,9 +35,15 @@ struct HomeMainView: View {
                     viewStore.send(.onAppear)
                 }
             }
-            .onChange(of: viewStore.searchQuery, perform: { query in
-                viewStore.send(.searchQueryChangeDebounced)
-            })
+            .task(id: viewStore.searchQuery) {
+                do {
+                    try await Task.sleep(seconds: 0.3)
+                    await viewStore.send(.searchQueryChangeDebounced).finish()
+                } catch {}
+            }
+//            .onChange(of: viewStore.searchQuery, perform: { query in
+//                viewStore.send(.searchQueryChangeDebounced)
+//            })
         }
         
     }

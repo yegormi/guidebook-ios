@@ -21,8 +21,6 @@ struct ImageCard: View {
                     if let image = phase.image {
                         image
                             .resizable()
-                            .scaledToFill()
-                            .frame(maxWidth: .infinity)
                             .aspectRatio(contentMode: .fill)
                             .blur(radius: 10)
                     }
@@ -33,8 +31,6 @@ struct ImageCard: View {
                     if let image = phase.image {
                         image
                             .resizable()
-                            .scaledToFit()
-                            .frame(maxWidth: .infinity)
                             .aspectRatio(contentMode: .fit)
                             .shadow(radius: 10)
                     } else {

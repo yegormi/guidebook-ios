@@ -16,10 +16,12 @@ import Alamofire
 
 @DependencyClient
 struct GuideClient {
-    var searchGuides:    @Sendable (_ token: String, _ query: String) async throws -> [Guide]
-    var searchFavorites: @Sendable (_ token: String, _ query: String) async throws -> [Guide]
-    var getDetails:      @Sendable (_ token: String, _ id: String) async throws -> GuideDetails
-    var getSteps:        @Sendable (_ token: String, _ id: String) async throws -> [GuideStep]
+    var searchGuides:         @Sendable (_ token: String, _ query: String) async throws -> [Guide]
+    var searchFavorites:      @Sendable (_ token: String, _ query: String) async throws -> [Guide]
+    var getDetails:           @Sendable (_ token: String, _ id: String) async throws -> GuideDetails
+    var getSteps:             @Sendable (_ token: String, _ id: String) async throws -> [GuideStep]
+    var addToFavorites:       @Sendable (_ token: String, _ id: String) async throws -> ResponseMessage
+    var deleteFromFavorites:  @Sendable (_ token: String, _ id: String) async throws -> ResponseMessage
 }
 
 extension DependencyValues {
@@ -108,6 +110,40 @@ extension GuideClient: DependencyKey, TestDependencyKey {
                 )
                 .validate()
                 .responseDecodable(of: [GuideStep].self) { response in
+                    handleResponse(response, continuation)
+                }
+            }
+        }, addToFavorites: { token, id in
+            let endpoint = "/favorite/guides/\(id)"
+            
+            let headers: HTTPHeaders = [
+                "Authorization": "\(token)"
+            ]
+            
+            return try await withCheckedThrowingContinuation { continuation in
+                AF.request(baseUrl + endpoint,
+                           method: .put,
+                           headers: headers
+                )
+                .validate()
+                .responseDecodable(of: ResponseMessage.self) { response in
+                    handleResponse(response, continuation)
+                }
+            }
+        }, deleteFromFavorites: { token, id in
+            let endpoint = "/favorite/guides/\(id)"
+            
+            let headers: HTTPHeaders = [
+                "Authorization": "\(token)"
+            ]
+            
+            return try await withCheckedThrowingContinuation { continuation in
+                AF.request(baseUrl + endpoint,
+                           method: .delete,
+                           headers: headers
+                )
+                .validate()
+                .responseDecodable(of: ResponseMessage.self) { response in
                     handleResponse(response, continuation)
                 }
             }

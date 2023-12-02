@@ -73,6 +73,7 @@
 		EEA012CD2AFACCB7004311F3 /* GuideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA012C62AFACCB6004311F3 /* GuideView.swift */; };
 		EEA012CF2AFACCB7004311F3 /* ImageCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA012C82AFACCB7004311F3 /* ImageCard.swift */; };
 		EEA012DA2AFB7C69004311F3 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA012D92AFB7C69004311F3 /* Helpers.swift */; };
+		EEE812132B1AAA72006681DA /* ResponseMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE812122B1AAA72006681DA /* ResponseMessage.swift */; };
 		EEEB8D1C2AF8D40F007DEBAE /* AuthButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEB8D1B2AF8D40F007DEBAE /* AuthButton.swift */; };
 		EEEB8D1E2AF8D895007DEBAE /* AuthResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEB8D1D2AF8D895007DEBAE /* AuthResponse.swift */; };
 		EEEB8D222AF8E5AD007DEBAE /* FailResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEEB8D212AF8E5AD007DEBAE /* FailResponse.swift */; };
@@ -157,6 +158,7 @@
 		EEA012C62AFACCB6004311F3 /* GuideView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuideView.swift; sourceTree = "<group>"; };
 		EEA012C82AFACCB7004311F3 /* ImageCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCard.swift; sourceTree = "<group>"; };
 		EEA012D92AFB7C69004311F3 /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
+		EEE812122B1AAA72006681DA /* ResponseMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseMessage.swift; sourceTree = "<group>"; };
 		EEEB8D1B2AF8D40F007DEBAE /* AuthButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthButton.swift; sourceTree = "<group>"; };
 		EEEB8D1D2AF8D895007DEBAE /* AuthResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthResponse.swift; sourceTree = "<group>"; };
 		EEEB8D212AF8E5AD007DEBAE /* FailResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FailResponse.swift; sourceTree = "<group>"; };
@@ -294,7 +296,6 @@
 		EE140B1B2AFA5226001A4461 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				EEA012C32AFABDE0004311F3 /* Models */,
 				EEA012BE2AFABC76004311F3 /* Features */,
 				EEA012BD2AFABC69004311F3 /* Views */,
 			);
@@ -344,6 +345,10 @@
 				EE13F5C42B18AA0500B0A8CC /* GuideAction.swift */,
 				EE13F5C92B18AB1800B0A8CC /* GuideDetails.swift */,
 				EE13F5CB2B18AB2500B0A8CC /* GuideStep.swift */,
+				EE5AE1A62AF9407E00381B33 /* ErrorResponse.swift */,
+				EEFFBA072AF99F3F00238FA0 /* RequestError.swift */,
+				EEEB8D212AF8E5AD007DEBAE /* FailResponse.swift */,
+				EEE812122B1AAA72006681DA /* ResponseMessage.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -483,13 +488,6 @@
 			path = Features;
 			sourceTree = "<group>";
 		};
-		EEA012C32AFABDE0004311F3 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
 		EEA012DC2AFBAA11004311F3 /* Components */ = {
 			isa = PBXGroup;
 			children = (
@@ -598,9 +596,6 @@
 			children = (
 				EEEB8D1D2AF8D895007DEBAE /* AuthResponse.swift */,
 				EE2809552AF852E600093049 /* AuthType.swift */,
-				EE5AE1A62AF9407E00381B33 /* ErrorResponse.swift */,
-				EEEB8D212AF8E5AD007DEBAE /* FailResponse.swift */,
-				EEFFBA072AF99F3F00238FA0 /* RequestError.swift */,
 				EEFFBA0B2AF9A7F100238FA0 /* ErrorField.swift */,
 				EEF2F19C2AF8271F009F4677 /* KeyboardType.swift */,
 				EEEB8D262AF8EAEA007DEBAE /* SignIn.swift */,
@@ -710,6 +705,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EEE812132B1AAA72006681DA /* ResponseMessage.swift in Sources */,
 				EE9888C32B153E5D009445BC /* SettingsCoordinatorView.swift in Sources */,
 				EE2809582AF8534100093049 /* AuthTitle.swift in Sources */,
 				EEFFBA0C2AF9A7F100238FA0 /* ErrorField.swift in Sources */,
