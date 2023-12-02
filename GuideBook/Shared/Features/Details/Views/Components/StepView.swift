@@ -9,7 +9,7 @@ import SwiftUI
 
 struct StepView: View {
     let step:  GuideStep
-    let details: GuideDetails
+    let guide: Guide
     
     var body: some View {
         ScrollView {
@@ -30,7 +30,7 @@ struct StepView: View {
     }
     
     private var guideTitle: some View {
-        Text("\(details.emoji) \(details.title)")
+        Text("\(guide.emoji) \(guide.title)")
             .font(.system(size: 16))
     }
     
@@ -46,19 +46,22 @@ struct StepView: View {
 
 
 struct StepView_Previews: PreviewProvider {
-    static let sampleStep = GuideStep(id: "1", title: "Step 1", description: "Description for Step 1", image: "https://www.naveedulhaq.com/wp-content/uploads/2023/04/image.png", order: 1, guideId: "guide1")
-    static let sampleGuide = GuideDetails(
+    static let sampleStep = GuideStep(
         id: "1",
-        emoji: "📚",
-        title: "Sample Guide",
-        description: "This is a sample guide description. It can contain information about the guide's content.",
+        title: "Step 1",
+        description: "Description for Step 1",
         image: "https://www.naveedulhaq.com/wp-content/uploads/2023/04/image.png",
-        authorId: "author1",
-        author: Author(username: "JohnDoe"),
-        isFavorite: false
+        order: 1,
+        guideId: "guide1"
+    )
+    static let sampleGuide = Guide(
+        id: "1",
+        title: "📚",
+        description: "Sample Guide",
+        emoji: "This is a sample guide description. It can contain information about the guide's content."
     )
     static var previews: some View {
-        StepView(step: sampleStep, details: sampleGuide)
+        StepView(step: sampleStep, guide: sampleGuide)
             .previewLayout(.sizeThatFits)
     }
 }

@@ -1,5 +1,5 @@
 //
-//  TabsCoordinatorView.swift
+//  TabsView.swift
 //  GuideBook
 //
 //  Created by Yegor Myropoltsev on 27.11.2023.
@@ -8,15 +8,15 @@
 import SwiftUI
 import ComposableArchitecture
 
-struct TabsCoordinatorView: View {
-    let store: StoreOf<TabsCoordinator>
+struct TabsView: View {
+    let store: StoreOf<TabsFeature>
     
     var body: some View {
         WithViewStore(store, observe: { $0 }) { viewStore in
             TabView(
                 selection: viewStore.binding(
                     get: \.selectedTab,
-                    send: TabsCoordinator.Action.tabSelected
+                    send: TabsFeature.Action.tabSelected
                 )
             ) {
                 HomeCoordinatorView(
@@ -61,11 +61,11 @@ struct TabsCoordinatorView: View {
 
 
 
-struct TabsCoordinatorView_Previews: PreviewProvider {
+struct TabsView_Previews: PreviewProvider {
     static var previews: some View {
-        TabsCoordinatorView(
+        TabsView(
             store: Store(initialState: .initialState) {
-                TabsCoordinator()
+                TabsFeature()
                     ._printChanges()
             }
         )

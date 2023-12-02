@@ -88,7 +88,6 @@ struct FavoritesMain: Reducer {
                 state.favorites = guides
                 return .none
             case .onRefresh:
-                state.favorites = []
                 return .send(.searchFavorites)
                 
             case let .searchQueryChanged(query):
@@ -96,7 +95,7 @@ struct FavoritesMain: Reducer {
                 return .none
             case .searchQueryChangeDebounced:
                 return .run { send in
-                    try await mainQueue.sleep(for: .seconds(0.3))
+                    try await mainQueue.sleep(for: .seconds(1))
                     await send(.searchFavorites)
                 }
                 

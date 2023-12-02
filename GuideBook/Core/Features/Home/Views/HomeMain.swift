@@ -35,15 +35,15 @@ struct HomeMainView: View {
                     viewStore.send(.onAppear)
                 }
             }
-            .task(id: viewStore.searchQuery) {
-                do {
-                    try await Task.sleep(seconds: 0.3)
-                    await viewStore.send(.searchQueryChangeDebounced).finish()
-                } catch {}
-            }
-//            .onChange(of: viewStore.searchQuery, perform: { query in
-//                viewStore.send(.searchQueryChangeDebounced)
-//            })
+//            .task(id: viewStore.searchQuery) {
+//                do {
+//                    try await Task.sleep(seconds: 0.3)
+//                    await viewStore.send(.searchQueryChangeDebounced).finish()
+//                } catch {}
+//            }
+            .onChange(of: viewStore.searchQuery, perform: { query in
+                viewStore.send(.searchQueryChangeDebounced)
+            })
         }
         
     }
@@ -94,7 +94,6 @@ struct HomeMain: Reducer {
                 state.guides = guides
                 return .none
             case .onRefresh:
-                state.guides = []
                 return .send(.searchGuides)
                 
             case .searchQueryChanged(let query):
@@ -103,7 +102,7 @@ struct HomeMain: Reducer {
             case .searchQueryChangeDebounced:
                 return .run { send in
                     do {
-                        try await mainQueue.sleep(for: .seconds(0.3))
+                        try await mainQueue.sleep(for: .seconds(1))
                         await send(.searchGuides)
                     } catch {}
                 }

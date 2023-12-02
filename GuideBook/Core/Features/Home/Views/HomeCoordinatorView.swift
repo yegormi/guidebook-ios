@@ -27,7 +27,7 @@ struct HomeCoordinatorView: View {
                     CaseLet(
                         /HomeScreen.State.details,
                          action: HomeScreen.Action.details,
-                         then: DetailsView.init
+                         then: DetailsCoordinatorView.init
                     )
                 }
             }

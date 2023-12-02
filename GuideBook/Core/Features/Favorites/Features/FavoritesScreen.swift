@@ -13,12 +13,12 @@ import ComposableArchitecture
 struct FavoritesScreen: Reducer {
     enum State: Equatable {
         case main(FavoritesMain.State)
-        case details(DetailsFeature.State)
+        case details(DetailsCoordinator.State)
     }
     
     enum Action: Equatable {
         case main(FavoritesMain.Action)
-        case details(DetailsFeature.Action)
+        case details(DetailsCoordinator.Action)
     }
     
     var body: some Reducer<State, Action> {
@@ -26,7 +26,7 @@ struct FavoritesScreen: Reducer {
             FavoritesMain()
         }
         Scope(state: /State.details, action: /Action.details) {
-            DetailsFeature()
+            DetailsCoordinator()
         }
     }
 }

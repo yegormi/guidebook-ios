@@ -33,7 +33,7 @@ struct RootCoordinatorView: View {
                     CaseLet(
                         /RootScreen.State.tabs,
                          action: RootScreen.Action.tabs,
-                         then: TabsCoordinatorView.init
+                         then: TabsView.init
                     )
                 }
             }

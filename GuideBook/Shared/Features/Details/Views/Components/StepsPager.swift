@@ -9,7 +9,7 @@ import SwiftUI
 
 struct StepsPager: View {
     let steps: [GuideStep]
-    let details: GuideDetails
+    let guide: Guide
     
     @State private var currentPage = 0
     
@@ -17,7 +17,7 @@ struct StepsPager: View {
         GeometryReader { geometry in
             TabView(selection: $currentPage) {
                 ForEach(0..<steps.count, id: \.self) { index in
-                    StepView(step: steps[index], details: details)
+                    StepView(step: steps[index], guide: guide)
                         .frame(width: geometry.size.width, height: geometry.size.height)
                         .padding(.bottom, 70)
                 }
@@ -69,15 +69,11 @@ struct StepsPager: View {
 }
 
 struct StepsPager_Previews: PreviewProvider {
-    static var sampleGuide = GuideDetails(
+    static var sampleGuide = Guide(
         id: "1",
-        emoji: "📚",
-        title: "Sample Guide",
-        description: "This is a sample guide description. It can contain information about the guide's content.",
-        image: "sample_image_url",
-        authorId: "author1",
-        author: Author(username: "JohnDoe"),
-        isFavorite: false
+        title: "📚",
+        description: "Sample Guide",
+        emoji: "This is a sample guide description. It can contain information about the guide's content."
     )
     
     
@@ -88,7 +84,7 @@ struct StepsPager_Previews: PreviewProvider {
     ]
     
     static var previews: some View {
-        StepsPager(steps: sampleGuideSteps, details: sampleGuide)
+        StepsPager(steps: sampleGuideSteps, guide: sampleGuide)
             .previewLayout(.sizeThatFits)
     }
 }

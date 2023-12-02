@@ -1,5 +1,5 @@
 //
-//  TabsCoordinator.swift
+//  TabsFeature.swift
 //  GuideBook
 //
 //  Created by Yegor Myropoltsev on 27.11.2023.
@@ -16,7 +16,7 @@ enum Tab: String, CaseIterable, Equatable {
 }
 
 @Reducer
-struct TabsCoordinator: Reducer {
+struct TabsFeature: Reducer {
     @Dependency(\.authClient) var authClient
     @Dependency(\.keychainClient) var keychainClient
     
@@ -54,6 +54,8 @@ struct TabsCoordinator: Reducer {
         case onGetSelfSuccess(UserInfo)
         case onGetSelfError(FailResponse)
         
+        case goBackToPrevious
+        
         enum Alert: Equatable {
             case confirmTapped
         }
@@ -76,7 +78,7 @@ struct TabsCoordinator: Reducer {
                     TextState("Session Expired")
                 } actions: {
                     ButtonState(role: .cancel, action: .confirmTapped) {
-                        TextState("Ok")
+                        TextState("OK")
                     }
                 } message: {
                     TextState("Please sign in again.")
@@ -113,8 +115,13 @@ struct TabsCoordinator: Reducer {
                 default:
                     return .none
                 }
+                
             case .tabSelected(let tab):
+                if state.selectedTab == tab {
+                    return .send(.goBackToPrevious)
+                }
                 state.selectedTab = tab
+                return .none
             default:
                 break
             }

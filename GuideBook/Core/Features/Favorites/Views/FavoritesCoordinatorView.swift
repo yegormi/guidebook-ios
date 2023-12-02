@@ -27,7 +27,7 @@ struct FavoritesCoordinatorView: View {
                     CaseLet(
                         /FavoritesScreen.State.details,
                          action: FavoritesScreen.Action.details,
-                         then: DetailsView.init
+                         then: DetailsCoordinatorView.init
                     )
                 }
                 

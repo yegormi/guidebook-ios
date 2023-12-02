@@ -27,7 +27,9 @@ struct FavoritesCoordinator: Reducer {
         Reduce<State, Action> { state, action in
             switch action {
             case .routeAction(_, action: .main(.onItemTapped(let guide))):
-                state.routes.push(.details(.init(guide: guide)))
+                state.routes.push(.details(.init(
+                    routes: [.root(.main(.init(guide: guide)))]
+                )))            
             default:
                 break
             }
