@@ -35,15 +35,6 @@ struct HomeMainView: View {
                     viewStore.send(.onAppear)
                 }
             }
-//            .task(id: viewStore.searchQuery) {
-//                do {
-//                    try await Task.sleep(seconds: 0.3)
-//                    await viewStore.send(.searchQueryChangeDebounced).finish()
-//                } catch {}
-//            }
-            .onChange(of: viewStore.searchQuery, perform: { query in
-                viewStore.send(.searchQueryChangeDebounced)
-            })
         }
         
     }
@@ -61,6 +52,8 @@ struct HomeMain: Reducer {
         var guides: [Guide]
         var details: GuideDetails?
     }
+    
+    private enum CancelID { case guides }
     
     enum Action: Equatable {
         case onAppear
@@ -98,14 +91,10 @@ struct HomeMain: Reducer {
                 
             case .searchQueryChanged(let query):
                 state.searchQuery = query
-                return .none
+                return .send(.searchQueryChangeDebounced)
             case .searchQueryChangeDebounced:
-                return .run { send in
-                    do {
-                        try await mainQueue.sleep(for: .seconds(1))
-                        await send(.searchGuides)
-                    } catch {}
-                }
+                return .send(.searchGuides)
+                    .debounce(id: CancelID.guides, for: 0.3, scheduler: mainQueue)
                 
             case .onItemTapped:
                 return .none

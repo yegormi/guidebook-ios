@@ -35,9 +35,6 @@ struct FavoritesMainView: View {
                     viewStore.send(.onAppear)
                 }
             }
-            .onChange(of: viewStore.searchQuery, perform: { query in
-                viewStore.send(.searchQueryChangeDebounced)
-            })
         }
         
     }
@@ -69,6 +66,8 @@ struct FavoritesMain: Reducer {
         case onItemTapped(Guide)
     }
     
+    private enum CancelID { case favorites }
+    
     var body: some Reducer<State, Action> {
         Reduce<State, Action> { state, action in
             switch action {
@@ -92,12 +91,10 @@ struct FavoritesMain: Reducer {
                 
             case let .searchQueryChanged(query):
                 state.searchQuery = query
-                return .none
+                return .send(.searchQueryChangeDebounced)
             case .searchQueryChangeDebounced:
-                return .run { send in
-                    try await mainQueue.sleep(for: .seconds(1))
-                    await send(.searchFavorites)
-                }
+                return .send(.searchFavorites)
+                    .debounce(id: CancelID.favorites, for: 0.3, scheduler: mainQueue)
                 
             case .onItemTapped:
                 return .none
