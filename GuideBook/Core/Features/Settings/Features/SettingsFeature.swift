@@ -18,7 +18,6 @@ struct SettingsFeature: Reducer {
     struct State: Equatable {
         var user: UserInfo?
         @PresentationState var alert: AlertState<Action.Alert>?
-        var token: String = ""
         var settingsDidAppear = false
         var selectedMode: Appearance = .auto
         
@@ -40,6 +39,7 @@ struct SettingsFeature: Reducer {
         case signOutButtonTapped
         case deleteButtonTapped
         
+        case deleteToken
         case onSignOut
         case onDeleteAccount
         case onDeleteSuccess(UserDelete)
@@ -59,17 +59,19 @@ struct SettingsFeature: Reducer {
         Reduce { state, action in
             switch action {
             case .alert(.presented(.confirmSignOutTapped)):
+                return .send(.deleteToken)
+            case .deleteToken:
+                deleteToken()
                 return .send(.onSignOut)
             case .onSignOut:
-                deleteToken()
                 return .none
                 
             case .alert(.presented(.confirmDeleteTapped)):
                 return .send(.onDeleteAccount)
             case .onDeleteAccount:
-                return .run { [token = state.token] send in
+                return .run { send in
                     do {
-                        let result = try await deleteAccount(with: token)
+                        let result = try await deleteAccount()
                         await send(.onDeleteSuccess(result))
                     } catch {
                         print(error)
@@ -112,10 +114,9 @@ struct SettingsFeature: Reducer {
                 return .none
             case .settingsDidAppear:
                 state.settingsDidAppear = true
-                state.token = keychainClient.retrieveToken()?.accessToken ?? ""
-                return .run { [token = state.token] send in
+                return .run { send in
                     do {
-                        let user = try await getSelf(with: token)
+                        let user = try await getSelf()
                         await send(.onGetSelf(user))
                     } catch {
                         print(error)
@@ -132,11 +133,13 @@ struct SettingsFeature: Reducer {
         .ifLet(\.$alert, action: \.alert)
     }
     
-    private func getSelf(with token: String) async throws -> UserInfo {
+    private func getSelf() async throws -> UserInfo {
+        let token = keychainClient.retrieveToken()?.accessToken ?? ""
         return try await authClient.performGetSelf(token)
     }
     
-    private func deleteAccount(with token: String) async throws -> UserDelete {
+    private func deleteAccount() async throws -> UserDelete {
+        let token = keychainClient.retrieveToken()?.accessToken ?? ""
         return try await authClient.performDelete(token)
     }
     
