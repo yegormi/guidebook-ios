@@ -34,6 +34,7 @@
 		EE297A322B14A905006FC0C4 /* HomeMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE297A302B14A905006FC0C4 /* HomeMain.swift */; };
 		EE297A472B14D662006FC0C4 /* TabsFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE297A462B14D662006FC0C4 /* TabsFeature.swift */; };
 		EE297A492B14D66C006FC0C4 /* TabsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE297A482B14D66C006FC0C4 /* TabsView.swift */; };
+		EE3097AF2B212F4A00B6CBFB /* Pow in Frameworks */ = {isa = PBXBuildFile; productRef = EE3097AE2B212F4A00B6CBFB /* Pow */; };
 		EE3767F32B112A65007DFA25 /* RootCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3767F22B112A65007DFA25 /* RootCoordinator.swift */; };
 		EE3767F62B112AAA007DFA25 /* TCACoordinators in Frameworks */ = {isa = PBXBuildFile; productRef = EE3767F52B112AAA007DFA25 /* TCACoordinators */; };
 		EE3767F92B112D48007DFA25 /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE3767F72B112D48007DFA25 /* SplashView.swift */; };
@@ -186,6 +187,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EE3097AF2B212F4A00B6CBFB /* Pow in Frameworks */,
 				EEEB8D2C2AF920B6007DEBAE /* Alamofire in Frameworks */,
 				EE56776A2B110A6B00DDE4A0 /* Reachability in Frameworks */,
 				EE40B6832B0FDD0A000C07BD /* SkeletonUI in Frameworks */,
@@ -656,6 +658,7 @@
 				EE5677662B11090A00DDE4A0 /* AlertToast */,
 				EE5677692B110A6B00DDE4A0 /* Reachability */,
 				EE3767F52B112AAA007DFA25 /* TCACoordinators */,
+				EE3097AE2B212F4A00B6CBFB /* Pow */,
 			);
 			productName = GuideBook;
 			productReference = EE0C21842AE861D700668357 /* GuideBook.app */;
@@ -694,6 +697,7 @@
 				EE5677652B11090A00DDE4A0 /* XCRemoteSwiftPackageReference "AlertToast" */,
 				EE5677682B110A6B00DDE4A0 /* XCRemoteSwiftPackageReference "Reachability" */,
 				EE3767F42B112AAA007DFA25 /* XCRemoteSwiftPackageReference "TCACoordinators" */,
+				EE3097AD2B212F4A00B6CBFB /* XCRemoteSwiftPackageReference "Pow" */,
 			);
 			productRefGroup = EE0C21852AE861D700668357 /* Products */;
 			projectDirPath = "";
@@ -1012,6 +1016,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		EE3097AD2B212F4A00B6CBFB /* XCRemoteSwiftPackageReference "Pow" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/EmergeTools/Pow";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.2;
+			};
+		};
 		EE3767F42B112AAA007DFA25 /* XCRemoteSwiftPackageReference "TCACoordinators" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/johnpatrickmorgan/TCACoordinators";
@@ -1079,6 +1091,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		EE3097AE2B212F4A00B6CBFB /* Pow */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EE3097AD2B212F4A00B6CBFB /* XCRemoteSwiftPackageReference "Pow" */;
+			productName = Pow;
+		};
 		EE3767F52B112AAA007DFA25 /* TCACoordinators */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = EE3767F42B112AAA007DFA25 /* XCRemoteSwiftPackageReference "TCACoordinators" */;

@@ -8,6 +8,7 @@
 import SwiftUI
 import ComposableArchitecture
 import SkeletonUI
+import Pow
 
 struct DetailsMainView: View {
     let store: StoreOf<DetailsMain>
@@ -49,6 +50,8 @@ struct DetailsMainView: View {
                                 .foregroundColor(viewStore.isFavorite ? Color.red : Color.gray)
                                 .font(.system(size: 28))
                         }
+                        .changeEffect(.feedbackHapticSelection, value: viewStore.isFavorite, isEnabled: viewStore.isFavorite)
+                        
                     }
                     Divider()
                     
@@ -68,19 +71,20 @@ struct DetailsMainView: View {
                 viewStore.send(.onAppear)
             }
             .safeAreaInset(edge: .bottom, alignment: .trailing) {
-                Button {
-                    viewStore.send(.onStepsButtonTapped(viewStore.guide))
-                } label: {
-                    RoundedRectangle(cornerRadius: 16)
-                        .fill(Color.blue)
-                        .frame(width: 55, height: 55)
-                        .overlay(
-                            Image(systemName: "arrow.right")
-                                .font(.system(size: 20))
-                                .foregroundColor(.white)
-                        )
+                if !viewStore.steps.isEmpty {
+                    Button {
+                        viewStore.send(.onStepsButtonTapped(viewStore.guide, viewStore.steps))
+                    } label: {
+                        Image(systemName: "arrow.right")
+                            .font(.system(size: 20))
+                            .frame(width: 55, height: 55)
+                            .foregroundColor(Color.white)
+                            .background(Color.blue)
+                            .clipShape(RoundedRectangle(cornerRadius: 16))
+                    }
+                    .buttonStyle(.plain)
+                    .padding([.bottom, .trailing], 15)
                 }
-                .padding([.bottom, .trailing], 15)
             }
         }
     }
@@ -95,8 +99,9 @@ struct DetailsMain: Reducer {
     
     struct State: Equatable {
         var guide: Guide
-        var details: GuideDetails? = nil
-        var isFavorite = false
+        var details: GuideDetails?
+        var steps: [GuideStep] = []
+        var isFavorite: Bool = false
         var response: ResponseMessage?
     }
     
@@ -104,19 +109,19 @@ struct DetailsMain: Reducer {
         case onAppear
         
         case getDetails
-        case onSuccess(GuideDetails)
+        case onDetailsSuccess(GuideDetails)
         
+        case getSteps
+        case onStepsSuccess([GuideStep])
         
         case favoriteTapped
         case onFavoriteAction
+        case onFavoriteSuccess(ResponseMessage)
         
         case addToFavorites
         case deleteFromFavorites
         
-        case onFavoriteSuccess(ResponseMessage)
-        
-        
-        case onStepsButtonTapped(Guide)
+        case onStepsButtonTapped(Guide, [GuideStep])
     }
     
     var body: some Reducer<State, Action> {
@@ -128,15 +133,29 @@ struct DetailsMain: Reducer {
                 return .run { [id = state.guide.id] send in
                     do {
                         let details = try await getDetails(for: id)
-                        await send(.onSuccess(details))
+                        await send(.onDetailsSuccess(details))
                     } catch {
                         print(error)
                     }
                 }
-            case .onSuccess(let details):
+            case .onDetailsSuccess(let details):
                 state.details = details
                 state.isFavorite = details.isFavorite
+                return .send(.getSteps)
+                
+            case .getSteps:
+                return .run { [id = state.guide.id] send in
+                    do {
+                        let steps = try await getSteps(for: id)
+                        await send(.onStepsSuccess(steps))
+                    } catch {
+                        print(error)
+                    }
+                }
+            case .onStepsSuccess(let steps):
+                state.steps = steps
                 return .none
+                
             case .favoriteTapped:
                 state.isFavorite.toggle()
                 return .send(.onFavoriteAction)
@@ -147,6 +166,7 @@ struct DetailsMain: Reducer {
                 case false:
                     return .send(.deleteFromFavorites)
                 }
+            
             case .addToFavorites:
                 return .run { [id = state.guide.id] send in
                     do {
@@ -168,6 +188,7 @@ struct DetailsMain: Reducer {
             case .onFavoriteSuccess(let response):
                 state.response = response
                 return .none
+            
             case .onStepsButtonTapped:
                 return .none
             }
@@ -177,6 +198,11 @@ struct DetailsMain: Reducer {
     private func getDetails(for id: String) async throws -> GuideDetails {
         let token = keychainClient.retrieveToken()?.accessToken ?? ""
         return try await guideClient.getDetails(token: token, id: id)
+    }
+    
+    private func getSteps(for id: String) async throws -> [GuideStep] {
+        let token = keychainClient.retrieveToken()?.accessToken ?? ""
+        return try await guideClient.getSteps(token: token, id: id)
     }
     
     private func addToFavorites(with id: String) async throws -> ResponseMessage {

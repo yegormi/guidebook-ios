@@ -14,12 +14,7 @@ struct DetailsStepsView: View {
     
     var body: some View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in
-            Group {
-                StepsPager(steps: viewStore.steps ?? [], guide: viewStore.guide)
-            }
-            .onAppear {
-                viewStore.send(.onAppear)
-            }
+            StepsPager(steps: viewStore.steps, guide: viewStore.guide)
         }
     }
     
@@ -28,44 +23,16 @@ struct DetailsStepsView: View {
 
 @Reducer
 struct DetailsSteps: Reducer {
-    @Dependency(\.keychainClient) var keychainClient
-    @Dependency(\.guideClient)    var guideClient
-    
     struct State: Equatable {
         var guide: Guide
-        var steps: [GuideStep]? = nil
+        var steps: [GuideStep]
     }
     
     enum Action: Equatable {
-        case onAppear
-        
-        case getSteps
-        case onSuccess([GuideStep])
     }
     
     var body: some Reducer<State, Action> {
-        Reduce<State, Action> { state, action in
-            switch action {
-            case .onAppear:
-                return .send(.getSteps)
-            case .getSteps:
-                return .run { [id = state.guide.id] send in
-                    do {
-                        let steps = try await getSteps(for: id)
-                        await send(.onSuccess(steps))
-                    } catch {
-                        print(error)
-                    }
-                }
-            case .onSuccess(let steps):
-                state.steps = steps
-                return .none
-            }
-        }
+        EmptyReducer()
     }
     
-    private func getSteps(for id: String) async throws -> [GuideStep] {
-        let token = keychainClient.retrieveToken()?.accessToken ?? ""
-        return try await guideClient.getSteps(token: token, id: id)
-    }
 }

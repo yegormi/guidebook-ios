@@ -23,8 +23,8 @@ struct DetailsCoordinator: Reducer {
     var body: some ReducerOf<Self> {
         Reduce<State, Action> { state, action in
             switch action {
-            case .routeAction(_, action: .main(.onStepsButtonTapped(let guide))):
-                state.routes.push(.steps(.init(guide: guide)))
+            case .routeAction(_, action: .main(.onStepsButtonTapped(let guide, let steps))):
+                state.routes.push(.steps(.init(guide: guide, steps: steps)))
             default:
                 break
             }
