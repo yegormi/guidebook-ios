@@ -4,6 +4,14 @@
 ![Platform](https://img.shields.io/badge/Platform-iOS-brightgreen.svg)
 ![License](https://img.shields.io/badge/License-MIT-blue.svg)
 
+## Translations
+
+The following translations of this README are translated by the members of our team:
+
+* [Ukrainian](https://github.com/yegormi/guidebook-ios/blob/main/README_UK.MD)
+
+If you'd like to contribute a translation, please [open a
+PR](https://github.com/yegormi/guidebook-ios/edit/main/README.md)
 
 ## Screenshots
 
@@ -13,15 +21,17 @@
     <img src="Screenshots/steps.png" width="250"/>
 </div>
 
+## Video
 
+https://github.com/yegormi/guidebook-ios/assets/72651640/fa99eb6c-6e0f-404d-8b03-7b9c384e6727
 
 ## Table of Contents
 
 - [Introduction](#introduction)
 - [Key Features](#key-features)
 - [Getting Started](#getting-started)
-  - [Installation](#installation)
-  - [Usage](#usage)
+- [Installation](#installation)
+- [Usage](#usage)
 - [Contributing](#contributing)
 - [License](#license)
 - [Acknowledgments](#acknowledgments)
