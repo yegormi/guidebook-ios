@@ -10,12 +10,12 @@ import SwiftUI
 
 struct GuideView: View {
     let item: Guide
-    
+
     var body: some View {
         HStack(spacing: 0) {
             Text(item.emoji)
                 .font(.system(size: 30))
-                .padding([.top,.bottom,.trailing], 10)
+                .padding([.top, .bottom, .trailing], 10)
             VStack(alignment: .leading) {
                 Text(item.title)
                     .lineLimit(1)
@@ -35,15 +35,14 @@ struct GuideView: View {
     }
 }
 
-
 struct GuideView_Previews: PreviewProvider {
-    static var testItem: Guide = Guide(
+    static var testItem: Guide = .init(
         id: "bs9d8f908s7dv9usdf",
         title: "Guide to Python Data Science",
         description: "Dive into data science with Python",
         emoji: "🐍"
     )
-    
+
     static var previews: some View {
         GuideView(item: testItem)
             .previewLayout(.sizeThatFits)

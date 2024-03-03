@@ -103,12 +103,10 @@ struct FavoritesMain: Reducer {
     }
     
     private func searchFavorites(query: String) async throws -> [Guide] {
-        let token = keychainClient.retrieveToken()?.accessToken ?? ""
-        return try await guideClient.searchFavorites(token: token, query: query)
+        return try await guideClient.searchFavorites(query: query)
     }
     
     private func getDetails(id: String) async throws -> GuideDetails {
-        let token = keychainClient.retrieveToken()?.accessToken ?? ""
-        return try await guideClient.getDetails(token: token, id: id)
+        return try await guideClient.getDetails(id: id)
     }
 }
