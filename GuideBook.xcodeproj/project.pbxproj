@@ -57,9 +57,7 @@
 		EE7B13B02AF500C800A45F1B /* details.png in Resources */ = {isa = PBXBuildFile; fileRef = EE7B13A52AF500C800A45F1B /* details.png */; };
 		EE7B13B22AF500C800A45F1B /* settings.png in Resources */ = {isa = PBXBuildFile; fileRef = EE7B13A72AF500C800A45F1B /* settings.png */; };
 		EE7B13B32AF500C800A45F1B /* home.png in Resources */ = {isa = PBXBuildFile; fileRef = EE7B13A82AF500C800A45F1B /* home.png */; };
-		EE7F96E22B1571B50071A99F /* AuthClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7F96E12B1571B50071A99F /* AuthClient.swift */; };
 		EE7F96E52B15E40B0071A99F /* KeychainClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7F96E42B15E40B0071A99F /* KeychainClient.swift */; };
-		EE7F96E72B15ECC30071A99F /* GuideClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE7F96E62B15ECC30071A99F /* GuideClient.swift */; };
 		EE9888BD2B153B75009445BC /* FavoritesMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9888BC2B153B75009445BC /* FavoritesMain.swift */; };
 		EE9888BF2B153C03009445BC /* FavoritesCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9888BE2B153C03009445BC /* FavoritesCoordinator.swift */; };
 		EE9888C12B153DE4009445BC /* SettingsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9888C02B153DE4009445BC /* SettingsCoordinator.swift */; };
@@ -71,6 +69,10 @@
 		EEA012CD2AFACCB7004311F3 /* GuideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA012C62AFACCB6004311F3 /* GuideView.swift */; };
 		EEA012CF2AFACCB7004311F3 /* ImageCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA012C82AFACCB7004311F3 /* ImageCard.swift */; };
 		EEA012DA2AFB7C69004311F3 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEA012D92AFB7C69004311F3 /* Helpers.swift */; };
+		EEBCB26A2B9537F000B8D93D /* SessionClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEBCB2692B9537F000B8D93D /* SessionClient.swift */; };
+		EEBCB26C2B9538F600B8D93D /* AuthInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEBCB26B2B9538F600B8D93D /* AuthInterceptor.swift */; };
+		EEBCB26E2B953C1600B8D93D /* GuideClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEBCB26D2B953C1600B8D93D /* GuideClient.swift */; };
+		EEBCB2702B953CA900B8D93D /* AuthClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEBCB26F2B953CA900B8D93D /* AuthClient.swift */; };
 		EEDC9A932B1BD76600F28EB3 /* DetailsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEDC9A922B1BD76600F28EB3 /* DetailsScreen.swift */; };
 		EEDC9A952B1BD82200F28EB3 /* DetailsCoordinatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEDC9A942B1BD82200F28EB3 /* DetailsCoordinatorView.swift */; };
 		EEDC9A972B1BD83D00F28EB3 /* DetailsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEDC9A962B1BD83D00F28EB3 /* DetailsCoordinator.swift */; };
@@ -143,9 +145,7 @@
 		EE7B13A52AF500C800A45F1B /* details.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = details.png; sourceTree = "<group>"; };
 		EE7B13A72AF500C800A45F1B /* settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings.png; sourceTree = "<group>"; };
 		EE7B13A82AF500C800A45F1B /* home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home.png; sourceTree = "<group>"; };
-		EE7F96E12B1571B50071A99F /* AuthClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthClient.swift; sourceTree = "<group>"; };
 		EE7F96E42B15E40B0071A99F /* KeychainClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainClient.swift; sourceTree = "<group>"; };
-		EE7F96E62B15ECC30071A99F /* GuideClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideClient.swift; sourceTree = "<group>"; };
 		EE9888BC2B153B75009445BC /* FavoritesMain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesMain.swift; sourceTree = "<group>"; };
 		EE9888BE2B153C03009445BC /* FavoritesCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesCoordinator.swift; sourceTree = "<group>"; };
 		EE9888C02B153DE4009445BC /* SettingsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCoordinator.swift; sourceTree = "<group>"; };
@@ -157,6 +157,10 @@
 		EEA012C62AFACCB6004311F3 /* GuideView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuideView.swift; sourceTree = "<group>"; };
 		EEA012C82AFACCB7004311F3 /* ImageCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCard.swift; sourceTree = "<group>"; };
 		EEA012D92AFB7C69004311F3 /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
+		EEBCB2692B9537F000B8D93D /* SessionClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionClient.swift; sourceTree = "<group>"; };
+		EEBCB26B2B9538F600B8D93D /* AuthInterceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthInterceptor.swift; sourceTree = "<group>"; };
+		EEBCB26D2B953C1600B8D93D /* GuideClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideClient.swift; sourceTree = "<group>"; };
+		EEBCB26F2B953CA900B8D93D /* AuthClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthClient.swift; sourceTree = "<group>"; };
 		EEDC9A922B1BD76600F28EB3 /* DetailsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsScreen.swift; sourceTree = "<group>"; };
 		EEDC9A942B1BD82200F28EB3 /* DetailsCoordinatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsCoordinatorView.swift; sourceTree = "<group>"; };
 		EEDC9A962B1BD83D00F28EB3 /* DetailsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsCoordinator.swift; sourceTree = "<group>"; };
@@ -389,9 +393,11 @@
 		EE7F96E32B1571BA0071A99F /* DI */ = {
 			isa = PBXGroup;
 			children = (
-				EE7F96E12B1571B50071A99F /* AuthClient.swift */,
-				EE7F96E62B15ECC30071A99F /* GuideClient.swift */,
+				EEBCB26F2B953CA900B8D93D /* AuthClient.swift */,
+				EEBCB26D2B953C1600B8D93D /* GuideClient.swift */,
 				EE7F96E42B15E40B0071A99F /* KeychainClient.swift */,
+				EEBCB26B2B9538F600B8D93D /* AuthInterceptor.swift */,
+				EEBCB2692B9537F000B8D93D /* SessionClient.swift */,
 			);
 			path = DI;
 			sourceTree = "<group>";
@@ -742,7 +748,6 @@
 				EEFFBA0C2AF9A7F100238FA0 /* ErrorField.swift in Sources */,
 				EEEB8D1C2AF8D40F007DEBAE /* AuthButton.swift in Sources */,
 				EEF2F19D2AF8271F009F4677 /* KeyboardType.swift in Sources */,
-				EE7F96E72B15ECC30071A99F /* GuideClient.swift in Sources */,
 				EEF2F18A2AF7D1BE009F4677 /* AuthFeature.swift in Sources */,
 				EE140B192AFA5221001A4461 /* HomeCoordinatorView.swift in Sources */,
 				EE140B102AFA3912001A4461 /* Profile.swift in Sources */,
@@ -754,6 +759,7 @@
 				EE9888C12B153DE4009445BC /* SettingsCoordinator.swift in Sources */,
 				EE2809542AF84F3400093049 /* HeaderView.swift in Sources */,
 				EEF2F1992AF82415009F4677 /* PasswordField.swift in Sources */,
+				EEBCB26C2B9538F600B8D93D /* AuthInterceptor.swift in Sources */,
 				EE13F5D02B18B01100B0A8CC /* StepsPager.swift in Sources */,
 				EE28095A2AF856A600093049 /* AuthToggleButton.swift in Sources */,
 				EE13F5CA2B18AB1800B0A8CC /* GuideDetails.swift in Sources */,
@@ -767,6 +773,7 @@
 				EE5677602B10AEDD00DDE4A0 /* Validation.swift in Sources */,
 				EEA012DA2AFB7C69004311F3 /* Helpers.swift in Sources */,
 				EE140B1A2AFA5221001A4461 /* HomeScreen.swift in Sources */,
+				EEBCB26A2B9537F000B8D93D /* SessionClient.swift in Sources */,
 				EEF2F19B2AF82710009F4677 /* Extensions.swift in Sources */,
 				EEF2F1902AF822DF009F4677 /* AuthView.swift in Sources */,
 				EE13F5C22B18933C00B0A8CC /* ScaleButtonStyle.swift in Sources */,
@@ -777,10 +784,10 @@
 				EEA012BA2AFA8180004311F3 /* RootCoordinatorView.swift in Sources */,
 				EE9888BF2B153C03009445BC /* FavoritesCoordinator.swift in Sources */,
 				EE13F5D42B18C64D00B0A8CC /* DetailsMain.swift in Sources */,
-				EE7F96E22B1571B50071A99F /* AuthClient.swift in Sources */,
 				EEDC9A932B1BD76600F28EB3 /* DetailsScreen.swift in Sources */,
 				EEA012CF2AFACCB7004311F3 /* ImageCard.swift in Sources */,
 				EE140B042AFA35E4001A4461 /* SettingsFeature.swift in Sources */,
+				EEBCB26E2B953C1600B8D93D /* GuideClient.swift in Sources */,
 				EE3767F92B112D48007DFA25 /* SplashView.swift in Sources */,
 				EE13F5CC2B18AB2500B0A8CC /* GuideStep.swift in Sources */,
 				EE140B162AFA41B0001A4461 /* UserDelete.swift in Sources */,
@@ -790,6 +797,7 @@
 				EE0C21882AE861D700668357 /* GuideBookApp.swift in Sources */,
 				EEA012BB2AFA8180004311F3 /* RootScreen.swift in Sources */,
 				EEDC9A952B1BD82200F28EB3 /* DetailsCoordinatorView.swift in Sources */,
+				EEBCB2702B953CA900B8D93D /* AuthClient.swift in Sources */,
 				EEF2F1972AF8240E009F4677 /* InputField.swift in Sources */,
 				EEDC9A992B1BD8B600F28EB3 /* DetailsSteps.swift in Sources */,
 				EEDC9A972B1BD83D00F28EB3 /* DetailsCoordinator.swift in Sources */,

@@ -103,12 +103,10 @@ struct HomeMain: Reducer {
     }
     
     private func searchGuides(query: String) async throws -> [Guide] {
-        let token = keychainClient.retrieveToken()?.accessToken ?? ""
-        return try await guideClient.searchGuides(token: token, query: query)
+        return try await guideClient.searchGuides(query: query)
     }
     
     private func getDetails(id: String) async throws -> GuideDetails {
-        let token = keychainClient.retrieveToken()?.accessToken ?? ""
-        return try await guideClient.getDetails(token: token, id: id)
+        return try await guideClient.getDetails(id: id)
     }
 }

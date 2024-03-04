@@ -139,6 +139,6 @@ struct TabsFeature: Reducer {
     }
     
     private func getSelf(with token: String) async throws -> UserInfo {
-        return try await authClient.performGetSelf(token)
+        return try await authClient.performGetSelf()
     }
 }

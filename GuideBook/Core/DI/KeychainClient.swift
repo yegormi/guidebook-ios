@@ -5,9 +5,9 @@
 //  Created by Yegor Myropoltsev on 28.11.2023.
 //
 
-import Foundation
-import ComposableArchitecture
 import Alamofire
+import ComposableArchitecture
+import Foundation
 import KeychainSwift
 
 // MARK: - API client interface
@@ -17,9 +17,9 @@ import KeychainSwift
 
 @DependencyClient
 struct KeychainClient {
-    var saveToken:     @Sendable (AuthResponse) -> Void
+    var saveToken: @Sendable (AuthResponse) -> Void
     var retrieveToken: @Sendable () -> AuthResponse?
-    var deleteToken:   @Sendable () -> Void
+    var deleteToken: @Sendable () -> Void
 }
 
 extension DependencyValues {
@@ -45,7 +45,8 @@ extension KeychainClient: DependencyKey, TestDependencyKey {
         retrieveToken: {
             let keychain = KeychainSwift()
             if let authResponseData = keychain.getData(keychainKey),
-               let authResponse = try? JSONDecoder().decode(AuthResponse.self, from: authResponseData) {
+               let authResponse = try? JSONDecoder().decode(AuthResponse.self, from: authResponseData)
+            {
                 return authResponse
             }
             return nil

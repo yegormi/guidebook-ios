@@ -134,13 +134,11 @@ struct SettingsFeature: Reducer {
     }
     
     private func getSelf() async throws -> UserInfo {
-        let token = keychainClient.retrieveToken()?.accessToken ?? ""
-        return try await authClient.performGetSelf(token)
+        return try await authClient.performGetSelf()
     }
     
     private func deleteAccount() async throws -> UserDelete {
-        let token = keychainClient.retrieveToken()?.accessToken ?? ""
-        return try await authClient.performDelete(token)
+        return try await authClient.performDelete()
     }
     
     private func deleteToken() {

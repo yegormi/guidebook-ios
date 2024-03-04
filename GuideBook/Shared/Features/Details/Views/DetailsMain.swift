@@ -196,22 +196,18 @@ struct DetailsMain: Reducer {
     }
     
     private func getDetails(for id: String) async throws -> GuideDetails {
-        let token = keychainClient.retrieveToken()?.accessToken ?? ""
-        return try await guideClient.getDetails(token: token, id: id)
+        return try await guideClient.getDetails(id: id)
     }
     
     private func getSteps(for id: String) async throws -> [GuideStep] {
-        let token = keychainClient.retrieveToken()?.accessToken ?? ""
-        return try await guideClient.getSteps(token: token, id: id)
+        return try await guideClient.getSteps(id: id)
     }
     
     private func addToFavorites(with id: String) async throws -> ResponseMessage {
-        let token = keychainClient.retrieveToken()?.accessToken ?? ""
-        return try await guideClient.addToFavorites(token: token, id: id)
+        return try await guideClient.addToFavorites(id: id)
     }
     
     private func deleteFromFavorites(with id: String) async throws -> ResponseMessage {
-        let token = keychainClient.retrieveToken()?.accessToken ?? ""
-        return try await guideClient.deleteFromFavorites(token: token, id: id)
+        return try await guideClient.deleteFromFavorites(id: id)
     }
 }

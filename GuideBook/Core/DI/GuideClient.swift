@@ -5,9 +5,9 @@
 //  Created by Yegor Myropoltsev on 28.11.2023.
 //
 
-import Foundation
-import ComposableArchitecture
 import Alamofire
+import ComposableArchitecture
+import Foundation
 
 // MARK: - API client interface
 
@@ -16,12 +16,12 @@ import Alamofire
 
 @DependencyClient
 struct GuideClient {
-    var searchGuides:         @Sendable (_ token: String, _ query: String) async throws -> [Guide]
-    var searchFavorites:      @Sendable (_ token: String, _ query: String) async throws -> [Guide]
-    var getDetails:           @Sendable (_ token: String, _ id: String) async throws -> GuideDetails
-    var getSteps:             @Sendable (_ token: String, _ id: String) async throws -> [GuideStep]
-    var addToFavorites:       @Sendable (_ token: String, _ id: String) async throws -> ResponseMessage
-    var deleteFromFavorites:  @Sendable (_ token: String, _ id: String) async throws -> ResponseMessage
+    var searchGuides: @Sendable (_ query: String) async throws -> [Guide]
+    var searchFavorites: @Sendable (_ query: String) async throws -> [Guide]
+    var getDetails: @Sendable (_ id: String) async throws -> GuideDetails
+    var getSteps: @Sendable (_ id: String) async throws -> [GuideStep]
+    var addToFavorites: @Sendable (_ id: String) async throws -> ResponseMessage
+    var deleteFromFavorites: @Sendable (_ id: String) async throws -> ResponseMessage
 }
 
 extension DependencyValues {
@@ -34,114 +34,81 @@ extension DependencyValues {
 // MARK: - Live API implementation
 
 extension GuideClient: DependencyKey, TestDependencyKey {
+    @Dependency(\.sessionClient) static var sessionClient
+    static let session = sessionClient.current
+    
     static let liveValue = GuideClient(
-        searchGuides: { token, query in
+        searchGuides: { query in
             let endpoint = "/guides"
             
-            let parameters: Parameters  = [
+            let parameters: Parameters = [
                 "query": "\(query)",
             ]
             
-            let headers: HTTPHeaders = [
-                "Authorization": "\(token)"
-            ]
-            
             return try await withCheckedThrowingContinuation { continuation in
-                AF.request(baseUrl + endpoint,
+                session.request(baseUrl + endpoint,
                            method: .get,
-                           parameters: parameters,
-                           headers: headers
-                )
+                           parameters: parameters)
                 .validate()
                 .responseDecodable(of: [Guide].self) { response in
                     handleResponse(response, continuation)
                 }
             }
-        }, searchFavorites: { token, query in
+        }, searchFavorites: {query in
             let endpoint = "/favorite/guides"
             
-            let parameters: Parameters  = [
+            let parameters: Parameters = [
                 "query": "\(query)",
             ]
             
-            let headers: HTTPHeaders = [
-                "Authorization": "\(token)"
-            ]
-            
             return try await withCheckedThrowingContinuation { continuation in
-                AF.request(baseUrl + endpoint,
+                session.request(baseUrl + endpoint,
                            method: .get,
-                           parameters: parameters,
-                           headers: headers
-                )
+                           parameters: parameters)
                 .validate()
                 .responseDecodable(of: [Guide].self) { response in
                     handleResponse(response, continuation)
                 }
             }
-        }, getDetails: { token, id in
+        }, getDetails: { id in
             let endpoint = "/guides/\(id)"
             
-            let headers: HTTPHeaders = [
-                "Authorization": "\(token)"
-            ]
-            
             return try await withCheckedThrowingContinuation { continuation in
-                AF.request(baseUrl + endpoint,
-                           method: .get,
-                           headers: headers
-                )
+                session.request(baseUrl + endpoint,
+                           method: .get)
                 .validate()
                 .responseDecodable(of: GuideDetails.self) { response in
                     handleResponse(response, continuation)
                 }
             }
-        }, getSteps: { token, id in
+        }, getSteps: { id in
             let endpoint = "/guides/\(id)/steps"
             
-            let headers: HTTPHeaders = [
-                "Authorization": "\(token)"
-            ]
-            
             return try await withCheckedThrowingContinuation { continuation in
-                AF.request(baseUrl + endpoint,
-                           method: .get,
-                           headers: headers
-                )
+                session.request(baseUrl + endpoint,
+                           method: .get)
                 .validate()
                 .responseDecodable(of: [GuideStep].self) { response in
                     handleResponse(response, continuation)
                 }
             }
-        }, addToFavorites: { token, id in
+        }, addToFavorites: { id in
             let endpoint = "/favorite/guides/\(id)"
             
-            let headers: HTTPHeaders = [
-                "Authorization": "\(token)"
-            ]
-            
             return try await withCheckedThrowingContinuation { continuation in
-                AF.request(baseUrl + endpoint,
-                           method: .put,
-                           headers: headers
-                )
+                session.request(baseUrl + endpoint,
+                           method: .put)
                 .validate()
                 .responseDecodable(of: ResponseMessage.self) { response in
                     handleResponse(response, continuation)
                 }
             }
-        }, deleteFromFavorites: { token, id in
+        }, deleteFromFavorites: {id in
             let endpoint = "/favorite/guides/\(id)"
             
-            let headers: HTTPHeaders = [
-                "Authorization": "\(token)"
-            ]
-            
             return try await withCheckedThrowingContinuation { continuation in
-                AF.request(baseUrl + endpoint,
-                           method: .delete,
-                           headers: headers
-                )
+                session.request(baseUrl + endpoint,
+                           method: .delete)
                 .validate()
                 .responseDecodable(of: ResponseMessage.self) { response in
                     handleResponse(response, continuation)
@@ -163,18 +130,17 @@ extension GuideClient {
     static let baseUrl = Helpers.baseUrl
 }
 
-
 private func handleResponse<T>(_ response: AFDataResponse<T>, _ continuation: CheckedContinuation<T, Error>) {
     switch response.result {
-    case .success(let value):
+    case let .success(value):
         continuation.resume(returning: value)
-    case .failure(let error):
+    case let .failure(error):
         if let data = response.data,
-           let failResponse = try? JSONDecoder().decode(FailResponse.self, from: data) {
+           let failResponse = try? JSONDecoder().decode(FailResponse.self, from: data)
+        {
             continuation.resume(throwing: ErrorResponse.failedWithResponse(failResponse))
         } else {
             continuation.resume(throwing: error)
         }
     }
 }
-
