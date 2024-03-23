@@ -13,9 +13,7 @@ import Reachability
 struct AuthView: View {
     let store: StoreOf<AuthFeature>
     let reachability = Reachability.shared
-    
-    @Namespace private var animation
-    
+        
     var body: some View {
         WithViewStore(self.store, observe: { $0 }) { viewStore in
             ScrollView {
@@ -83,7 +81,7 @@ struct AuthView: View {
                                     !viewStore.confirmPassword.isEmpty
                                 )
                             )
-                            .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .leading)))
+                            .transition(.opacity)
                         }
                     }
                     
@@ -98,13 +96,11 @@ struct AuthView: View {
                     .disabled(!viewStore.isLoginAllowed)
                     .opacity(!viewStore.isLoginAllowed ? 0.5 : 1)
                     .padding(.top, 20)
-                    .matchedGeometryEffect(id: "authToggle", in: animation)
                     
                     AuthToggleButton(authType: viewStore.authType, onTap: {
                         viewStore.send(.toggleButtonTapped, animation: .easeInOut)
                     })
                     .padding(.vertical, 20)
-                    .matchedGeometryEffect(id: "authToggle", in: animation)
                     
                     Spacer()
                 }
