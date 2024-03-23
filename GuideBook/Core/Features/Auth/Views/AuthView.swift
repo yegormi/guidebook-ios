@@ -83,7 +83,7 @@ struct AuthView: View {
                                     !viewStore.confirmPassword.isEmpty
                                 )
                             )
-                            .transition(.scale)
+                            .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .leading)))
                         }
                     }
                     
@@ -98,12 +98,12 @@ struct AuthView: View {
                     .disabled(!viewStore.isLoginAllowed)
                     .opacity(!viewStore.isLoginAllowed ? 0.5 : 1)
                     .padding(.top, 20)
+                    .matchedGeometryEffect(id: "authToggle", in: animation)
                     
                     AuthToggleButton(authType: viewStore.authType, onTap: {
                         viewStore.send(.toggleButtonTapped, animation: .easeInOut)
                     })
                     .padding(.vertical, 20)
-                    .animation(.default, value: viewStore.authType)
                     .matchedGeometryEffect(id: "authToggle", in: animation)
                     
                     Spacer()
